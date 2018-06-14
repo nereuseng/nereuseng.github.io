@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+<meta name="keywords" content="Web,HTML,CSS,JavaScript,hexo,php,heroku,js,react,google,api,心得,教程,分享,mysql,mariadb,教學">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nereuseng">
+<meta property="og:url" content="https://nereuseng.github.io/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+<meta property="og:locale" content="zh-TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nereuseng">
+<meta name="twitter:description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/04/01/csstricks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/01/csstricks/" itemprop="url">
+                  css實用使用技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-04-01 17:20:35" itemprop="dateCreated datePublished" datetime="2018-04-01T17:20:35+08:00">2018-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-14 22:01:22" itemprop="dateModified" datetime="2018-06-14T22:01:22+08:00">2018-06-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在支援一件大案子：要切快30頁同時也要顧及每一頁的RWD，同時使用vue來寫。原本要做的team的前端是一個新人，找我來幫忙切版，她就幫忙接api，設計與實作vue架構。在這些不斷切板的過程，同時也逛一個網站發現，作者分享了好多的css selectors的使用方式，發現幾個好用的小技巧，在這邊做筆記，也分享給大家。</p>
+<h1 id="counter"><a href="#counter" class="headerlink" title="counter()"></a>counter()</h1><p>配合僞元素:before使用，基本上就是更加靈活的List Element。功能非常強大非常推薦大家使用，除了可以自己設定在頁面的哪一角出現（只要還使用同一個.css檔,在SPA的時候甚至能跨頁使用），也能利用counters()創造多層級的序號。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="xWjPZr" data-default-tab="css,result" data-user="nereuseng" data-embed-version="2" data-pen-title="csstricks-counter()" class="codepen">See the Pen <a href="https://codepen.io/nereuseng/pen/xWjPZr/" target="_blank" rel="noopener">csstricks-counter()</a> by Nereus Eng Wei Xian (<a href="https://codepen.io/nereuseng" target="_blank" rel="noopener">@nereuseng</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="Fluid-Typography（流體排版）"><a href="#Fluid-Typography（流體排版）" class="headerlink" title="Fluid Typography（流體排版）"></a>Fluid Typography（流體排版）</h1><p><a href="https://websemantics.uk/tools/responsive-font-calculator/" target="_blank" rel="noopener">先上網址：點我</a></p>
+<p>在切版中，常會遇到設計圖在各自的斷點很漂亮，但是在兩者之間的版型，文字圖片大小比例失衡的情況（尤其是設計者只有平面的概念），這個網站的計算公式，提供了一個很好的工具，讓你無痕的從A斷點過渡到B斷點。而且我發現他除了文字，任何能吃calc屬性都能用，非常的方便，有使用預處理器(CSS Preprocesser)的話，甚至寫mixin直接套入數據。</p>
+<h1 id="var-或相同屬性獨立class"><a href="#var-或相同屬性獨立class" class="headerlink" title="var()或相同屬性獨立class"></a>var()或相同屬性獨立class</h1><p>在一個版型當中，通常會使用相同的padding、字型大小，要一直重複寫的話非常繁冗，加上RWD不同的版型，設計稿突然要改的話，就要改好幾個地方。這時候非常需要統一管理，而同一管理的方式，一個是css自帶的功能var()，再來就是把相關的屬性獨立出來，像是.padding、.font-size</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="wXgQdQ" data-default-tab="css,result" data-user="nereuseng" data-embed-version="2" data-pen-title="csstricks-independent class" class="codepen">See the Pen <a href="https://codepen.io/nereuseng/pen/wXgQdQ/" target="_blank" rel="noopener">csstricks-independent class</a> by Nereus Eng Wei Xian (<a href="https://codepen.io/nereuseng" target="_blank" rel="noopener">@nereuseng</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="貓頭鷹選擇器-ast-ast"><a href="#貓頭鷹選擇器-ast-ast" class="headerlink" title="貓頭鷹選擇器 &ast; + &ast;"></a>貓頭鷹選擇器 &ast; + &ast;</h1><p>這個選擇器是在新加坡css.talk所分享的影片中，提到模組化css的一個技巧之一，+這個selector是The adjacent sibling selector，用意是用來選擇，前者同一層級中，往下算最靠近的元素。利用<em> + </em>的選擇器，可以把模組中從第二個開始的元素，加上margin-top等的style，這樣元素之間就有一定的空位。當然，如果使用:not(first-child)也會達到這樣的效果，但是若要真的實現，必須還要加上:not(first-child):not(:root)才不會選到body。但是這樣做的話，會造成權重太重語法改動的問題。</p>
+<h1 id="not"><a href="#not" class="headerlink" title=":not()"></a>:not()</h1><p>:not()的selector適合用在style元素之間橫線。傳統的做法，是在style完所有元素的橫線後，針對最後一個再加:last-child把橫線拿掉。使用:not()會很簡潔。</p>
+<h1 id="彈性處理Element內容的大小與排版"><a href="#彈性處理Element內容的大小與排版" class="headerlink" title="彈性處理Element內容的大小與排版"></a>彈性處理Element內容的大小與排版</h1><p>有一種情況，就是在同個尺寸下，元件的內容會很彈性，有時候多到每個Element塞不下，也會少到只有一個，固定字體大小的話，會非常難控制。想想有超多的Element，你每個放16px，空間超擠；但是只有一個元素的話，16px的字又太小了</p>
+<h2 id="only-child"><a href="#only-child" class="headerlink" title=":only-child"></a>:only-child</h2><p>Child Element只有一個:only-child<br>因此利用:only-child的CSS selector，style只有一個Child Element的CSS。</p>
+<h2 id="nth-last-child"><a href="#nth-last-child" class="headerlink" title=":nth-last-child()"></a>:nth-last-child()</h2><p>Child Element超過一定的數量:nth-last-child()<br>若想在超過6個Element的時候，做不同的style，可使用nth-last-child(n + 6)與nth-last-child(n + 6) ~ *，就能style超過6個Element。</p>
+<p>參考連接：</p>
+<ol>
+<li><a href="https://kevinyank.com/posts/css-selectors-redux" target="_blank" rel="noopener">https://kevinyank.com/posts/css-selectors-redux</a></li>
+<li><a href="https://websemantics.uk/tools/responsive-font-calculator/" target="_blank" rel="noopener">https://websemantics.uk/tools/responsive-font-calculator/</a></li>
+<li><a href="https://www.w3cplus.com/css/css-polyfluidsizing-using-calc-vw-breakpoints-and-linear-equations.html" target="_blank" rel="noopener">https://www.w3cplus.com/css/css-polyfluidsizing-using-calc-vw-breakpoints-and-linear-equations.html</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/02/23/iframe-cors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/23/iframe-cors/" itemprop="url">
+                  跨網域控制iframe
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-02-23 12:00:44" itemprop="dateCreated datePublished" datetime="2018-02-23T12:00:44+08:00">2018-02-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-14 22:00:13" itemprop="dateModified" datetime="2018-06-14T22:00:13+08:00">2018-06-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近的業務需求，要在DFP上放視差廣告，就是原本比較小的圖片，滑到一定的高度之後，會自己變大。之前的做法是準備兩個iframe，需要的時候才顯示其中一個，但是需求方不想要投放兩個DFP廣告，並要直接控制同一個iframe的內容，因此才開始找尋如何跨網域控制iframe的方法。</p>
+<h1 id="困難"><a href="#困難" class="headerlink" title="困難"></a>困難</h1><p>在HTML 5之前，對於iframe的控制，只能在於同個網域，<a href="https://stackoverflow.com/questions/19498725/control-iframe-content-with-javascript-html" target="_blank" rel="noopener">這邊</a> 完整的表示了同網域控制iframe的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 先抓iframe的ID</span><br><span class="line">var iframe = document.getElementById(&quot;myIframe&quot;);</span><br><span class="line"></span><br><span class="line">//抓你想要在iframe下抓的按鈕</span><br><span class="line">var btn = iframe.contentWindow.document.getElementById(&apos;mybutton&apos;);</span><br><span class="line"></span><br><span class="line">//或者直接呼叫iframe下的function</span><br><span class="line">iframe.contentWindow.yourFunction();</span><br></pre></td></tr></table></figure>
+<p>這樣的話是還不錯，甚至在之前的案子中，我還利用它來播放iframe裡面的影片(當然現在已經不行了，<a href="https://www.ettoday.net/news/20170918/1013302.htm" target="_blank" rel="noopener">參考鏈接</a>)，但是他不能用在DFP上。DFP廣告的素材都是自己上傳到DFP的Server，再從那邊的Server讀取，上面的方法就失效了。</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>後來我查到在HTML 5有新的Api, Cross-document messaging，支援度也相當不錯，ie 11有支持。程式碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// Main Page</span><br><span class="line">iframe.addEventListener(&apos;load&apos;, adsAction, false);</span><br><span class="line"></span><br><span class="line">function adsAction() &#123;</span><br><span class="line">    // distance between element with window top edge.</span><br><span class="line">    let dist = wrapper.getBoundingClientRect().top</span><br><span class="line">    if (dist &gt; -250 &amp;&amp; dist &lt;= 100) &#123;</span><br><span class="line">        // send msg to iframe to told iframe do smth</span><br><span class="line">        preview.contentWindow.postMessage(&apos;showComplete&apos;, &apos;https://iframeWebsite.dfp&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist &gt; 100 || dist &lt; -600) &#123;       </span><br><span class="line">        preview.contentWindow.postMessage(&apos;showPreview&apos;, &apos;https://iframeWebsite.dfp&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// iframe</span><br><span class="line">window.addEventListener(&apos;message&apos;, receiver, false);</span><br><span class="line"></span><br><span class="line">function receiver(e) &#123;</span><br><span class="line">    // Website filtering</span><br><span class="line">    if(e.origin === &apos;http://mainPageWebsite&apos;) &#123;</span><br><span class="line">        if (e.data === &apos;showComplete&apos;) &#123;</span><br><span class="line">            // do the things you want</span><br><span class="line">        &#125; else if(e.data === &apos;showPreview&apos;) &#123;</span><br><span class="line">            // do the things you want 2</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在網頁中，抓了iframe後,對iframepostMassage，在postMessage中可以傳入三個函數，前面的兩個是你要傳的訊息，以及iframe的網域，第三個是可選的參數，我還沒研究。<br>在iframe中，通過addEventListener中的message，會讓iframe收到訊息，，並且通過傳送過來的data來控制iframe。但沒有過濾origin的話，會使得所有其他網域的網站，能控制這個iframe。最好的方法就是，在function中加上網址過濾的判斷。</p>
+<h1 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h1><p>在一開始執行時，會出現</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to execute &apos;postMessage&apos; on &apos;DOMWindow&apos;: The target origin provided (&apos;https://iframeWebsite.dfp&apos;) does not match the recipient window&apos;s origin (&apos;http://mainPageWebsite&apos;).</span><br></pre></td></tr></table></figure>
+<p>一開始我以為是http和https的問題，後來查了一下，發現是javascipt很可愛的非同步bug，就是一開始網頁就會在節點載好後，開始執行js，但是因為非同步的關係，iframe的內容還沒有生成，自然postMessage過去就找不到相應的js啦，因此我在網頁js下加上了iframe.addEventListener(‘load’, adsAction, false); 確保iframe載好後重載一次，並且也把因為重載，而造成畫面閃一下的問題處理了。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看到又能用的畫面真的很開心，希望之後能想辦法解決，iframe自動播放影片的問題(好像解決了，下次有就會再分享好了)。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/01/17/redux-actions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/redux-actions/" itemprop="url">
+                  利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-01-17 10:00:46" itemprop="dateCreated datePublished" datetime="2018-01-17T10:00:46+08:00">2018-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Why-redux-actions"><a href="#Why-redux-actions" class="headerlink" title="Why redux-actions?"></a>Why redux-actions?</h1><p>最近一直在Redux卡關, 除了有點玄妙的邏輯以外, 更重要的是他的boilerplate code很繁瑣, 於是在Telegram群組的大大推薦下, 我使用了Redux-Actions的插件, 效果差了很多! 人生也變得美好XD 在這邊我講記錄我更改的過程.</p>
+<h1 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要:"></a>背景提要:</h1><p>我要在我的程式用HTML 5的Api取得使用者的座標, 再來更新使用者位置的天氣, 當中會用到兩個api, 在這邊我其實會有點疑問: 到底HTML5 GeoLocation的取得, 是不是Async的呢? 不過我不管啦, 先設定成是Async的好了, 那在這個範例就是有兩個Async的動作.(目前進度的關係, 先只有用到座標Api)</p>
+<p>正常來說在傳統的React-Redux應該是這個樣子:</p>
+<details><br>  <summary>詳細的Code請點我</summary><br>weather-actions.js<br><pre><code><br>        import { getUserLocation as getUserLocationFromApi } from ‘component/userLocation.jsx’;<br><br>        // 先設定好每一個action的return<br><br>        function startGetLocation() {<br>            return {<br>                type: ‘LOCATION/START_GET_LOCATION’,<br>            }<br>        }<br><br>        function endGetLocation(lat, lng) {<br>            return {<br>                type: ‘LOCATION/END_GET_LOCATION’,<br>                lat,<br>                lng<br>            }<br>        }<br><br>        //下面的function是利用redux thunk來進行async程式<br><br>        export function location() {<br>            return (dispatch, getState) =&gt; {<br>                dispatch(startGetLocation());<br><br>                return getUserLocationFromApi().then(res =&gt; {<br>                    const {latitude: lat, longitude: lng} = res.coords;<br><br>                    dispatch(endGetLocation(lat, lng));<br>                }) catch (err) {<br>                    console.log(‘Error getting User Location’, err);<br>                }<br>            }<br>        }<br></code></pre><br><br><br>weather-reducer.js<br><pre><code><br>        const initLocationState = {<br>            requestStatus: false,<br>            lat: NaN,<br>            lng: NaN<br>        };<br><br>        export function location( state= initLocationState, action) {<br>            switch (action.type) {<br>                case ‘@LOCATION/START_GET_LOCATION’:<br>                    return {<br>                        …state,<br>                    };<br>                case ‘@FORECAST/END_GET_LOCATION’:<br>                    return {<br>                        …state,<br>                        lat,<br>                        lng<br>                    };<br>                default:<br>                    return state;<br>            }<br>        }<br></code></pre><br><br></details>
+
+<p><br></p>
+<h1 id="createAction"><a href="#createAction" class="headerlink" title="createAction"></a>createAction</h1><p>這個是原本的code, 但是用上redux-actions之後code變成這樣:</p>
+<p>Before:</p>
+<pre><code>function startGetUserLocation() {
+    return {
+        type: &apos;LOCATION/START_GET_LOCATION&apos;,
+    }
+}
+
+function endGetUserLocation(lat, lng) {
+    return {
+        type: &apos;LOCATION/END_GET_LOCATION&apos;,
+        lat,
+        lng,
+    }
+}
+</code></pre><p>After:</p>
+<pre><code>import { createAction } from &apos;redux-actions&apos;;
+import { getUserLocation as getUserLocationFromApi } from &apos;component/userLocation.jsx&apos;;
+
+const startGetUserLocation = createAction(&apos;START_GET_USER_LOCATION&apos;);
+const endGetUserLocation = createAction(&apos;END_GET_USER_LOCATION&apos;);
+</code></pre><h1 id="handleActions"><a href="#handleActions" class="headerlink" title="handleActions"></a>handleActions</h1><p>Before:</p>
+<pre><code>const initLocationState = {
+    requestStatus: false,
+    lat: NaN,
+    lng: NaN
+};
+
+export function location( state= initLocationState, action) {
+    switch (action.type) {
+        case &apos;@LOCATION/START_GET_LOCATION&apos;:
+            return {
+                ...state,
+                requestStatus: false,
+            };
+        case &apos;@FORECAST/END_GET_LOCATION&apos;:
+            return {
+                ...state,
+                lat,
+                lng,
+                requestStatus: true,
+            };
+        default:
+            return state;
+    }
+}
+</code></pre><p>After:</p>
+<pre><code>import { handleActions, combineActions } from &apos;redux-actions&apos;;
+
+const initLocationState = {
+    requestStatus: false,
+    lat: NaN,
+    lng: NaN
+};
+
+export const location = handleActions({
+GET_LOCATION: (state, action) =&gt; {
+        return {...state lat:action.payload.lat, lng: action.payload.lng}
+    },
+GET_LOCATION_STATUS: (state, action) =&gt; {
+        return {...state, requestStatus: action.payload.requestStatus}
+    }
+}, initLocationState);
+</code></pre><h1 id="Spread-and-Destructuring"><a href="#Spread-and-Destructuring" class="headerlink" title="Spread and Destructuring"></a>Spread and Destructuring</h1><p>但是我覺得action.payload.lat, action.payload.lng, res.coords.latitude很繁冗, 後來我利用了spread和解構的語法, 讓他看起來比較整潔:</p>
+<p>Before: </p>
+<pre><code>export const location = handleActions({
+    GET_LOCATION: (state, action) =&gt; {
+            return {...state lat:action.payload.lat, lng: action.payload.lng}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, requestStatus: action.payload.requestStatus}
+        }    
+}, initLocationState);
+</code></pre><p>After:</p>
+<pre><code>export const location = handleActions({  
+    GET_LOCATION: (state, action) =&gt; {        
+            return {...state, ...action.payload}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        }
+}, initLocationState);
+</code></pre><h1 id="combineActions"><a href="#combineActions" class="headerlink" title="combineActions:"></a>combineActions:</h1><p>再來我覺得原本handleActions那邊有點冗, </p>
+<p>Before: </p>
+<pre><code>export const location = handleActions({
+    GET_LOCATION: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        }
+}, initLocationState);
+</code></pre><p>配合 Redux Actions 的 combineActions:</p>
+<p>After:</p>
+<pre><code>export const location = handleActions({
+    [combineActions(&apos;GET_LOCATION&apos;, &apos;GET_LOCATION_STATUS&apos;)](state, action) {
+        return { ...state, ...action.payload}
+    }
+}, initLocationState);
+</code></pre><h2 id="combineActions的小坑："><a href="#combineActions的小坑：" class="headerlink" title="combineActions的小坑："></a>combineActions的小坑：</h2><p>在官方的Api文檔範例中, 他使用的是return { …state, counter: state.counter + amount }; 讓人會誤以為, 只能單純為計算才能combineActions(還是只有我這樣覺得?). 而我發現只要在dispatch的時候, 用object({})的方式傳到reducer, 再把傳入的object使用spread action.payload, 他就會根據你之前的設定好的initState, 找出相應的key來覆蓋. 但是這邊有點問題: combineAction裡面的args會越來越多,變得超級無敵長, 真的很可怕, 除了多寫幾個handle actions來分隔以外, 還有其他方法嗎?</p>
+<h1 id="20180401-combineActions的理解錯誤"><a href="#20180401-combineActions的理解錯誤" class="headerlink" title="20180401 combineActions的理解錯誤"></a>20180401 combineActions的理解錯誤</h1><p>使用了以上的方法一段時間后，發現我什麽都能dispatch，甚至lat、lng的欄位，都能dispatch boolean值(預設值是數字)，讓我維護變得更麻煩，更加難除錯。我發現了一個人，他寫了關於一系列相當清楚的教學，他不建議使用combineActions，畢竟很多時候每一個action都有自己的目的(不用到的幹嘛不簡化成一個XD)，因此在某種程度上，combineActions是不被需要的。</p>
+<p>下面將會新增利用這樣的概念寫好的code：</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>簡單來說, Redux-Actions他簡化了一些模板code, 比方說action不用每一個都寫function, reducers不用寫switch case, 這樣的確少了很多麻煩. 今天的經驗分享就到這邊!</p>
+<h1 id="完整code"><a href="#完整code" class="headerlink" title="完整code"></a>完整code</h1><p>*20180401新增：</p>
+<details><br>  <summary>新版本的示範凑得請點我</summary><br>todo-reducers.js<br><br>const initTodoState = {<br>    todos: [],<br>    todoLoading: false<br>}<br><br>export const todo = handleActions({<br>    [‘SET_LIST_TODO’]:<br>        function(state, {payload}) {<br>            console.log(payload);<br><br>            return {<br>                …state,<br>                todos: payload<br>            }<br>        },<br>    [‘SET_CREATE_TODO’]:<br>        function (state, {payload}) {<br>            return state<br>        },<br>    [‘SET_CHECK_TODO’]:<br>        function (state, {paylaod}) {<br>            return state<br>        },<br>    [‘FETCH_TODO_REQUEST’]:<br>        function (state, payload) {<br>            return {<br>                …state,<br>                todoLoading: true<br>            }<br>        },<br>    [‘FETCH_TODO_RESPONSE’]:<br>        function (state, {payload}) {<br>            return {<br>                …state,<br>                todoLoading: false<br>            }<br>        }<br>}, initTodoState);<br><br>todo-actions.js<br><br>import { createAction, createActions } from ‘redux-actions’;<br><br>const {<br>    // setlistTodo,<br>    setCreateTodo,<br>    setCheckTodo,<br>    fetchTodoRequest,<br>    fetchTodoResponse<br>} = createActions(<br>    // ‘SET_LIST_TODO’,<br>    ‘SET_CREATE_TODO’,<br>    ‘SET_CHECK_TODO’,<br>    ‘FETCH_TODO_REQUEST’,<br>    ‘FETCH_TODO_RESPONSE’<br>)<br><br>const setlistTodo = createAction(‘SET_LIST_TODO’);<br><br>export function listTodo(searchText = ‘’) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            console.log(searchText);<br><br>            const todos = await listTodoFromApi(searchText);<br>            console.log(todos);<br><br>            dispatch(setlistTodo(todos));<br>            dispatch(fetchTodoResponse());<br>            return todos;<br>        } catch (error) {<br>            console.error(‘Error getting todo’, error);<br>        };<br>    }<br>}<br><br>export function createTodo(mood, text) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            await createTodoFromApi(mood, text);<br>            dispatch(setCreateTodo());<br>            await dispatch(listTodo());<br>            dispatch(fetchTodoResponse());<br>        } catch (error) {<br>            console.error(‘Error creating todo’, error);<br>        }<br>    }<br>}<br><br>export function checkTodo(id) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            await checkTodoFromApi(id);<br>            dispatch(setCheckTodo());<br>            await dispatch(listTodo());<br>            dispatch(fetchTodoResponse());<br>        } catch (error) {<br><br>        }<br>    }<br>}<br><br></details>
+
+<details><br>  <summary>完整的code請點我</summary><br>weather-reducers.js<br><br>        import { handleActions, combineActions } from ‘redux-actions’;<br><br>        const initLocationState = {<br>            requestStatus: false,<br>            lat: NaN,<br>            lng: NaN<br>        };<br><br><br>        export const location = handleActions({<br>            <a href="state, action">combineActions(‘GET_LOCATION’, ‘GET_LOCATION_STATUS’)</a> {<br>                return { …state, …action.payload}<br>            }<br>        }, initLocationState);<br><br>        const initWeatherState = {<br>            city: ‘na’,<br>            code: -1,<br>            group:’na’,<br>            description: ‘N/A’,<br>            temp: NaN,<br>            weatherLoading: false,<br>            masking: false,<br>            lat: NaN,<br>            lng: NaN,<br>        };<br><br>        export const weather = handleActions ({<br>            <a href="state, action">combineActions(‘START_GET_USER_LOCATION’, ‘END_GET_USER_LOCATION’, ‘GET_LOCATION_WEATHER’, ‘START_GET_WEATHER’, ‘END_GET_WEATHER’, ‘RESET_WEATHER’, ‘MASK_TODAY_BG’, ‘UNMASK_TODAY_BG’)</a> {<br>                console.log(<code>action.payload:</code>,action.payload);<br><br>                return { …state, …action.payload, }<br>            }<br>        }, initWeatherState)<br><br>weather-actions.js<br><br>        import { getUserLocation as getUserLocationFromApi } from ‘component/userLocation.jsx’;<br>        import { getLocationWeatherToday as getLocationWeatherTodayFromApi } from ‘Api/openWeatherMapApi.js’;<br><br>        /<em> Today </em>/<br><br>        const startGetWeather = createAction(‘START_GET_WEATHER’);<br>        const endGetWeather = createAction(‘END_GET_WEATHER’);<br>        const resetWeather = createAction(‘RESET_WEATHER’);<br>        const maskTodayBg = createAction(‘MASK_TODAY_BG’);<br>        const unmaskTodayBg = createAction(‘UNMASK_TODAY_BG’);<br>        const getUserLocation = createAction(‘GET_LOCATION’);<br>        const startGetUserLocation = createAction(‘START_GET_USER_LOCATION’);<br>        const endGetUserLocation = createAction(‘END_GET_USER_LOCATION’);<br>        const getWeatherLocation = createAction(‘GET_LOCATION_WEATHER’);<br>        const getWeatherLocationStatus = createAction(‘GET_LOCATION_WEATHER_STATUS’);<br><br>        export function getWeather(city, unit) {<br>            return (dispatch, getState) =&gt; {<br>                dispatch(startGetWeather({city, unit}));<br>                dispatch(maskTodayBg({masking: true}));<br><br>                return getWeatherFromApi(city, unit).then(weather =&gt;{<br>                    console.log(weather);<br>                    const {city, code, group , description, temp, unit} = weather;<br>                    dispatch(endGetWeather({city, code, group, description, temp}));<br>                    dispatch(setUnit(unit));<br>                }).then( () =&gt; {<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                }).catch(err =&gt; {<br>                    console.error(‘Error getting weather’, err);<br>                    dispatch(resetWeather());<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                });<br>            };<br>        };<br><br>        /<em>*
+        </em> location<br>        */<br><br>        export const getLocationWeather = function(unit){<br>            return async (dispatch, getState) =&gt; {<br>                dispatch(startGetUserLocation({requestStatus: true}));<br>                dispatch(maskTodayBg({masking: true}));<br><br>                try {<br>                    const res = await getUserLocationFromApi();<br>                    const {latitude: lat, longitude: lng} = res.coords;<br>                    console.log(lat, lng);<br>                    dispatch(getUserLocation({lat, lng}));<br><br>                    const weather = await getLocationWeatherTodayFromApi(lat, lng, unit);<br>                    console.log(weather);<br>                    const {city, code, group , description, temp} = weather;<br>                    dispatch(getWeatherLocation({city, code, group , description, temp}));<br><br>                    dispatch(endGetUserLocation({requestStatus: false}));<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                } catch (err) {<br>                    console.log(‘Error getting User Location’, err);<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                    // TODO: some reset action?<br>                }<br>            }<br>        }<br><br></details>
+
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://github.com/dc198689/orange/blob/master/src/actions/posts/getPosts.js" target="_blank" rel="noopener">https://github.com/dc198689/orange/blob/master/src/actions/posts/getPosts.js</a></li>
+<li><a href="https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/Redux/%E4%BD%BF%E7%94%A8%20Redux%20%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8%20%E2%80%94%E2%80%94%20redux-actions.md" target="_blank" rel="noopener">https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/Redux/%E4%BD%BF%E7%94%A8%20Redux%20%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8%20%E2%80%94%E2%80%94%20redux-actions.md</a></li>
+<li><a href="https://redux-actions.js.org/docs/introduction/Tutorial.html" target="_blank" rel="noopener">https://redux-actions.js.org/docs/introduction/Tutorial.html</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10187009" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10187009</a></li>
+<li><a href="https://www.jianshu.com/p/6ba5cd795077" target="_blank" rel="noopener">https://www.jianshu.com/p/6ba5cd795077</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/12/10/self-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/10/self-review/" itemprop="url">
+                  近期工作心得小結
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-12-10 10:00:46" itemprop="dateCreated datePublished" datetime="2017-12-10T10:00:46+08:00">2017-12-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>找了新工作後，進入一陣蜜月期，開始接手專案。這邊先說一下，我目前在一家報社當前端工程師，雖然說職稱很怪，但是做的東西的確是前端的內容。這邊的性質是接案型，前端的主管會委派你負責一個案子，主管前期會和你一起開會，之後就全權給你負責了。通常在一個案子，會有一個後端、設計、PM的人一起負責，而之後就要和他們協調可行性與技術問題，有點像是大學時期分組報告的感覺。由於前端完成時間只有一個禮拜，基本上架構並沒有很好，而且也沒有用很多有效率的工具，因此在這邊記錄，希望下次不要犯下面提到的錯誤。</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>我自己用的是vscode直接切版，css都是全手工，這樣會讓我的css結構鬆散，到了開發後期非常難維護，幸好這個是活動網頁，要不然我會把自己殺死哈哈。開發之後需要各種文件的壓縮，像是HTML JS CSS的檔案，但是到了這邊我有點糾結，公司的人都在用gulp，但是感覺Webpack很潮，還能async loading，react也會用到。但後來決定先學著gulp，再來回頭學Webpack。總結了一下，下次需要用到的工具：</p>
+<ol>
+<li>stylus</li>
+<li>gulp<br>2.1 HTML JS CSS壓縮<br>npm install gulp gulp-html-replace gulp-minify-html gulp-minify-css gulp-uglify gulp-concat gulp-rename -save-dev<br>2.2 圖片的壓縮<br>npm install –save-dev gulp-imagemin<br>2.3 SSI(Server Side Includes)<br>這個能夠讓你一些重複的模板集中起來管理，更加方便開發，不需要每一個地方逐一修改<br>npm install browsersync-ssi</li>
+</ol>
+<h1 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h1><p>當初主管和pm討論出來的結果是做一個entry page，再加上面六個幾乎一樣的活動頁面，和一個結束頁面，但是後來開發讓我覺得，這樣其實開發非常難維護，雖然後來用了SSI讓維護的工作稍微減輕，但是想到其實能用React做會更快。只要把我要的Header寫好，把不同的圖片當成參數傳進去當props，就能很快的維護了。但是後來想到這個活動會連動到後台的驗證，需要把全部換成JSP，應要開一個api驗證的話，會很浪費大家的時間。只能等下次有機會，練習用框架寫。</p>
+<h1 id="溝通"><a href="#溝通" class="headerlink" title="溝通"></a>溝通</h1><p>後端雖然很資深，但是技術能力偏弱，甚至活動頁面要驗證的事情，也是我到最後提醒才想起(這段是鳥事，唉)，和能力無法成正比，因此發現留意到這樣的問題，就要先幫忙想，要不然之後要幫忙收爛攤子。</p>
+<p>一開始拿到設計圖後，沒有和設計和PM確認使用流程，導致後來要更改版型，甚至發現遺漏頁面。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>溝通不足，缺少工具的運用，希望下次不要遇到這樣的問題了！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/11/08/oh-my-zsh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/oh-my-zsh/" itemprop="url">
+                  Windows 10上整合Vs code的Oh-my-zsh
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-11-08 11:52:55" itemprop="dateCreated datePublished" datetime="2017-11-08T11:52:55+08:00">2017-11-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到線上讀書會的有一個講者用的Terminal[<a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">1</a>]，發現原來Terminal有那麼方便的功能，讓我立馬生火XD 花了一點時間研究怎麼安裝，踩了一下雷並在這邊分享心得。說到踩雷，我發現關於Oh-my-zsh繁體中文的心得分享資源，非常的少啊，於是激起我想要寫這篇文章的動力。</p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>啟動Linux子系統 -&gt; 安裝Zsh -&gt; Oh-my-zsh安裝與設定 -&gt; Vs code整合設定 -&gt;結束！</p>
+<p>#啟動Linux子系統</p>
+<p>如果你沒有進行秋季創作者更新（Fall Creators Update）的話，請你跟著我的做法：</p>
+<p>設定 -&gt; 更新與安全性 -&gt; 開發人員專用 -&gt; 點擊“開發人員模式”</p>
+<p>開啟CMD或者Powershell，輸入<em>OptionalFeatures.exe</em>，跳出來的目錄下選擇“適用於Linux的Windows子系統(搶先版(Beta))”，並重啟電腦。電腦重啟後，打開CMD或者Powershell，輸入<em>bash</em>就能開始安裝Linux子系統。</p>
+<h1 id="安裝Zsh"><a href="#安裝Zsh" class="headerlink" title="安裝Zsh"></a>安裝Zsh</h1><p>在安裝Zsh之前，要在Bash環境下設定：</p>
+<p>安裝 cURL<br><code>sudo apt-get install curl</code></p>
+<p>安裝 git<br><code>sudo apt-add-repository ppa:git-core/ppa</code><br><code>sudo apt-get update</code><br><code>sudo apt-get install git</code></p>
+<p>最後安裝 Zsh<br><code>sudo apt-get install zsh</code></p>
+<p>安裝完畢之後，你可以先在bash裡面先試試看輸入<em>zsh</em>，如果他變成比較短的開頭，代表你成功安裝zsh！</p>
+<h1 id="Oh-my-zsh安裝與設定"><a href="#Oh-my-zsh安裝與設定" class="headerlink" title="Oh-my-zsh安裝與設定"></a>Oh-my-zsh安裝與設定</h1><p>這邊提醒大家，</p>
+<p>一切的改動請在Terminal完成！！[<a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">2</a>]<br>一切的改動請在Terminal完成！！<br>一切的改動請在Terminal完成！！</p>
+<p>千萬<em>不要</em>在其他的Windows編輯器像是Sublime Notepad Vscode等來編輯bashrc、zshrc等文檔<br>做錯的話就要前功盡棄了！</p>
+<p>安裝Oh-my-zsh<br><code>curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash</code></p>
+<p>複製設定檔，通常在安裝zsh之後，需要我們自行設置~/.zshrc，這邊為了防止出錯，直接先套用Oh-my-zsh的預設模板檔案：<br><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
+<p>目前來說，你的Oh-my-zsh已經成功安裝了！如果要啟動他，你要先打開Powershell -&gt; <em>bash</em> -&gt; <em>zsh</em>，但是這樣還是不夠方便，下面將預設開啟bash將會直接打開zsh：</p>
+<p>在Bash Terminal輸入<br><code>nano ~/.bashrc</code></p>
+<p>在Terminal將會跳出.bashrc的編輯畫面,在第一段與第二段的#號段落之間，輸入：<br><code>bash -c zsh</code></p>
+<p>建議直接手打，減少前功盡棄的機會。<a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">範本參考鏈接</a></p>
+<p>再次提醒，上面的段落，<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！</p>
+<h2 id="可選的設定"><a href="#可選的設定" class="headerlink" title="可選的設定"></a>可選的設定</h2><h3 id="主題字型"><a href="#主題字型" class="headerlink" title="主題字型"></a>主題字型</h3><p>因為Oh-my-zsh的主題大部分都用Powerline字型，所以我會推薦大家安裝，這邊的環境不需要用bash，一般的powershell或者cmd就好了，目錄在隨便一個都可以(照指示安裝後會刪除檔案)</p>
+<p><code>git clone https://github.com/powerline/fonts.git --depth=1</code><br><code>cd fonts</code><br><code>./install.sh</code><br><code>cd ..</code><br><code>rm -rf fonts</code></p>
+<h3 id="Random主題"><a href="#Random主題" class="headerlink" title="Random主題"></a>Random主題</h3><p>除此之外我也會讓zsh的主題random，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>如果有成功把Oh-my-zsh的設定模板複製，就能看到文檔中會有<em>ZSH_THEME</em>，把他改成<br><code>ZSH_THEME=&quot;random&quot;</code><br>再按Ctrl+X，按保存</p>
+<p>如果有一天random到你喜歡的主題，可以輸入這個指令查看：<br><code>print $RANDOM_THEME</code><br>到時候就能自己固定你喜歡的主題</p>
+<h3 id="安裝插件"><a href="#安裝插件" class="headerlink" title="安裝插件"></a>安裝插件</h3><p>和上面一樣，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>一直按向下鍵，找到沒有#號的plugins，理論上一開始括號裡面會有git，你可以參考我的設定：<br><code>plugins=(git wd autojump zsh-syntax-highlighting zsh-autosuggestions)</code></p>
+<h1 id="Vs-code整合設定"><a href="#Vs-code整合設定" class="headerlink" title="Vs code整合設定"></a>Vs code整合設定</h1><p>到了這邊，其實你就能好好使用Oh-my-zsh了，但是我習慣在Vs code上使用Terminal，因此另外加上設置：</p>
+<p>Vs code -&gt; 檔案 -&gt; 喜好設定 -&gt; 設定</p>
+<p>就會開出你原本的設定Json檔，在右邊的下面加上</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>如果你用的是Vs code 64bit版本，請改成</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>記得要在前面加上逗號哦！不過後來我發現字體還是有點怪怪的，便移除了最後一行fontFamily的設定<br>之後在你的文件下，按Ctrl+`就能開啟你文件目錄下的Terminal了！</p>
+<h1 id="安裝npm"><a href="#安裝npm" class="headerlink" title="安裝npm"></a>安裝npm</h1><p>之前在Windows下安裝的npm是無法被Linux的Bash抓到，因此要另外在Bash安裝npm：</p>
+<p><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</code><br><code>sudo apt-get install -y nodejs</code></p>
+<p>並在~/.zshrc第一段的#號段落下，加上這些：<br><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></p>
+<h1 id="障礙排除"><a href="#障礙排除" class="headerlink" title="障礙排除"></a>障礙排除</h1><p>如果你遇到Input/output error，個人的建議是，你把Bash刪除再重新安裝<a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">問題參考鏈接參考鏈接</a></p>
+<h1 id="參考連結："><a href="#參考連結：" class="headerlink" title="參考連結："></a>參考連結：</h1><ol>
+<li><a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">https://youtu.be/rsaqfyDLzQM?t=1m13s</a></li>
+<li><a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></li>
+<li><a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5</a></li>
+<li><a href="http://www.jianshu.com/p/fe244b1c7737" target="_blank" rel="noopener">http://www.jianshu.com/p/fe244b1c7737</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/issues/5725" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/issues/5725</a></li>
+<li><a href="https://www.jazz321254.com/visual-studio-code-zsh/" target="_blank" rel="noopener">https://www.jazz321254.com/visual-studio-code-zsh/</a></li>
+<li><a href="https://www.zhihu.com/question/49284484" target="_blank" rel="noopener">https://www.zhihu.com/question/49284484</a></li>
+<li><a href="https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3" target="_blank" rel="noopener">https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3</a></li>
+<li><a href="https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html" target="_blank" rel="noopener">https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh#manual-installation" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh#manual-installation</a></li>
+<li><a href="http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips" target="_blank" rel="noopener">http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips</a></li>
+<li><a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">https://github.com/Microsoft/WSL/issues/904</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/11/08/oh-my-zsh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/oh-my-zsh/" itemprop="url">
+                  Windows 10上整合Vs code的Oh-my-zsh(20180119更新)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-11-08 11:52:55" itemprop="dateCreated datePublished" datetime="2017-11-08T11:52:55+08:00">2017-11-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到線上讀書會的有一個講者用的Terminal[<a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">1</a>]，發現原來Terminal有那麼方便的功能，讓我立馬生火XD 花了一點時間研究怎麼安裝，踩了一下雷並在這邊分享心得。說到踩雷，我發現關於Oh-my-zsh繁體中文的心得分享資源，非常的少啊，於是激起我想要寫這篇文章的動力。</p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>啟動Linux子系統 -&gt; 安裝Zsh -&gt; Oh-my-zsh安裝與設定 -&gt; Vs code整合設定 -&gt;結束！</p>
+<p>#啟動Linux子系統</p>
+<p>如果你沒有進行秋季創作者更新（Fall Creators Update）的話，請你跟著我的做法：</p>
+<ul>
+<li>20180119更新：Windows已經正式開始推送更新了，有空我再更新有更新的做法</li>
+</ul>
+<p>設定 -&gt; 更新與安全性 -&gt; 開發人員專用 -&gt; 點擊“開發人員模式”</p>
+<p>開啟CMD或者Powershell，輸入<em>OptionalFeatures.exe</em>，跳出來的目錄下選擇“適用於Linux的Windows子系統(搶先版(Beta))”，並重啟電腦。電腦重啟後，打開CMD或者Powershell，輸入<em>bash</em>就能開始安裝Linux子系統。</p>
+<h1 id="安裝Zsh"><a href="#安裝Zsh" class="headerlink" title="安裝Zsh"></a>安裝Zsh</h1><p>在安裝Zsh之前，要在Bash環境下設定：</p>
+<p>安裝 cURL<br><code>sudo apt-get install curl</code></p>
+<p>安裝 git<br><code>sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git</code></p>
+<p>最後安裝 Zsh<br><code>sudo apt-get install zsh</code></p>
+<p>安裝完畢之後，你可以先在bash裡面先試試看輸入<em>zsh</em>，如果他變成比較短的開頭，代表你成功安裝zsh！</p>
+<h1 id="Oh-my-zsh安裝與設定"><a href="#Oh-my-zsh安裝與設定" class="headerlink" title="Oh-my-zsh安裝與設定"></a>Oh-my-zsh安裝與設定</h1><p>這邊提醒大家，</p>
+<p>一切的改動請在Terminal完成！！[<a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">2</a>]<br>一切的改動請在Terminal完成！！<br>一切的改動請在Terminal完成！！</p>
+<p>千萬<em>不要</em>在其他的Windows編輯器像是Sublime Notepad Vscode等來編輯bashrc、zshrc等文檔<br>做錯的話就要前功盡棄了！</p>
+<p>安裝Oh-my-zsh<br><code>curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash</code></p>
+<p>複製設定檔，通常在安裝zsh之後，需要我們自行設置~/.zshrc，這邊為了防止出錯，直接先套用Oh-my-zsh的預設模板檔案：<br><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
+<p>目前來說，你的Oh-my-zsh已經成功安裝了！如果要啟動他，你要先打開Powershell -&gt; <em>bash</em> -&gt; <em>zsh</em>，但是這樣還是不夠方便，下面將預設開啟bash將會直接打開zsh：</p>
+<p>在Bash Terminal輸入<br><code>nano ~/.bashrc</code></p>
+<p>在Terminal將會跳出.bashrc的編輯畫面,在第一段與第二段的#號段落之間，輸入：<br><code>bash -c zsh</code></p>
+<p>建議直接手打，減少前功盡棄的機會。<a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">範本參考鏈接</a></p>
+<p>再次提醒，上面的段落，<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！</p>
+<h2 id="可選的設定"><a href="#可選的設定" class="headerlink" title="可選的設定"></a>可選的設定</h2><h3 id="主題字型"><a href="#主題字型" class="headerlink" title="主題字型"></a>主題字型</h3><p>因為Oh-my-zsh的主題大部分都用Powerline字型，所以我會推薦大家安裝，這邊的環境不需要用bash，一般的powershell或者cmd就好了，目錄在隨便一個都可以(照指示安裝後會刪除檔案)</p>
+<p><code>git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts</code></p>
+<h3 id="Random主題"><a href="#Random主題" class="headerlink" title="Random主題"></a>Random主題</h3><p>除此之外我也會讓zsh的主題random，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>如果有成功把Oh-my-zsh的設定模板複製，就能看到文檔中會有<em>ZSH_THEME</em>，把他改成<br><code>ZSH_THEME=&quot;random&quot;</code><br>再按Ctrl+X，按保存</p>
+<p>如果有一天random到你喜歡的主題，可以輸入這個指令查看：<br><code>print $RANDOM_THEME</code><br>到時候就能自己固定你喜歡的主題</p>
+<h3 id="安裝插件"><a href="#安裝插件" class="headerlink" title="安裝插件"></a>安裝插件</h3><p>和上面一樣，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>一直按向下鍵，找到沒有#號的plugins，理論上一開始括號裡面會有git，你可以參考我的設定：<br><code>plugins=(git wd autojump zsh-syntax-highlighting zsh-autosuggestions)</code></p>
+<h1 id="Vs-code整合設定"><a href="#Vs-code整合設定" class="headerlink" title="Vs code整合設定"></a>Vs code整合設定</h1><p>到了這邊，其實你就能好好使用Oh-my-zsh了，但是我習慣在Vs code上使用Terminal，因此另外加上設置：</p>
+<p>Vs code -&gt; 檔案 -&gt; 喜好設定 -&gt; 設定</p>
+<p>就會開出你原本的設定Json檔，在右邊的下面加上</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,
+&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]
+&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>如果你用的是Vs code 64bit版本，請改成</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,
+&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]
+&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>記得要在前面加上逗號哦！不過後來我發現字體還是有點怪怪的，便移除了最後一行fontFamily的設定<br>之後在你的文件下，按Ctrl+`就能開啟你文件目錄下的Terminal了！</p>
+<h1 id="設定自己喜歡的主題-2018-01-19"><a href="#設定自己喜歡的主題-2018-01-19" class="headerlink" title="設定自己喜歡的主題(2018/01/19)"></a>設定自己喜歡的主題(2018/01/19)</h1><p>自己用了一段時期，發現BUllet Train的顏色很文青很療愈，就沒有換主題了XD 在這邊分享一下踩坑經過：<br><a href="https://github.com/caiogondim/bullet-train.zsh/issues/252" target="_blank" rel="noopener">https://github.com/caiogondim/bullet-train.zsh/issues/252</a><br>基本上設定完後，發現自己Terminal的背景怪怪的，原來是還要加上一些設定，在.zshrc要加上這個：</p>
+<pre><code>BULLETTRAIN_CONTEXT_BG=red
+</code></pre><p>顏色隨你喜歡，儲存後就大功告成了！</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>如果你遇到Input/output error，個人的建議是，你把Bash刪除再重新安裝<a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">問題參考鏈接參考鏈接</a></p>
+<h1 id="參考連結："><a href="#參考連結：" class="headerlink" title="參考連結："></a>參考連結：</h1><ol>
+<li><a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">https://youtu.be/rsaqfyDLzQM?t=1m13s</a></li>
+<li><a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></li>
+<li><a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5</a></li>
+<li><a href="http://www.jianshu.com/p/fe244b1c7737" target="_blank" rel="noopener">http://www.jianshu.com/p/fe244b1c7737</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/issues/5725" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/issues/5725</a></li>
+<li><a href="https://www.jazz321254.com/visual-studio-code-zsh/" target="_blank" rel="noopener">https://www.jazz321254.com/visual-studio-code-zsh/</a></li>
+<li><a href="https://www.zhihu.com/question/49284484" target="_blank" rel="noopener">https://www.zhihu.com/question/49284484</a></li>
+<li><a href="https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3" target="_blank" rel="noopener">https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3</a></li>
+<li><a href="https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html" target="_blank" rel="noopener">https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh#manual-installation" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh#manual-installation</a></li>
+<li><a href="http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips" target="_blank" rel="noopener">http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips</a></li>
+<li><a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">https://github.com/Microsoft/WSL/issues/904</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/12/webpack-dev-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/webpack-dev-server/" itemprop="url">
+                  自己搭建React+Webpack開發環境並性能優化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-12 11:17:42" itemprop="dateCreated datePublished" datetime="2017-10-12T11:17:42+08:00">2017-10-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。</p>
+<h1 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h1><p>一開始我看的文章是 <a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">[1]从零搭建React全家桶框架教程</a>，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下的cmd打上：</p>
+<pre><code>npm init
+npm install --save-dev-g webpack    //新增webpack.config.js exports....
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-0
+    //新增babel文件 presets等等....
+    //開始在Index.js寫react的東西
+    //加上方便的指令
+npm install --save react-router-dom
+npm install webpack-dev-server --save-dev
+npm install react-hot-loader@next --save-dev
+npm install --save-dev css-loader
+npm install --save-dev file-loader
+npm install style-loader --save-dev
+npm install --save-dev url-loader   //這是用來引入圖片
+npm install axios
+</code></pre><p>Webpack是用來打包各種文件，像是CSS、JS檔、Module、Babel、背景圖片等等，非常的好用！Babel組件把ES6，ES7的語法轉換成ES5，css-loader，file-loader，style-loader，url-loader都是webpack用來打包css、圖案的組件。</p>
+<h1 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h1><p>在裝完各種檔案（Package.json、webpack.config.js、.babelrc我會放下面）後，再來做優化：</p>
+<ol>
+<li><p>npm dedupe<a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">[2]</a>（安裝檔案都需要）<br>安裝完node package後，需要這個指令來重新整理，會發現node_modules文件夾會變小哦！</p>
+</li>
+<li><p>CommonsChunkPlugin<br>他會把大家共用的JS檔案拿出來，減少重複的檔案。</p>
+</li>
+<li><p>UglifyJSPlugin<br>會壓縮JS檔案，讓體積變小。</p>
+</li>
+<li><p>把React換成Production版本<br>減少原本react中的註釋和空白。</p>
+<pre><code>new webpack.DefinePlugin({
+    &apos;process.env&apos;: {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    },
+}),
+</code></pre></li>
+</ol>
+<p>經過這四招，我把檔案從快1MB減到300KB++，下面是我Webpack的檔案</p>
+<h2 id="Webpack設定檔"><a href="#Webpack設定檔" class="headerlink" title="Webpack設定檔"></a>Webpack設定檔</h2><pre><code>const path = require(&apos;path&apos;);
+const webpack = require(&apos;webpack&apos;);
+const UglifyJSPlugin = require(&apos;uglifyjs-webpack-plugin&apos;);
+
+const srcPath = path.resolve(__dirname, &apos;src&apos;);
+const distPath = path.resolve(__dirname, &apos;dist&apos;);
+
+module.exports = {
+    /*devtool讓我在borwser看到哪裡出問題*/
+    devtool: &apos;cheap-module-eval-source-map&apos;,
+    context: srcPath,
+    /*入口*/
+    entry: [
+        path.join(__dirname, &apos;src/index.js&apos;),
+    ],  
+    /*输出到dist文件夹，输出文件名字为bundle.js*/
+    output: {
+        path: path.join(__dirname, &apos;./dist&apos;),
+        filename: &apos;bundle.js&apos;
+    },
+
+    /*src文件夹下面的以.js结尾的文件，要使用babel解析*/
+    /*cacheDirectory是用来缓存编译结果，下次编译加速*/
+    module: {
+        rules: [
+            {
+                test: /\.js$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+            {
+                test: /\.jsx$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    &apos;style-loader&apos;,
+                    {
+                        loader: &apos;css-loader&apos;,
+                        options : {
+                            url: false
+                        }
+                    }
+                ]},
+            {
+                test: /\.(png|jpg|gif)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: &apos;url-loader&apos;,
+                    options: {
+                        limit: 25000
+                    }
+                }]    
+            }]
+    },
+
+    devServer: {
+        contentBase: path.join(__dirname, &apos;./dist&apos;),
+        historyApiFallback: true,
+        host: &apos;0.0.0.0&apos;,
+        port: process.env.PORT || 8080,
+        public: &apos;forecastapps.herokuapp.com&apos;
+    },
+
+    resolve: {
+        //bug of webpack:
+        //https://github.com/webpack-contrib/css-loader/issues/74
+        modules: [&apos;./&apos;, &apos;node_modules&apos;],
+        alias: {
+            images: path.join(__dirname, &apos;./dist/images&apos;),
+            owfont: path.join(__dirname, &apos;src/component/Forecast/owfont-master&apos;),
+            Api: path.join(__dirname, &apos;src/component/Api&apos;),
+            Today: path.join(__dirname, &apos;src/component/Today&apos;),
+            Forecast: path.join(__dirname, &apos;src/component/Forecast&apos;),
+            component: path.join(__dirname, &apos;src/component&apos;),
+            router: path.join(__dirname, &apos;src/router&apos;),
+        }
+    },
+
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+        name: &apos;vendor&apos;,
+        filename: &apos;vendor.bundle.js&apos;,
+        minChunks: 2
+        }), 
+        new UglifyJSPlugin(),
+        new webpack.DefinePlugin({
+            &apos;process.env&apos;: {
+            &apos;NODE_ENV&apos;: JSON.stringify(&apos;production&apos;)
+            }
+        }),
+    ],
+};    
+</code></pre><h2 id="Package-json-一部分"><a href="#Package-json-一部分" class="headerlink" title="Package.json(一部分)"></a>Package.json(一部分)</h2><pre><code>&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;dev-build&quot;: &quot;webpack --config webpack.config.js&quot;,
+    &quot;start&quot;: &quot;set NODE_ENV=production&amp;&amp;webpack-dev-server --config webpack.config.js -p --progress --colors&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --config webpack.config.js --color --progress --hot&quot;,
+}
+</code></pre><h2 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h2><pre><code>{
+    // compact用來蓋掉在compiler的時候，出現的&quot;The code generator has deoptimised the styling of [some file] as it exceeds the max of &quot;500KB&quot; [3]&quot;訊息
+    &quot;compact&quot;: &quot;false&quot;,
+    &quot;presets&quot;: [
+        &quot;es2015&quot;,
+        &quot;react&quot;,
+        &quot;stage-0&quot;
+    ],
+    &quot;plugins&quot;: [
+        &quot;react-hot-loader/babel&quot;
+    ]
+}
+</code></pre><h1 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h1><p>這邊我有不太明白的地方，就是關於Hot Module Replacement。Hot Module Replacement就是在我開發時，能在我保存後，更新我修改的那部分，不需要我手動刷新。但在使用後，發現一個問題：State每次在我保存後，會被重置。我嘗試了react-hot-loader，發現不知道怎麼弄QQ看有誰路過能指點一下XD</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">https://github.com/brickspert/blog/issues/1</a></li>
+<li><a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">http://www.alloyteam.com/2016/03/master-npm/</a></li>
+<li><a href="https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean" target="_blank" rel="noopener">https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean</a></li>
+<li><a href="https://github.com/reactjs/redux/issues/809" target="_blank" rel="noopener">https://github.com/reactjs/redux/issues/809</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/05/Hexo-sitemap-and-Keywords/" itemprop="url">
+                  Hexo 添加Keywords和提交Sitemap到Google的心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-05 21:15:04" itemprop="dateCreated datePublished" datetime="2017-10-05T21:15:04+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得：</p>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>首先我添加Keywords，是根據這個部落格的文章<a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">[1]</a>來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割：</p>
+<pre><code>keywords: Keywords,Google,Sitemap,SEO,Hexo
+</code></pre><p>因為我用的是Next的主題，主題模板的更改已經完成，這邊不再細寫，可到上面的文章連接參考，最後到 blog根目錄/scaffolds/post.md，在模板上添加Keywords:</p>
+<pre><code>title: {{ title }}
+date: {{ date }}
+categories:
+tags:
+keywords:
+</code></pre><h1 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h1><p>我參考了這個文章<a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">[2]</a>，先在blog根目錄安裝npm插件</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>再來到_config.yml添加代碼，若找不到關鍵字，請直接在_config.yml的最下面添加</p>
+<pre><code>sitemap:
+path: sitemap.xml
+</code></pre><h2 id="注意path的更改-3"><a href="#注意path的更改-3" class="headerlink" title="注意path的更改 [3]"></a>注意path的更改 <a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">[3]</a></h2><p>請檢查_config.yml中是不是尚未更改url，把下面的yoursite.com改成</p>
+<pre><code>url:http://www.yoursite.com
+</code></pre><p>這個：</p>
+<pre><code>url:http://www.你在github或者其他地方的網址.com
+</code></pre><p>改好後在Cmd的blog根目錄打入</p>
+<pre><code>hexo g
+hexo d
+</code></pre><p>並且在你的blog網域上查看<br>例如：<a href="https://nereuseng.github.io/sitemap.xml">https://nereuseng.github.io/sitemap.xml</a><br>就能看到我產生好的Sitemap</p>
+<h1 id="提交到Google-Search-Console"><a href="#提交到Google-Search-Console" class="headerlink" title="提交到Google Search Console"></a>提交到Google Search Console</h1><p>根據這篇文章<a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">[4]</a>，<br>我在索引(Crawl)——&gt;Sitemap 新增Sitemap<br>並把路徑貼進去，就大功告成了！</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">http://www.yuanye097.com/2015/10/26/name/</a></li>
+<li><a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">http://www.jianshu.com/p/8db494e9dffc</a></li>
+<li><a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/705</a></li>
+<li><a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">http://fionat.github.io/2016/04/02/sitemap/</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/20/React-and-Google-Api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/React-and-Google-Api/" itemprop="url">
+                  React and Google Maps Api
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-09-20 08:23:56" itemprop="dateCreated datePublished" datetime="2017-09-20T08:23:56+08:00">2017-09-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我知道現在在github上有現成的React Google Maps的套件，但是想透過這次的研究，了解google maps api是如何運作的，下次應該就直接用套件了吧XD</p>
+<h1 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h1><p>在全屏的Google Maps地圖上，只要點擊地圖，取得地圖上的坐標，就能知道那個地點的天氣</p>
+<h1 id="熱身（Optional）"><a href="#熱身（Optional）" class="headerlink" title="熱身（Optional）"></a>熱身（Optional）</h1><p>依照Google官網上的api文件<a href="https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw" target="_blank" rel="noopener">[1]</a>，和Youtube上的教學影片<a href="https://www.youtube.com/watch?v=Zxf1mnP5zcw" target="_blank" rel="noopener">[2]</a>，建立一個有基本版面的地圖</p>
+<h1 id="整合至React"><a href="#整合至React" class="headerlink" title="整合至React"></a>整合至React</h1><p>依照這個網站<a href="https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352" target="_blank" rel="noopener">[3]</a>的文章，建立Component後，先在Render()建立一個想要放入地圖的Div，再來componentDidMount放入在上面寫的initMap function，並且在index.html加入Google Maps Api的Javascript，就能完成一個在React上的簡單地圖。</p>
+<h1 id="點擊增加Marker"><a href="#點擊增加Marker" class="headerlink" title="點擊增加Marker"></a>點擊增加Marker</h1><p>目前的地圖是靜態提供Marker,根據Google Maps Api的文件<a href="https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw" target="_blank" rel="noopener">[4]</a>，我改寫了當中的map.addListener，把上面提供new google.maps.Marker的方法加進去，這樣你的React地圖點擊就會有新的Marker了！</p>
+<h1 id="刪除舊有的Marker"><a href="#刪除舊有的Marker" class="headerlink" title="刪除舊有的Marker"></a>刪除舊有的Marker</h1><p>根據文件<a href="https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw" target="_blank" rel="noopener">[5]</a>，map.setMap(null)只能隱藏標記，也不能隱藏我點擊增加的Marker，參考了文件<a href="https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw" target="_blank" rel="noopener">[6]</a>，在Component上面增加了兩個Global Variable:map和markers[]，加上setMapOnAll、clearMarkers、deleteMarkers的function，就能完整的刪除標記了。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用增加Marker後，把Marker推到markers的陣列：markers.push(marker)，再map.addListener中先刪除Marker，才再新增。</p>
+<h1 id="坐標與Open-Weather-Api整合"><a href="#坐標與Open-Weather-Api整合" class="headerlink" title="坐標與Open Weather Api整合"></a>坐標與Open Weather Api整合</h1><p>在原有的程式整合這個Component後，我在程式原有的State加上lat和lng來儲存從Google Maps Api從來的坐標，並且提供Component onClick={handleClick}的的Callback function，來接從Component收到map.addListener產生的坐標。這樣在收到坐標的改變後，顯示天氣的元件也會隨著改變。不過在串接天氣Api的過程中，有一個很奇怪的問題：</p>
+<h2 id="Axios-api-無限loop"><a href="#Axios-api-無限loop" class="headerlink" title="Axios api 無限loop"></a>Axios api 無限loop</h2><p>我一開始想說把抓到的坐標放到我的State，但卻一直無限loop，把this.setState的lat、lng拿掉之後，就沒事了，真的很怪異，不知道誰能幫我解答XD</p>
+<pre><code>
+    getLocationWeather(lat, lng, unit){
+        this.setState = ({
+            lat: lat,
+            lng: lng
+        }, () => {
+
+        //結論：糾結了一整個下午，為什麼加了上面的setState會導致Infinity Loop呢？
+            getLocationWeather(lat, lng, unit).then(weather => {
+                this.setState ({
+                    ...weather,
+                    masking: true
+                }); alert(JSON.stringify(this.state.city));  
+            });
+        });
+
+        if (this.props.units !== unit) {
+            this.props.onUnitChange(unit);
+        }
+
+        setTimeout(() => {
+            this.setState({
+                masking: false
+            });
+        }, 600)
+    }
+</code></pre>
+
+<h2 id="發現原因"><a href="#發現原因" class="headerlink" title="發現原因"></a>發現原因</h2><p>原來我在setState後面多打一個等於</p>
+<pre><code>
+    this.setState = ({
+            lat: lat,
+            lng: lng
+        }, () => { ...
+</code></pre>
+
+<p>this.setState變成一個新的function，執行後面getLocationWeather的程式後，呼叫this.setState，結果就變成死循環了</p>
+<p>這個發生的原因！</p>
+<h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p>在和Huli大大聊過後，發現自己的作品還不完整，還能添加更多的功能，也看到其他人的天氣作品，覺得自己還有一段很長的路要走。歡迎各位一起討論！</p>
+<h1 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h1><p><a href="https://goo.gl/WHVHMx" target="_blank" rel="noopener">這裡</a></p>
+<h1 id="參考連接"><a href="#參考連接" class="headerlink" title="參考連接"></a>參考連接</h1><ol>
+<li><a href="https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw</a></li>
+<li><a href="https://www.youtube.com/watch?v=Zxf1mnP5zcw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Zxf1mnP5zcw</a></li>
+<li><a href="https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352" target="_blank" rel="noopener">https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/13/React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/React/" itemprop="url">
+                  React一到兩週學習心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-09-13 19:45:56" itemprop="dateCreated datePublished" datetime="2017-09-13T19:45:56+08:00">2017-09-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在畢業後找工作的期間<br>發現大部分前端工程師<br>都需要熟悉任何一項的Javascript框架（AngularJS, VueJS, ReactJS）<br>於是我在一次的面試當中下定決心<br>從9月1號左右開始每天不間斷的學習</p>
+<p>學習的的資源<br>除了Youtube上的影片<br>也包含之前在ptt po的清大線上課程<br>這邊我要感謝清大的教授<br>講解的非常清楚外<br>提供那麼好的免費線上資源</p>
+<p>我目前的Check List：</p>
+<ol>
+<li>手刻的CSS版型（包含Nav Bar，但不含他的RWD）</li>
+<li>HTML表單的Input</li>
+<li>Ajax使用與Api串接（只用到Axios，不包含Google系列）</li>
+<li>State和Props的差別</li>
+</ol>
+<p>學習TODO list：</p>
+<ol>
+<li>Nav Bar的RWD</li>
+<li>Promise資料的Exception</li>
+<li>Ajax—fetch的使用</li>
+<li>Redux的概念</li>
+<li>Google系列的Api串接</li>
+<li>重新學好JS</li>
+<li>利用Nodejs當後台</li>
+<li>JQuery</li>
+<li>DOM</li>
+</ol>
+<p>學習的途徑：</p>
+<ol>
+<li>台大訓練班(JS)</li>
+<li>書本(JS優良部分、Speaking Javascript)</li>
+<li>清大線上課程（Redux）</li>
+<li>Youtube上的開發者學堂</li>
+</ol>
+<p>學習TODO list（長期）：</p>
+<ol>
+<li>CS50</li>
+<li>清大演算法（江蕙如老師）</li>
+<li>Lavarel</li>
+<li>能完成那樣的作品(<a href="https://www.ptt.cc/bbs/Soft_Job/M.1433644651.A.976.html" target="_blank" rel="noopener">https://www.ptt.cc/bbs/Soft_Job/M.1433644651.A.976.html</a>)</li>
+</ol>
+<p>列了那麼多<br>而且也不小心也把<br>React以外的技能列出來（還偷渡了PHP XD）<br>發現還有很多地方是不足的！<br>希望我能把基礎打好<br>這樣學習才會更快！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

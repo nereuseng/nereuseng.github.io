@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Why redux-actions?最近一直在Redux卡關, 除了有點玄妙的邏輯以外, 更重要的是他的boilerplate code很繁瑣, 於是在Telegram群組的大大推薦下, 我使用了Redux-Actions的插件, 效果差了很多! 人生也變得美好XD 在這邊我講記錄我更改的過程. 背景提要:我要在我的程式用HTML 5的Api取得使用者的座標, 再來更新使用者位置的天氣, 當中會用">
+<meta name="keywords" content="Redux-actions, Redux, react, boilerplate, code, handleAction, handleActions, createAction, createActions, combineActions, reducers, action, install, 教學, 教学, 教程, 安裝, 安装, 心得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Redux-actions 來減少Redux的Boilerplate Code(2018&#x2F;04&#x2F;01更新)">
+<meta property="og:url" content="https://nereuseng.github.io/2018/01/17/redux-actions/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="Why redux-actions?最近一直在Redux卡關, 除了有點玄妙的邏輯以外, 更重要的是他的boilerplate code很繁瑣, 於是在Telegram群組的大大推薦下, 我使用了Redux-Actions的插件, 效果差了很多! 人生也變得美好XD 在這邊我講記錄我更改的過程. 背景提要:我要在我的程式用HTML 5的Api取得使用者的座標, 再來更新使用者位置的天氣, 當中會用">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2018-06-10T11:02:57.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Redux-actions 來減少Redux的Boilerplate Code(2018&#x2F;04&#x2F;01更新)">
+<meta name="twitter:description" content="Why redux-actions?最近一直在Redux卡關, 除了有點玄妙的邏輯以外, 更重要的是他的boilerplate code很繁瑣, 於是在Telegram群組的大大推薦下, 我使用了Redux-Actions的插件, 效果差了很多! 人生也變得美好XD 在這邊我講記錄我更改的過程. 背景提要:我要在我的程式用HTML 5的Api取得使用者的座標, 再來更新使用者位置的天氣, 當中會用">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2018/01/17/redux-actions/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新) | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/01/17/redux-actions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-01-17 10:00:46" itemprop="dateCreated datePublished" datetime="2018-01-17T10:00:46+08:00">2018-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Why-redux-actions"><a href="#Why-redux-actions" class="headerlink" title="Why redux-actions?"></a>Why redux-actions?</h1><p>最近一直在Redux卡關, 除了有點玄妙的邏輯以外, 更重要的是他的boilerplate code很繁瑣, 於是在Telegram群組的大大推薦下, 我使用了Redux-Actions的插件, 效果差了很多! 人生也變得美好XD 在這邊我講記錄我更改的過程.</p>
+<h1 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要:"></a>背景提要:</h1><p>我要在我的程式用HTML 5的Api取得使用者的座標, 再來更新使用者位置的天氣, 當中會用到兩個api, 在這邊我其實會有點疑問: 到底HTML5 GeoLocation的取得, 是不是Async的呢? 不過我不管啦, 先設定成是Async的好了, 那在這個範例就是有兩個Async的動作.(目前進度的關係, 先只有用到座標Api)</p>
+<p>正常來說在傳統的React-Redux應該是這個樣子:</p>
+<details><br>  <summary>詳細的Code請點我</summary><br>weather-actions.js<br><pre><code><br>        import { getUserLocation as getUserLocationFromApi } from ‘component/userLocation.jsx’;<br><br>        // 先設定好每一個action的return<br><br>        function startGetLocation() {<br>            return {<br>                type: ‘LOCATION/START_GET_LOCATION’,<br>            }<br>        }<br><br>        function endGetLocation(lat, lng) {<br>            return {<br>                type: ‘LOCATION/END_GET_LOCATION’,<br>                lat,<br>                lng<br>            }<br>        }<br><br>        //下面的function是利用redux thunk來進行async程式<br><br>        export function location() {<br>            return (dispatch, getState) =&gt; {<br>                dispatch(startGetLocation());<br><br>                return getUserLocationFromApi().then(res =&gt; {<br>                    const {latitude: lat, longitude: lng} = res.coords;<br><br>                    dispatch(endGetLocation(lat, lng));<br>                }) catch (err) {<br>                    console.log(‘Error getting User Location’, err);<br>                }<br>            }<br>        }<br></code></pre><br><br><br>weather-reducer.js<br><pre><code><br>        const initLocationState = {<br>            requestStatus: false,<br>            lat: NaN,<br>            lng: NaN<br>        };<br><br>        export function location( state= initLocationState, action) {<br>            switch (action.type) {<br>                case ‘@LOCATION/START_GET_LOCATION’:<br>                    return {<br>                        …state,<br>                    };<br>                case ‘@FORECAST/END_GET_LOCATION’:<br>                    return {<br>                        …state,<br>                        lat,<br>                        lng<br>                    };<br>                default:<br>                    return state;<br>            }<br>        }<br></code></pre><br><br></details>
+
+<p><br></p>
+<h1 id="createAction"><a href="#createAction" class="headerlink" title="createAction"></a>createAction</h1><p>這個是原本的code, 但是用上redux-actions之後code變成這樣:</p>
+<p>Before:</p>
+<pre><code>function startGetUserLocation() {
+    return {
+        type: &apos;LOCATION/START_GET_LOCATION&apos;,
+    }
+}
+
+function endGetUserLocation(lat, lng) {
+    return {
+        type: &apos;LOCATION/END_GET_LOCATION&apos;,
+        lat,
+        lng,
+    }
+}
+</code></pre><p>After:</p>
+<pre><code>import { createAction } from &apos;redux-actions&apos;;
+import { getUserLocation as getUserLocationFromApi } from &apos;component/userLocation.jsx&apos;;
+
+const startGetUserLocation = createAction(&apos;START_GET_USER_LOCATION&apos;);
+const endGetUserLocation = createAction(&apos;END_GET_USER_LOCATION&apos;);
+</code></pre><h1 id="handleActions"><a href="#handleActions" class="headerlink" title="handleActions"></a>handleActions</h1><p>Before:</p>
+<pre><code>const initLocationState = {
+    requestStatus: false,
+    lat: NaN,
+    lng: NaN
+};
+
+export function location( state= initLocationState, action) {
+    switch (action.type) {
+        case &apos;@LOCATION/START_GET_LOCATION&apos;:
+            return {
+                ...state,
+                requestStatus: false,
+            };
+        case &apos;@FORECAST/END_GET_LOCATION&apos;:
+            return {
+                ...state,
+                lat,
+                lng,
+                requestStatus: true,
+            };
+        default:
+            return state;
+    }
+}
+</code></pre><p>After:</p>
+<pre><code>import { handleActions, combineActions } from &apos;redux-actions&apos;;
+
+const initLocationState = {
+    requestStatus: false,
+    lat: NaN,
+    lng: NaN
+};
+
+export const location = handleActions({
+GET_LOCATION: (state, action) =&gt; {
+        return {...state lat:action.payload.lat, lng: action.payload.lng}
+    },
+GET_LOCATION_STATUS: (state, action) =&gt; {
+        return {...state, requestStatus: action.payload.requestStatus}
+    }
+}, initLocationState);
+</code></pre><h1 id="Spread-and-Destructuring"><a href="#Spread-and-Destructuring" class="headerlink" title="Spread and Destructuring"></a>Spread and Destructuring</h1><p>但是我覺得action.payload.lat, action.payload.lng, res.coords.latitude很繁冗, 後來我利用了spread和解構的語法, 讓他看起來比較整潔:</p>
+<p>Before: </p>
+<pre><code>export const location = handleActions({
+    GET_LOCATION: (state, action) =&gt; {
+            return {...state lat:action.payload.lat, lng: action.payload.lng}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, requestStatus: action.payload.requestStatus}
+        }    
+}, initLocationState);
+</code></pre><p>After:</p>
+<pre><code>export const location = handleActions({  
+    GET_LOCATION: (state, action) =&gt; {        
+            return {...state, ...action.payload}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        }
+}, initLocationState);
+</code></pre><h1 id="combineActions"><a href="#combineActions" class="headerlink" title="combineActions:"></a>combineActions:</h1><p>再來我覺得原本handleActions那邊有點冗, </p>
+<p>Before: </p>
+<pre><code>export const location = handleActions({
+    GET_LOCATION: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        },
+    GET_LOCATION_STATUS: (state, action) =&gt; {
+            return {...state, ...action.payload}
+        }
+}, initLocationState);
+</code></pre><p>配合 Redux Actions 的 combineActions:</p>
+<p>After:</p>
+<pre><code>export const location = handleActions({
+    [combineActions(&apos;GET_LOCATION&apos;, &apos;GET_LOCATION_STATUS&apos;)](state, action) {
+        return { ...state, ...action.payload}
+    }
+}, initLocationState);
+</code></pre><h2 id="combineActions的小坑："><a href="#combineActions的小坑：" class="headerlink" title="combineActions的小坑："></a>combineActions的小坑：</h2><p>在官方的Api文檔範例中, 他使用的是return { …state, counter: state.counter + amount }; 讓人會誤以為, 只能單純為計算才能combineActions(還是只有我這樣覺得?). 而我發現只要在dispatch的時候, 用object({})的方式傳到reducer, 再把傳入的object使用spread action.payload, 他就會根據你之前的設定好的initState, 找出相應的key來覆蓋. 但是這邊有點問題: combineAction裡面的args會越來越多,變得超級無敵長, 真的很可怕, 除了多寫幾個handle actions來分隔以外, 還有其他方法嗎?</p>
+<h1 id="20180401-combineActions的理解錯誤"><a href="#20180401-combineActions的理解錯誤" class="headerlink" title="20180401 combineActions的理解錯誤"></a>20180401 combineActions的理解錯誤</h1><p>使用了以上的方法一段時間后，發現我什麽都能dispatch，甚至lat、lng的欄位，都能dispatch boolean值(預設值是數字)，讓我維護變得更麻煩，更加難除錯。我發現了一個人，他寫了關於一系列相當清楚的教學，他不建議使用combineActions，畢竟很多時候每一個action都有自己的目的(不用到的幹嘛不簡化成一個XD)，因此在某種程度上，combineActions是不被需要的。</p>
+<p>下面將會新增利用這樣的概念寫好的code：</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>簡單來說, Redux-Actions他簡化了一些模板code, 比方說action不用每一個都寫function, reducers不用寫switch case, 這樣的確少了很多麻煩. 今天的經驗分享就到這邊!</p>
+<h1 id="完整code"><a href="#完整code" class="headerlink" title="完整code"></a>完整code</h1><p>*20180401新增：</p>
+<details><br>  <summary>新版本的示範凑得請點我</summary><br>todo-reducers.js<br><br>const initTodoState = {<br>    todos: [],<br>    todoLoading: false<br>}<br><br>export const todo = handleActions({<br>    [‘SET_LIST_TODO’]:<br>        function(state, {payload}) {<br>            console.log(payload);<br><br>            return {<br>                …state,<br>                todos: payload<br>            }<br>        },<br>    [‘SET_CREATE_TODO’]:<br>        function (state, {payload}) {<br>            return state<br>        },<br>    [‘SET_CHECK_TODO’]:<br>        function (state, {paylaod}) {<br>            return state<br>        },<br>    [‘FETCH_TODO_REQUEST’]:<br>        function (state, payload) {<br>            return {<br>                …state,<br>                todoLoading: true<br>            }<br>        },<br>    [‘FETCH_TODO_RESPONSE’]:<br>        function (state, {payload}) {<br>            return {<br>                …state,<br>                todoLoading: false<br>            }<br>        }<br>}, initTodoState);<br><br>todo-actions.js<br><br>import { createAction, createActions } from ‘redux-actions’;<br><br>const {<br>    // setlistTodo,<br>    setCreateTodo,<br>    setCheckTodo,<br>    fetchTodoRequest,<br>    fetchTodoResponse<br>} = createActions(<br>    // ‘SET_LIST_TODO’,<br>    ‘SET_CREATE_TODO’,<br>    ‘SET_CHECK_TODO’,<br>    ‘FETCH_TODO_REQUEST’,<br>    ‘FETCH_TODO_RESPONSE’<br>)<br><br>const setlistTodo = createAction(‘SET_LIST_TODO’);<br><br>export function listTodo(searchText = ‘’) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            console.log(searchText);<br><br>            const todos = await listTodoFromApi(searchText);<br>            console.log(todos);<br><br>            dispatch(setlistTodo(todos));<br>            dispatch(fetchTodoResponse());<br>            return todos;<br>        } catch (error) {<br>            console.error(‘Error getting todo’, error);<br>        };<br>    }<br>}<br><br>export function createTodo(mood, text) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            await createTodoFromApi(mood, text);<br>            dispatch(setCreateTodo());<br>            await dispatch(listTodo());<br>            dispatch(fetchTodoResponse());<br>        } catch (error) {<br>            console.error(‘Error creating todo’, error);<br>        }<br>    }<br>}<br><br>export function checkTodo(id) {<br>    return async (dispatch, getState) =&gt; {<br>        dispatch(fetchTodoRequest());<br>        try {<br>            await checkTodoFromApi(id);<br>            dispatch(setCheckTodo());<br>            await dispatch(listTodo());<br>            dispatch(fetchTodoResponse());<br>        } catch (error) {<br><br>        }<br>    }<br>}<br><br></details>
+
+<details><br>  <summary>完整的code請點我</summary><br>weather-reducers.js<br><br>        import { handleActions, combineActions } from ‘redux-actions’;<br><br>        const initLocationState = {<br>            requestStatus: false,<br>            lat: NaN,<br>            lng: NaN<br>        };<br><br><br>        export const location = handleActions({<br>            <a href="state, action">combineActions(‘GET_LOCATION’, ‘GET_LOCATION_STATUS’)</a> {<br>                return { …state, …action.payload}<br>            }<br>        }, initLocationState);<br><br>        const initWeatherState = {<br>            city: ‘na’,<br>            code: -1,<br>            group:’na’,<br>            description: ‘N/A’,<br>            temp: NaN,<br>            weatherLoading: false,<br>            masking: false,<br>            lat: NaN,<br>            lng: NaN,<br>        };<br><br>        export const weather = handleActions ({<br>            <a href="state, action">combineActions(‘START_GET_USER_LOCATION’, ‘END_GET_USER_LOCATION’, ‘GET_LOCATION_WEATHER’, ‘START_GET_WEATHER’, ‘END_GET_WEATHER’, ‘RESET_WEATHER’, ‘MASK_TODAY_BG’, ‘UNMASK_TODAY_BG’)</a> {<br>                console.log(<code>action.payload:</code>,action.payload);<br><br>                return { …state, …action.payload, }<br>            }<br>        }, initWeatherState)<br><br>weather-actions.js<br><br>        import { getUserLocation as getUserLocationFromApi } from ‘component/userLocation.jsx’;<br>        import { getLocationWeatherToday as getLocationWeatherTodayFromApi } from ‘Api/openWeatherMapApi.js’;<br><br>        /<em> Today </em>/<br><br>        const startGetWeather = createAction(‘START_GET_WEATHER’);<br>        const endGetWeather = createAction(‘END_GET_WEATHER’);<br>        const resetWeather = createAction(‘RESET_WEATHER’);<br>        const maskTodayBg = createAction(‘MASK_TODAY_BG’);<br>        const unmaskTodayBg = createAction(‘UNMASK_TODAY_BG’);<br>        const getUserLocation = createAction(‘GET_LOCATION’);<br>        const startGetUserLocation = createAction(‘START_GET_USER_LOCATION’);<br>        const endGetUserLocation = createAction(‘END_GET_USER_LOCATION’);<br>        const getWeatherLocation = createAction(‘GET_LOCATION_WEATHER’);<br>        const getWeatherLocationStatus = createAction(‘GET_LOCATION_WEATHER_STATUS’);<br><br>        export function getWeather(city, unit) {<br>            return (dispatch, getState) =&gt; {<br>                dispatch(startGetWeather({city, unit}));<br>                dispatch(maskTodayBg({masking: true}));<br><br>                return getWeatherFromApi(city, unit).then(weather =&gt;{<br>                    console.log(weather);<br>                    const {city, code, group , description, temp, unit} = weather;<br>                    dispatch(endGetWeather({city, code, group, description, temp}));<br>                    dispatch(setUnit(unit));<br>                }).then( () =&gt; {<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                }).catch(err =&gt; {<br>                    console.error(‘Error getting weather’, err);<br>                    dispatch(resetWeather());<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                });<br>            };<br>        };<br><br>        /<em>*
+        </em> location<br>        */<br><br>        export const getLocationWeather = function(unit){<br>            return async (dispatch, getState) =&gt; {<br>                dispatch(startGetUserLocation({requestStatus: true}));<br>                dispatch(maskTodayBg({masking: true}));<br><br>                try {<br>                    const res = await getUserLocationFromApi();<br>                    const {latitude: lat, longitude: lng} = res.coords;<br>                    console.log(lat, lng);<br>                    dispatch(getUserLocation({lat, lng}));<br><br>                    const weather = await getLocationWeatherTodayFromApi(lat, lng, unit);<br>                    console.log(weather);<br>                    const {city, code, group , description, temp} = weather;<br>                    dispatch(getWeatherLocation({city, code, group , description, temp}));<br><br>                    dispatch(endGetUserLocation({requestStatus: false}));<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                } catch (err) {<br>                    console.log(‘Error getting User Location’, err);<br>                    setTimeout(() =&gt; {<br>                        dispatch(unmaskTodayBg({masking: false}));<br>                    }, 600);<br>                    // TODO: some reset action?<br>                }<br>            }<br>        }<br><br></details>
+
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://github.com/dc198689/orange/blob/master/src/actions/posts/getPosts.js" target="_blank" rel="noopener">https://github.com/dc198689/orange/blob/master/src/actions/posts/getPosts.js</a></li>
+<li><a href="https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/Redux/%E4%BD%BF%E7%94%A8%20Redux%20%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8%20%E2%80%94%E2%80%94%20redux-actions.md" target="_blank" rel="noopener">https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/Redux/%E4%BD%BF%E7%94%A8%20Redux%20%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8%20%E2%80%94%E2%80%94%20redux-actions.md</a></li>
+<li><a href="https://redux-actions.js.org/docs/introduction/Tutorial.html" target="_blank" rel="noopener">https://redux-actions.js.org/docs/introduction/Tutorial.html</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10187009" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10187009</a></li>
+<li><a href="https://www.jianshu.com/p/6ba5cd795077" target="_blank" rel="noopener">https://www.jianshu.com/p/6ba5cd795077</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/心得/" rel="tag"># 心得</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/10/self-review/" rel="next" title="近期工作心得小結">
+                <i class="fa fa-chevron-left"></i> 近期工作心得小結
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/23/iframe-cors/" rel="prev" title="跨網域控制iframe">
+                跨網域控制iframe <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-redux-actions"><span class="nav-number">1.</span> <span class="nav-text">Why redux-actions?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景提要"><span class="nav-number">2.</span> <span class="nav-text">背景提要:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#createAction"><span class="nav-number">3.</span> <span class="nav-text">createAction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#handleActions"><span class="nav-number">4.</span> <span class="nav-text">handleActions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spread-and-Destructuring"><span class="nav-number">5.</span> <span class="nav-text">Spread and Destructuring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#combineActions"><span class="nav-number">6.</span> <span class="nav-text">combineActions:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#combineActions的小坑："><span class="nav-number">6.1.</span> <span class="nav-text">combineActions的小坑：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20180401-combineActions的理解錯誤"><span class="nav-number">7.</span> <span class="nav-text">20180401 combineActions的理解錯誤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">8.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整code"><span class="nav-number">9.</span> <span class="nav-text">完整code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">10.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

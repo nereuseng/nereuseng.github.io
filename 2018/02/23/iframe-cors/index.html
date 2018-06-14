@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言最近的業務需求，要在DFP上放視差廣告，就是原本比較小的圖片，滑到一定的高度之後，會自己變大。之前的做法是準備兩個iframe，需要的時候才顯示其中一個，但是需求方不想要投放兩個DFP廣告，並要直接控制同一個iframe的內容，因此才開始找尋如何跨網域控制iframe的方法。 困難在HTML 5之前，對於iframe的控制，只能在於同個網域，這邊 完整的表示了同網域控制iframe的方法： 1">
+<meta name="keywords" content="iframe, javascript, cors, control, contentWindow, js, 操作, dom, postMessage, DFP, 視差, Cross-document messaging, Cross-document, 跨網域, 教學, 心得, 教程, domain, 通信, 傳送, 訊息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨網域控制iframe">
+<meta property="og:url" content="https://nereuseng.github.io/2018/02/23/iframe-cors/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="前言最近的業務需求，要在DFP上放視差廣告，就是原本比較小的圖片，滑到一定的高度之後，會自己變大。之前的做法是準備兩個iframe，需要的時候才顯示其中一個，但是需求方不想要投放兩個DFP廣告，並要直接控制同一個iframe的內容，因此才開始找尋如何跨網域控制iframe的方法。 困難在HTML 5之前，對於iframe的控制，只能在於同個網域，這邊 完整的表示了同網域控制iframe的方法： 1">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2018-06-14T14:00:13.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跨網域控制iframe">
+<meta name="twitter:description" content="前言最近的業務需求，要在DFP上放視差廣告，就是原本比較小的圖片，滑到一定的高度之後，會自己變大。之前的做法是準備兩個iframe，需要的時候才顯示其中一個，但是需求方不想要投放兩個DFP廣告，並要直接控制同一個iframe的內容，因此才開始找尋如何跨網域控制iframe的方法。 困難在HTML 5之前，對於iframe的控制，只能在於同個網域，這邊 完整的表示了同網域控制iframe的方法： 1">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2018/02/23/iframe-cors/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>跨網域控制iframe | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/02/23/iframe-cors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">跨網域控制iframe
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-02-23 12:00:44" itemprop="dateCreated datePublished" datetime="2018-02-23T12:00:44+08:00">2018-02-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-14 22:00:13" itemprop="dateModified" datetime="2018-06-14T22:00:13+08:00">2018-06-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近的業務需求，要在DFP上放視差廣告，就是原本比較小的圖片，滑到一定的高度之後，會自己變大。之前的做法是準備兩個iframe，需要的時候才顯示其中一個，但是需求方不想要投放兩個DFP廣告，並要直接控制同一個iframe的內容，因此才開始找尋如何跨網域控制iframe的方法。</p>
+<h1 id="困難"><a href="#困難" class="headerlink" title="困難"></a>困難</h1><p>在HTML 5之前，對於iframe的控制，只能在於同個網域，<a href="https://stackoverflow.com/questions/19498725/control-iframe-content-with-javascript-html" target="_blank" rel="noopener">這邊</a> 完整的表示了同網域控制iframe的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 先抓iframe的ID</span><br><span class="line">var iframe = document.getElementById(&quot;myIframe&quot;);</span><br><span class="line"></span><br><span class="line">//抓你想要在iframe下抓的按鈕</span><br><span class="line">var btn = iframe.contentWindow.document.getElementById(&apos;mybutton&apos;);</span><br><span class="line"></span><br><span class="line">//或者直接呼叫iframe下的function</span><br><span class="line">iframe.contentWindow.yourFunction();</span><br></pre></td></tr></table></figure>
+<p>這樣的話是還不錯，甚至在之前的案子中，我還利用它來播放iframe裡面的影片(當然現在已經不行了，<a href="https://www.ettoday.net/news/20170918/1013302.htm" target="_blank" rel="noopener">參考鏈接</a>)，但是他不能用在DFP上。DFP廣告的素材都是自己上傳到DFP的Server，再從那邊的Server讀取，上面的方法就失效了。</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>後來我查到在HTML 5有新的Api, Cross-document messaging，支援度也相當不錯，ie 11有支持。程式碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// Main Page</span><br><span class="line">iframe.addEventListener(&apos;load&apos;, adsAction, false);</span><br><span class="line"></span><br><span class="line">function adsAction() &#123;</span><br><span class="line">    // distance between element with window top edge.</span><br><span class="line">    let dist = wrapper.getBoundingClientRect().top</span><br><span class="line">    if (dist &gt; -250 &amp;&amp; dist &lt;= 100) &#123;</span><br><span class="line">        // send msg to iframe to told iframe do smth</span><br><span class="line">        preview.contentWindow.postMessage(&apos;showComplete&apos;, &apos;https://iframeWebsite.dfp&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist &gt; 100 || dist &lt; -600) &#123;       </span><br><span class="line">        preview.contentWindow.postMessage(&apos;showPreview&apos;, &apos;https://iframeWebsite.dfp&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// iframe</span><br><span class="line">window.addEventListener(&apos;message&apos;, receiver, false);</span><br><span class="line"></span><br><span class="line">function receiver(e) &#123;</span><br><span class="line">    // Website filtering</span><br><span class="line">    if(e.origin === &apos;http://mainPageWebsite&apos;) &#123;</span><br><span class="line">        if (e.data === &apos;showComplete&apos;) &#123;</span><br><span class="line">            // do the things you want</span><br><span class="line">        &#125; else if(e.data === &apos;showPreview&apos;) &#123;</span><br><span class="line">            // do the things you want 2</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在網頁中，抓了iframe後,對iframepostMassage，在postMessage中可以傳入三個函數，前面的兩個是你要傳的訊息，以及iframe的網域，第三個是可選的參數，我還沒研究。<br>在iframe中，通過addEventListener中的message，會讓iframe收到訊息，，並且通過傳送過來的data來控制iframe。但沒有過濾origin的話，會使得所有其他網域的網站，能控制這個iframe。最好的方法就是，在function中加上網址過濾的判斷。</p>
+<h1 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h1><p>在一開始執行時，會出現</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to execute &apos;postMessage&apos; on &apos;DOMWindow&apos;: The target origin provided (&apos;https://iframeWebsite.dfp&apos;) does not match the recipient window&apos;s origin (&apos;http://mainPageWebsite&apos;).</span><br></pre></td></tr></table></figure>
+<p>一開始我以為是http和https的問題，後來查了一下，發現是javascipt很可愛的非同步bug，就是一開始網頁就會在節點載好後，開始執行js，但是因為非同步的關係，iframe的內容還沒有生成，自然postMessage過去就找不到相應的js啦，因此我在網頁js下加上了iframe.addEventListener(‘load’, adsAction, false); 確保iframe載好後重載一次，並且也把因為重載，而造成畫面閃一下的問題處理了。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>看到又能用的畫面真的很開心，希望之後能想辦法解決，iframe自動播放影片的問題(好像解決了，下次有就會再分享好了)。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/心得/" rel="tag"># 心得</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/redux-actions/" rel="next" title="利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新)">
+                <i class="fa fa-chevron-left"></i> 利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/csstricks/" rel="prev" title="css實用使用技巧">
+                css實用使用技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#困難"><span class="nav-number">2.</span> <span class="nav-text">困難</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的問題"><span class="nav-number">4.</span> <span class="nav-text">遇到的問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="引言之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。 開始一開始我看的文章是 [1]从零搭建React全家桶框架教程，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下">
+<meta name="keywords" content="Heroku, webpack, react, Replacement, Hot, Module, 优化, 優化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己搭建React+Webpack開發環境並性能優化">
+<meta property="og:url" content="https://nereuseng.github.io/2017/10/12/webpack-dev-server/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="引言之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。 開始一開始我看的文章是 [1]从零搭建React全家桶框架教程，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2018-06-10T11:02:57.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己搭建React+Webpack開發環境並性能優化">
+<meta name="twitter:description" content="引言之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。 開始一開始我看的文章是 [1]从零搭建React全家桶框架教程，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2017/10/12/webpack-dev-server/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>自己搭建React+Webpack開發環境並性能優化 | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/12/webpack-dev-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自己搭建React+Webpack開發環境並性能優化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-12 11:17:42" itemprop="dateCreated datePublished" datetime="2017-10-12T11:17:42+08:00">2017-10-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。</p>
+<h1 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h1><p>一開始我看的文章是 <a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">[1]从零搭建React全家桶框架教程</a>，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下的cmd打上：</p>
+<pre><code>npm init
+npm install --save-dev-g webpack    //新增webpack.config.js exports....
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-0
+    //新增babel文件 presets等等....
+    //開始在Index.js寫react的東西
+    //加上方便的指令
+npm install --save react-router-dom
+npm install webpack-dev-server --save-dev
+npm install react-hot-loader@next --save-dev
+npm install --save-dev css-loader
+npm install --save-dev file-loader
+npm install style-loader --save-dev
+npm install --save-dev url-loader   //這是用來引入圖片
+npm install axios
+</code></pre><p>Webpack是用來打包各種文件，像是CSS、JS檔、Module、Babel、背景圖片等等，非常的好用！Babel組件把ES6，ES7的語法轉換成ES5，css-loader，file-loader，style-loader，url-loader都是webpack用來打包css、圖案的組件。</p>
+<h1 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h1><p>在裝完各種檔案（Package.json、webpack.config.js、.babelrc我會放下面）後，再來做優化：</p>
+<ol>
+<li><p>npm dedupe<a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">[2]</a>（安裝檔案都需要）<br>安裝完node package後，需要這個指令來重新整理，會發現node_modules文件夾會變小哦！</p>
+</li>
+<li><p>CommonsChunkPlugin<br>他會把大家共用的JS檔案拿出來，減少重複的檔案。</p>
+</li>
+<li><p>UglifyJSPlugin<br>會壓縮JS檔案，讓體積變小。</p>
+</li>
+<li><p>把React換成Production版本<br>減少原本react中的註釋和空白。</p>
+<pre><code>new webpack.DefinePlugin({
+    &apos;process.env&apos;: {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    },
+}),
+</code></pre></li>
+</ol>
+<p>經過這四招，我把檔案從快1MB減到300KB++，下面是我Webpack的檔案</p>
+<h2 id="Webpack設定檔"><a href="#Webpack設定檔" class="headerlink" title="Webpack設定檔"></a>Webpack設定檔</h2><pre><code>const path = require(&apos;path&apos;);
+const webpack = require(&apos;webpack&apos;);
+const UglifyJSPlugin = require(&apos;uglifyjs-webpack-plugin&apos;);
+
+const srcPath = path.resolve(__dirname, &apos;src&apos;);
+const distPath = path.resolve(__dirname, &apos;dist&apos;);
+
+module.exports = {
+    /*devtool讓我在borwser看到哪裡出問題*/
+    devtool: &apos;cheap-module-eval-source-map&apos;,
+    context: srcPath,
+    /*入口*/
+    entry: [
+        path.join(__dirname, &apos;src/index.js&apos;),
+    ],  
+    /*输出到dist文件夹，输出文件名字为bundle.js*/
+    output: {
+        path: path.join(__dirname, &apos;./dist&apos;),
+        filename: &apos;bundle.js&apos;
+    },
+
+    /*src文件夹下面的以.js结尾的文件，要使用babel解析*/
+    /*cacheDirectory是用来缓存编译结果，下次编译加速*/
+    module: {
+        rules: [
+            {
+                test: /\.js$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+            {
+                test: /\.jsx$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    &apos;style-loader&apos;,
+                    {
+                        loader: &apos;css-loader&apos;,
+                        options : {
+                            url: false
+                        }
+                    }
+                ]},
+            {
+                test: /\.(png|jpg|gif)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: &apos;url-loader&apos;,
+                    options: {
+                        limit: 25000
+                    }
+                }]    
+            }]
+    },
+
+    devServer: {
+        contentBase: path.join(__dirname, &apos;./dist&apos;),
+        historyApiFallback: true,
+        host: &apos;0.0.0.0&apos;,
+        port: process.env.PORT || 8080,
+        public: &apos;forecastapps.herokuapp.com&apos;
+    },
+
+    resolve: {
+        //bug of webpack:
+        //https://github.com/webpack-contrib/css-loader/issues/74
+        modules: [&apos;./&apos;, &apos;node_modules&apos;],
+        alias: {
+            images: path.join(__dirname, &apos;./dist/images&apos;),
+            owfont: path.join(__dirname, &apos;src/component/Forecast/owfont-master&apos;),
+            Api: path.join(__dirname, &apos;src/component/Api&apos;),
+            Today: path.join(__dirname, &apos;src/component/Today&apos;),
+            Forecast: path.join(__dirname, &apos;src/component/Forecast&apos;),
+            component: path.join(__dirname, &apos;src/component&apos;),
+            router: path.join(__dirname, &apos;src/router&apos;),
+        }
+    },
+
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+        name: &apos;vendor&apos;,
+        filename: &apos;vendor.bundle.js&apos;,
+        minChunks: 2
+        }), 
+        new UglifyJSPlugin(),
+        new webpack.DefinePlugin({
+            &apos;process.env&apos;: {
+            &apos;NODE_ENV&apos;: JSON.stringify(&apos;production&apos;)
+            }
+        }),
+    ],
+};    
+</code></pre><h2 id="Package-json-一部分"><a href="#Package-json-一部分" class="headerlink" title="Package.json(一部分)"></a>Package.json(一部分)</h2><pre><code>&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;dev-build&quot;: &quot;webpack --config webpack.config.js&quot;,
+    &quot;start&quot;: &quot;set NODE_ENV=production&amp;&amp;webpack-dev-server --config webpack.config.js -p --progress --colors&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --config webpack.config.js --color --progress --hot&quot;,
+}
+</code></pre><h2 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h2><pre><code>{
+    // compact用來蓋掉在compiler的時候，出現的&quot;The code generator has deoptimised the styling of [some file] as it exceeds the max of &quot;500KB&quot; [3]&quot;訊息
+    &quot;compact&quot;: &quot;false&quot;,
+    &quot;presets&quot;: [
+        &quot;es2015&quot;,
+        &quot;react&quot;,
+        &quot;stage-0&quot;
+    ],
+    &quot;plugins&quot;: [
+        &quot;react-hot-loader/babel&quot;
+    ]
+}
+</code></pre><h1 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h1><p>這邊我有不太明白的地方，就是關於Hot Module Replacement。Hot Module Replacement就是在我開發時，能在我保存後，更新我修改的那部分，不需要我手動刷新。但在使用後，發現一個問題：State每次在我保存後，會被重置。我嘗試了react-hot-loader，發現不知道怎麼弄QQ看有誰路過能指點一下XD</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">https://github.com/brickspert/blog/issues/1</a></li>
+<li><a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">http://www.alloyteam.com/2016/03/master-npm/</a></li>
+<li><a href="https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean" target="_blank" rel="noopener">https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean</a></li>
+<li><a href="https://github.com/reactjs/redux/issues/809" target="_blank" rel="noopener">https://github.com/reactjs/redux/issues/809</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/心得/" rel="tag"># 心得</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/Hexo-sitemap-and-Keywords/" rel="next" title="Hexo 添加Keywords和提交Sitemap到Google的心得">
+                <i class="fa fa-chevron-left"></i> Hexo 添加Keywords和提交Sitemap到Google的心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/08/oh-my-zsh/" rel="prev" title="Windows 10上整合Vs code的Oh-my-zsh(20180119更新)">
+                Windows 10上整合Vs code的Oh-my-zsh(20180119更新) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#開始"><span class="nav-number">2.</span> <span class="nav-text">開始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#優化"><span class="nav-number">3.</span> <span class="nav-text">優化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack設定檔"><span class="nav-number">3.1.</span> <span class="nav-text">Webpack設定檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Package-json-一部分"><span class="nav-number">3.2.</span> <span class="nav-text">Package.json(一部分)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babelrc"><span class="nav-number">3.3.</span> <span class="nav-text">.babelrc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hot-Module-Replacement"><span class="nav-number">4.</span> <span class="nav-text">Hot Module Replacement</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

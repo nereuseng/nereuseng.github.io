@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言我知道現在在github上有現成的React Google Maps的套件，但是想透過這次的研究，了解google maps api是如何運作的，下次應該就直接用套件了吧XD 目標在全屏的Google Maps地圖上，只要點擊地圖，取得地圖上的坐標，就能知道那個地點的天氣 熱身（Optional）依照Google官網上的api文件[1]，和Youtube上的教學影片[2]，建立一個有基本版面的">
+<meta name="keywords" content="Web,HTML,CSS,JavaScript,hexo,php,heroku,js,react,google,api,心得,教程,分享,mysql,mariadb,教學">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React and Google Maps Api">
+<meta property="og:url" content="https://nereuseng.github.io/2017/09/20/React-and-Google-Api/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="前言我知道現在在github上有現成的React Google Maps的套件，但是想透過這次的研究，了解google maps api是如何運作的，下次應該就直接用套件了吧XD 目標在全屏的Google Maps地圖上，只要點擊地圖，取得地圖上的坐標，就能知道那個地點的天氣 熱身（Optional）依照Google官網上的api文件[1]，和Youtube上的教學影片[2]，建立一個有基本版面的">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2018-06-10T11:02:57.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React and Google Maps Api">
+<meta name="twitter:description" content="前言我知道現在在github上有現成的React Google Maps的套件，但是想透過這次的研究，了解google maps api是如何運作的，下次應該就直接用套件了吧XD 目標在全屏的Google Maps地圖上，只要點擊地圖，取得地圖上的坐標，就能知道那個地點的天氣 熱身（Optional）依照Google官網上的api文件[1]，和Youtube上的教學影片[2]，建立一個有基本版面的">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2017/09/20/React-and-Google-Api/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>React and Google Maps Api | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/20/React-and-Google-Api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React and Google Maps Api
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-09-20 08:23:56" itemprop="dateCreated datePublished" datetime="2017-09-20T08:23:56+08:00">2017-09-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我知道現在在github上有現成的React Google Maps的套件，但是想透過這次的研究，了解google maps api是如何運作的，下次應該就直接用套件了吧XD</p>
+<h1 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h1><p>在全屏的Google Maps地圖上，只要點擊地圖，取得地圖上的坐標，就能知道那個地點的天氣</p>
+<h1 id="熱身（Optional）"><a href="#熱身（Optional）" class="headerlink" title="熱身（Optional）"></a>熱身（Optional）</h1><p>依照Google官網上的api文件<a href="https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw" target="_blank" rel="noopener">[1]</a>，和Youtube上的教學影片<a href="https://www.youtube.com/watch?v=Zxf1mnP5zcw" target="_blank" rel="noopener">[2]</a>，建立一個有基本版面的地圖</p>
+<h1 id="整合至React"><a href="#整合至React" class="headerlink" title="整合至React"></a>整合至React</h1><p>依照這個網站<a href="https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352" target="_blank" rel="noopener">[3]</a>的文章，建立Component後，先在Render()建立一個想要放入地圖的Div，再來componentDidMount放入在上面寫的initMap function，並且在index.html加入Google Maps Api的Javascript，就能完成一個在React上的簡單地圖。</p>
+<h1 id="點擊增加Marker"><a href="#點擊增加Marker" class="headerlink" title="點擊增加Marker"></a>點擊增加Marker</h1><p>目前的地圖是靜態提供Marker,根據Google Maps Api的文件<a href="https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw" target="_blank" rel="noopener">[4]</a>，我改寫了當中的map.addListener，把上面提供new google.maps.Marker的方法加進去，這樣你的React地圖點擊就會有新的Marker了！</p>
+<h1 id="刪除舊有的Marker"><a href="#刪除舊有的Marker" class="headerlink" title="刪除舊有的Marker"></a>刪除舊有的Marker</h1><p>根據文件<a href="https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw" target="_blank" rel="noopener">[5]</a>，map.setMap(null)只能隱藏標記，也不能隱藏我點擊增加的Marker，參考了文件<a href="https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw" target="_blank" rel="noopener">[6]</a>，在Component上面增加了兩個Global Variable:map和markers[]，加上setMapOnAll、clearMarkers、deleteMarkers的function，就能完整的刪除標記了。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用增加Marker後，把Marker推到markers的陣列：markers.push(marker)，再map.addListener中先刪除Marker，才再新增。</p>
+<h1 id="坐標與Open-Weather-Api整合"><a href="#坐標與Open-Weather-Api整合" class="headerlink" title="坐標與Open Weather Api整合"></a>坐標與Open Weather Api整合</h1><p>在原有的程式整合這個Component後，我在程式原有的State加上lat和lng來儲存從Google Maps Api從來的坐標，並且提供Component onClick={handleClick}的的Callback function，來接從Component收到map.addListener產生的坐標。這樣在收到坐標的改變後，顯示天氣的元件也會隨著改變。不過在串接天氣Api的過程中，有一個很奇怪的問題：</p>
+<h2 id="Axios-api-無限loop"><a href="#Axios-api-無限loop" class="headerlink" title="Axios api 無限loop"></a>Axios api 無限loop</h2><p>我一開始想說把抓到的坐標放到我的State，但卻一直無限loop，把this.setState的lat、lng拿掉之後，就沒事了，真的很怪異，不知道誰能幫我解答XD</p>
+<pre><code>
+    getLocationWeather(lat, lng, unit){
+        this.setState = ({
+            lat: lat,
+            lng: lng
+        }, () => {
+
+        //結論：糾結了一整個下午，為什麼加了上面的setState會導致Infinity Loop呢？
+            getLocationWeather(lat, lng, unit).then(weather => {
+                this.setState ({
+                    ...weather,
+                    masking: true
+                }); alert(JSON.stringify(this.state.city));  
+            });
+        });
+
+        if (this.props.units !== unit) {
+            this.props.onUnitChange(unit);
+        }
+
+        setTimeout(() => {
+            this.setState({
+                masking: false
+            });
+        }, 600)
+    }
+</code></pre>
+
+<h2 id="發現原因"><a href="#發現原因" class="headerlink" title="發現原因"></a>發現原因</h2><p>原來我在setState後面多打一個等於</p>
+<pre><code>
+    this.setState = ({
+            lat: lat,
+            lng: lng
+        }, () => { ...
+</code></pre>
+
+<p>this.setState變成一個新的function，執行後面getLocationWeather的程式後，呼叫this.setState，結果就變成死循環了</p>
+<p>這個發生的原因！</p>
+<h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p>在和Huli大大聊過後，發現自己的作品還不完整，還能添加更多的功能，也看到其他人的天氣作品，覺得自己還有一段很長的路要走。歡迎各位一起討論！</p>
+<h1 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h1><p><a href="https://goo.gl/WHVHMx" target="_blank" rel="noopener">這裡</a></p>
+<h1 id="參考連接"><a href="#參考連接" class="headerlink" title="參考連接"></a>參考連接</h1><ol>
+<li><a href="https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw</a></li>
+<li><a href="https://www.youtube.com/watch?v=Zxf1mnP5zcw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Zxf1mnP5zcw</a></li>
+<li><a href="https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352" target="_blank" rel="noopener">https://code.tutsplus.com/tutorials/getting-started-with-react-and-jsx--cms-27352</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/events?hl=zh-tw</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/markers?hl=zh-tw</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw" target="_blank" rel="noopener">https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=zh-tw</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/React/" rel="next" title="React一到兩週學習心得">
+                <i class="fa fa-chevron-left"></i> React一到兩週學習心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/05/Hexo-sitemap-and-Keywords/" rel="prev" title="Hexo 添加Keywords和提交Sitemap到Google的心得">
+                Hexo 添加Keywords和提交Sitemap到Google的心得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目標"><span class="nav-number">2.</span> <span class="nav-text">目標</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#熱身（Optional）"><span class="nav-number">3.</span> <span class="nav-text">熱身（Optional）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整合至React"><span class="nav-number">4.</span> <span class="nav-text">整合至React</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#點擊增加Marker"><span class="nav-number">5.</span> <span class="nav-text">點擊增加Marker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刪除舊有的Marker"><span class="nav-number">6.</span> <span class="nav-text">刪除舊有的Marker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">6.1.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坐標與Open-Weather-Api整合"><span class="nav-number">7.</span> <span class="nav-text">坐標與Open Weather Api整合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Axios-api-無限loop"><span class="nav-number">7.1.</span> <span class="nav-text">Axios api 無限loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#發現原因"><span class="nav-number">7.2.</span> <span class="nav-text">發現原因</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結語"><span class="nav-number">8.</span> <span class="nav-text">結語</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DEMO"><span class="nav-number">9.</span> <span class="nav-text">DEMO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考連接"><span class="nav-number">10.</span> <span class="nav-text">參考連接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

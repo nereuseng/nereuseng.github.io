@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得： Keywords首先我添加Keywords，是根據這個部落格的文章[1]來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割： keywords: Keywords,Google,Sitemap,SEO,Hexo 因為我用">
+<meta name="keywords" content="Keywords,Google,Sitemap,SEO,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 添加Keywords和提交Sitemap到Google的心得">
+<meta property="og:url" content="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得： Keywords首先我添加Keywords，是根據這個部落格的文章[1]來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割： keywords: Keywords,Google,Sitemap,SEO,Hexo 因為我用">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2018-06-10T11:02:57.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 添加Keywords和提交Sitemap到Google的心得">
+<meta name="twitter:description" content="發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得： Keywords首先我添加Keywords，是根據這個部落格的文章[1]來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割： keywords: Keywords,Google,Sitemap,SEO,Hexo 因為我用">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hexo 添加Keywords和提交Sitemap到Google的心得 | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo 添加Keywords和提交Sitemap到Google的心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-05 21:15:04" itemprop="dateCreated datePublished" datetime="2017-10-05T21:15:04+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得：</p>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>首先我添加Keywords，是根據這個部落格的文章<a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">[1]</a>來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割：</p>
+<pre><code>keywords: Keywords,Google,Sitemap,SEO,Hexo
+</code></pre><p>因為我用的是Next的主題，主題模板的更改已經完成，這邊不再細寫，可到上面的文章連接參考，最後到 blog根目錄/scaffolds/post.md，在模板上添加Keywords:</p>
+<pre><code>title: {{ title }}
+date: {{ date }}
+categories:
+tags:
+keywords:
+</code></pre><h1 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h1><p>我參考了這個文章<a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">[2]</a>，先在blog根目錄安裝npm插件</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>再來到_config.yml添加代碼，若找不到關鍵字，請直接在_config.yml的最下面添加</p>
+<pre><code>sitemap:
+path: sitemap.xml
+</code></pre><h2 id="注意path的更改-3"><a href="#注意path的更改-3" class="headerlink" title="注意path的更改 [3]"></a>注意path的更改 <a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">[3]</a></h2><p>請檢查_config.yml中是不是尚未更改url，把下面的yoursite.com改成</p>
+<pre><code>url:http://www.yoursite.com
+</code></pre><p>這個：</p>
+<pre><code>url:http://www.你在github或者其他地方的網址.com
+</code></pre><p>改好後在Cmd的blog根目錄打入</p>
+<pre><code>hexo g
+hexo d
+</code></pre><p>並且在你的blog網域上查看<br>例如：<a href="https://nereuseng.github.io/sitemap.xml">https://nereuseng.github.io/sitemap.xml</a><br>就能看到我產生好的Sitemap</p>
+<h1 id="提交到Google-Search-Console"><a href="#提交到Google-Search-Console" class="headerlink" title="提交到Google Search Console"></a>提交到Google Search Console</h1><p>根據這篇文章<a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">[4]</a>，<br>我在索引(Crawl)——&gt;Sitemap 新增Sitemap<br>並把路徑貼進去，就大功告成了！</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">http://www.yuanye097.com/2015/10/26/name/</a></li>
+<li><a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">http://www.jianshu.com/p/8db494e9dffc</a></li>
+<li><a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/705</a></li>
+<li><a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">http://fionat.github.io/2016/04/02/sitemap/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/20/React-and-Google-Api/" rel="next" title="React and Google Maps Api">
+                <i class="fa fa-chevron-left"></i> React and Google Maps Api
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/12/webpack-dev-server/" rel="prev" title="自己搭建React+Webpack開發環境並性能優化">
+                自己搭建React+Webpack開發環境並性能優化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Keywords"><span class="nav-number">1.</span> <span class="nav-text">Keywords</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sitemap"><span class="nav-number">2.</span> <span class="nav-text">Sitemap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意path的更改-3"><span class="nav-number">2.1.</span> <span class="nav-text">注意path的更改 [3]</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交到Google-Search-Console"><span class="nav-number">3.</span> <span class="nav-text">提交到Google Search Console</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

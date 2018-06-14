@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+<meta name="keywords" content="Web,HTML,CSS,JavaScript,hexo,php,heroku,js,react,google,api,心得,教程,分享,mysql,mariadb,教學">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nereuseng">
+<meta property="og:url" content="https://nereuseng.github.io/page/2/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+<meta property="og:locale" content="zh-TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nereuseng">
+<meta name="twitter:description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/page/2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/09/Hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/09/Hexo/" itemprop="url">
+                  Hello Hexo!(更新問題發生原因2017/10/05)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-09-09 09:03:46" itemprop="dateCreated datePublished" datetime="2017-09-09T09:03:46+08:00">2017-09-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天H大的提點下，我小心翼翼的開了我人生中第一個用npm架好的framework。<br>之前心得都是放在Blogspot，所以自己架站還蠻新奇的。<br><del>雖然說剛剛很崩潰</del></p>
+<hr>
+<h1 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h1><p>才想要發文章，就一定發現一個大坑：<br>使用以下指令：</p>
+<pre><code>hexo new &quot;Hello Hexo!&quot;
+</code></pre><p>結果出現了這樣的輸出：</p>
+<pre><code>INFO  Created: c:\xampp\htdocs\blog\nereuseng\source\_posts\undefined Hexo.md
+</code></pre><h1 id="系統崩潰"><a href="#系統崩潰" class="headerlink" title="系統崩潰"></a>系統崩潰</h1><p>我不管他，繼續用hexo generate，系統就開始跑不動了：</p>
+<pre><code>INFO  Start processing
+ERROR Process failed: _posts/undefined Hexo.md
+ValidationError: `slug` is required!
+at ValidationError.WarehouseError (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\error.js:17:11)
+at new ValidationError (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\error\validation.js:14:18)
+at SchemaTypeString.SchemaType.validate (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\schematype.js:107:11)
+at SchemaTypeString.validate (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\types\string.js:45:45)
+at Array.&lt;anonymous&gt; (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\schema.js:161:23)
+at Schema._applySetters (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\schema.js:305:13)
+at Model._insertOne (c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\model.js:190:10)
+at c:\xampp\htdocs\blog\nereuseng\node_modules\warehouse\lib\model.js:214:17
+at tryCatcher (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\util.js:16:23)
+at c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\using.js:185:26
+at tryCatcher (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\util.js:16:23)
+at Promise._settlePromiseFromHandler (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:512:31)
+at Promise._settlePromise (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:569:18)
+at Promise._settlePromise0 (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:614:10)
+at Promise._settlePromises (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:693:18)
+at Promise._fulfill (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:638:18)
+at PromiseArray._resolve (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise_array.js:126:19)
+at PromiseArray._promiseFulfilled (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise_array.js:144:14)
+at Promise._settlePromise (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:574:26)
+at Promise._settlePromise0 (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:614:10)
+at Promise._settlePromises (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\promise.js:693:18)
+at Async._drainQueue (c:\xampp\htdocs\blog\nereuseng\node_modules\bluebird\js\release\async.js:133:16)
+</code></pre><h1 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h1><p>在生成Undefined Hexo.md的時候，應該要先更改檔案的名稱<br>Example:</p>
+<pre><code>Undefined Hexo.md -&gt; Hexo.md
+</code></pre><h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><p>之所以會發上面出現Undefined的事情，是因為我在_config.yml做了一件蠢事，我在</p>
+<pre><code># Writing
+new_post_name: :Hello Hexo # File name of new posts
+default_layout: post
+...
+</code></pre><p>寫下了那些東西，導致Hexo無法正確產生新的md檔案，後來我改成這樣就沒問題了：</p>
+<pre><code># Writing
+new_post_name: year-:month-:day-:title.md # File name of new posts
+default_layout: post
+...
+</code></pre><p>重新命名後按generate就沒問題了！<br>這是我的小小心得，希望大家也能和我分享！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/08/27/php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/27/php/" itemprop="url">
+                  自學PHP + MariaDB 後在Heroku平台Deploy心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-08-27 18:45:56" itemprop="dateCreated datePublished" datetime="2017-08-27T18:45:56+08:00">2017-08-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前報名了一個學習PHP+MYSQL課程<br>教你怎麼寫前後端<br>並把它們連起來<br>後來想把寫好的作品放到Heroku<br>開始了折磨人的Heroku辛酸史（啊啊啊啊啊啊</p>
+<p>1.</p>
+<p>一開始由於是自學<br>沒有用Composer之類的套件管理（蝦米！？<br>安裝好Heroku後直接Push到Git根本沒辦法過<br>於是學會了裝Composer（相關網站我找不到了可以自己google）<br>再學習Composer install的指令<br>至於Composer.json的內容物我是用下面這個網址：<br><a href="https://goo.gl/wdtwCh" target="_blank" rel="noopener">https://goo.gl/wdtwCh</a><br>然後才能成功的加上composer.lock</p>
+<p>2.</p>
+<p>再來是遇到Routing的問題<br>我沒有Procfile這個文件<br>我是依照這個網址設定：<br><a href="https://goo.gl/WJ5LbL" target="_blank" rel="noopener">https://goo.gl/WJ5LbL</a><br>內容物是web: vendor/bin/heroku-php-apache2 web/</p>
+<p>Note: 記得你的檔案如果都放在web文件下，後面要加上web/這段字！<br>參考資料： <a href="https://goo.gl/uBeaeX" target="_blank" rel="noopener">https://goo.gl/uBeaeX</a></p>
+<p>3.【failed to create symbolic link ‘/app/.heroku/php/php’: File exists】<br>再來也遇到這個問題<br>應該是之前不小心多裝了其他Buildpack<br>導致重疊的問題<br>依照最下面comment的指示把所有Buildepack重裝就好<br>參考資料：<a href="https://goo.gl/SNxhf5" target="_blank" rel="noopener">https://goo.gl/SNxhf5</a></p>
+<p>4.</p>
+<p>我終於成功push到git上了耶耶耶！！！<br>但是發現資料庫根本沒連好<br>於是在Heroku上裝了JawsDB MariaDB的addon （還要填信用卡資料orz）<br>根據它的Dashboard上的資訊用HeidiSQL連上<br>最後鬼打牆了好久才發現其中一個亂碼的Database<br>是他分配給我的<br>參考資料：<a href="https://goo.gl/bphuw9" target="_blank" rel="noopener">https://goo.gl/bphuw9</a></p>
+<p>我還一直鬼打牆怎麼不能Create Database<br>P.S : 我這邊真的卡了超久超想放棄的<br>後來在HeidiSQL導入你之前的資料後<br>資料庫就能開始使用了</p>
+<p>心得：<br>沒有仔細看官方文件真的會出很多問題<br>下次提醒我自己要記得看</p>
+<p>祝大家能從我的經驗解決你的問題！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
