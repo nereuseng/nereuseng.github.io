@@ -287,6 +287,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/07/14/case-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/14/case-review/" itemprop="url">
+                  case-review
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-07-14 22:58:22" itemprop="dateCreated datePublished" datetime="2018-07-14T22:58:22+08:00">2018-07-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-07-15 11:46:08" itemprop="dateModified" datetime="2018-07-15T11:46:08+08:00">2018-07-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>從3月14號就開始推專案的第一個commit，到昨天我切完預訂設計提供的psd，算是完成了一個很大的里程碑，算上今天剛好4個月。中間切了30多個頁面，自幹了多少個元件，踩了很多css的雷（技術債活該lol），來回顧一下這幾個月的心得。</p>
+<h1 id="設計過於平面"><a href="#設計過於平面" class="headerlink" title="設計過於平面"></a>設計過於平面</h1><p>像是設計在畫320的版型，他會爲了小版特別更改版型，在640之後採用統一版型，在321到639的版型直接套用320版型，則元件的比例就會變得又扁又瘦長。同樣的事也發生在版型配置，在320被組合在一起的元件，到了1200就要被分開，要花很多時間和css調整。再者在1200的版型上，提供了非常多資訊，但在320卻一併塞進來，造成畫面太擁擠。</p>
+<p>320的版型在639會很奇怪</p>
+<p></p><p data-height="314" data-theme-id="0" data-slug-hash="EROxvp" data-default-tab="css,result" data-user="nereuseng" data-embed-version="2" data-pen-title="component strange in 639px" class="codepen">See the Pen <a href="https://codepen.io/nereuseng/pen/EROxvp/" target="_blank" rel="noopener">component strange in 639px</a> by Nereus Eng Wei Xian (<a href="https://codepen.io/nereuseng" target="_blank" rel="noopener">@nereuseng</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>下面的按鈕在因爲小版型，而在中版型必須用position absolute固定，被迫與原本的結構分開</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="rrxeGP" data-default-tab="css,result" data-user="nereuseng" data-embed-version="2" data-pen-title="Layout forced to restructured" class="codepen">See the Pen <a href="https://codepen.io/nereuseng/pen/rrxeGP/" target="_blank" rel="noopener">Layout forced to restructured</a> by Nereus Eng Wei Xian (<a href="https://codepen.io/nereuseng" target="_blank" rel="noopener">@nereuseng</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>雖然最後有達到設計的要求，但是卻花了太多心力和時間完全不划算。應在提供設計的時候，在討論的時候就要想想做的複雜度，並和設計師討論修改的方向。</p>
+<h1 id="Api格式不統一"><a href="#Api格式不統一" class="headerlink" title="Api格式不統一"></a>Api格式不統一</h1><p>整個專案到後期發現，很多時候元件都長得一樣，邏輯處理也一樣，但是因爲api欄位名字不一樣，必須寫一模一樣又長又臭的code，在這次的專案至少有四個這樣的頁面（能想像有什麼東西要改，就要做四次嗎？）。在開發之前，應要向後端統一格式，要不然後患無窮，後患無窮啊！！！</p>
+<h1 id="設計師溝通——Zeplin！"><a href="#設計師溝通——Zeplin！" class="headerlink" title="設計師溝通——Zeplin！"></a>設計師溝通——Zeplin！</h1><img src="/2018/07/14/case-review/zeplin.jpg" title="Zeplin">
+<p>對工程師來說，Photoshop上的抓顏色測量工具太弱，無法很快抓取，尤其是在RWD版型之間測量，甚至產生量到天荒地老的錯覺。在前期和設計師溝通，但開發時間一長，難免還是會忘記，因此需要一些ui標註和溝通工具，像是Zeplin。只要點區塊，他就會顯示字體顏色、大小、行高，和別的元素區塊的間距等訊息，超省時間的！</p>
+<p>Zeplin也有註記功能，能讓設計師在標註一些注意事項。他也有和Slack整合（雖然同事不愛用就對了</p>
+<h1 id="設計基本準則"><a href="#設計基本準則" class="headerlink" title="設計基本準則"></a>設計基本準則</h1><p>因爲當初CSS的方式是每一個元件獨立(Vue style scoped)，一開始寫是非常美好，幾乎沒有什麼問題，也不會有CSS污染的問題。但後來發現一個很崩潰的事情：</p>
+<p>兩三個禮拜前切的版有Button，於是我在那個Component的CSS中，定義他在RWD的各種大小顏色邊框動畫，但是卻發現現在切的Component也有一樣的Button，於是我又在那個Component裏面，寫了一模一樣的大小顏色邊框動畫。再來同個Component還有新的Button，hover之後邊框要有動畫<br>多兩個禮拜後，我又在新的設計圖看到這個按鈕。我知道他重複，想要提取出來，同時Button都要加上Border radius，但是我卻不知道他在哪裏了…</p>
+<p>一直到我在FEDC聽到Atomic Design這個概念</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We’re not designing pages, we’re designing systems of components.—Stephen Hay</span><br></pre></td></tr></table></figure>
+<p>他的概念是先從最抽象的地方，比方說顏色，字體，Hover顏色等開始設計，把這些抽象的東西組合起來變成一個小的元件，再各種小元件組合成大元件，就就能統一設計語言，也能減少重複css的問題，維護的時候就不會陷入痛苦。</p>
+<p>之後可以嘗試和設計師溝通，確定一些小Component的顏色大小Hover動畫，並以這個爲基準來切版。</p>
+<p>文件夾歸納錯誤<br>使用ui套件</p>
+<p>參考連接：</p>
+<ol>
+<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank" rel="noopener">http://bradfrost.com/blog/post/atomic-web-design/</a></li>
+<li><a href="https://zeplin.io/" target="_blank" rel="noopener">https://zeplin.io/</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/04/01/csstricks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2159,193 +2337,6 @@ hexo d
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/13/React/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nereuseng">
-      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="nereuseng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/13/React/" itemprop="url">
-                  React一到兩週學習心得
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-
-              
-                
-              
-
-              <time title="創建時間：2017-09-13 19:45:56" itemprop="dateCreated datePublished" datetime="2017-09-13T19:45:56+08:00">2017-09-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新於</span>
-                
-                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在畢業後找工作的期間<br>發現大部分前端工程師<br>都需要熟悉任何一項的Javascript框架（AngularJS, VueJS, ReactJS）<br>於是我在一次的面試當中下定決心<br>從9月1號左右開始每天不間斷的學習</p>
-<p>學習的的資源<br>除了Youtube上的影片<br>也包含之前在ptt po的清大線上課程<br>這邊我要感謝清大的教授<br>講解的非常清楚外<br>提供那麼好的免費線上資源</p>
-<p>我目前的Check List：</p>
-<ol>
-<li>手刻的CSS版型（包含Nav Bar，但不含他的RWD）</li>
-<li>HTML表單的Input</li>
-<li>Ajax使用與Api串接（只用到Axios，不包含Google系列）</li>
-<li>State和Props的差別</li>
-</ol>
-<p>學習TODO list：</p>
-<ol>
-<li>Nav Bar的RWD</li>
-<li>Promise資料的Exception</li>
-<li>Ajax—fetch的使用</li>
-<li>Redux的概念</li>
-<li>Google系列的Api串接</li>
-<li>重新學好JS</li>
-<li>利用Nodejs當後台</li>
-<li>JQuery</li>
-<li>DOM</li>
-</ol>
-<p>學習的途徑：</p>
-<ol>
-<li>台大訓練班(JS)</li>
-<li>書本(JS優良部分、Speaking Javascript)</li>
-<li>清大線上課程（Redux）</li>
-<li>Youtube上的開發者學堂</li>
-</ol>
-<p>學習TODO list（長期）：</p>
-<ol>
-<li>CS50</li>
-<li>清大演算法（江蕙如老師）</li>
-<li>Lavarel</li>
-<li>能完成那樣的作品(<a href="https://www.ptt.cc/bbs/Soft_Job/M.1433644651.A.976.html" target="_blank" rel="noopener">https://www.ptt.cc/bbs/Soft_Job/M.1433644651.A.976.html</a>)</li>
-</ol>
-<p>列了那麼多<br>而且也不小心也把<br>React以外的技能列出來（還偷渡了PHP XD）<br>發現還有很多地方是不足的！<br>希望我能把基礎打好<br>這樣學習才會更快！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2393,7 +2384,7 @@ hexo d
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">文章</span>
                   </a>
                 </div>
