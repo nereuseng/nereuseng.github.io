@@ -110,25 +110,25 @@
 
 
 
-  <meta name="description" content="前言找了新工作後，進入一陣蜜月期，開始接手專案。這邊先說一下，我目前在一家報社當前端工程師，雖然說職稱很怪，但是做的東西的確是前端的內容。這邊的性質是接案型，前端的主管會委派你負責一個案子，主管前期會和你一起開會，之後就全權給你負責了。通常在一個案子，會有一個後端、設計、PM的人一起負責，而之後就要和他們協調可行性與技術問題，有點像是大學時期分組報告的感覺。由於前端完成時間只有一個禮拜，基本上架構">
-<meta name="keywords" content="gulp">
+  <meta name="description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
+<meta name="keywords" content="api, racing, &#39;api racing&#39;,async, request, abort, rxjs, fetch, xhr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="近期工作心得小結">
-<meta property="og:url" content="https://nereuseng.github.io/2017/12/10/self-review/index.html">
+<meta property="og:title" content="土炮處理：api非同步時間差造成的response順序問題">
+<meta property="og:url" content="https://nereuseng.github.io/2018/10/08/api-racing/index.html">
 <meta property="og:site_name" content="nereuseng">
-<meta property="og:description" content="前言找了新工作後，進入一陣蜜月期，開始接手專案。這邊先說一下，我目前在一家報社當前端工程師，雖然說職稱很怪，但是做的東西的確是前端的內容。這邊的性質是接案型，前端的主管會委派你負責一個案子，主管前期會和你一起開會，之後就全權給你負責了。通常在一個案子，會有一個後端、設計、PM的人一起負責，而之後就要和他們協調可行性與技術問題，有點像是大學時期分組報告的感覺。由於前端完成時間只有一個禮拜，基本上架構">
+<meta property="og:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2018-06-10T11:02:57.874Z">
+<meta property="og:updated_time" content="2018-10-14T09:59:58.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="近期工作心得小結">
-<meta name="twitter:description" content="前言找了新工作後，進入一陣蜜月期，開始接手專案。這邊先說一下，我目前在一家報社當前端工程師，雖然說職稱很怪，但是做的東西的確是前端的內容。這邊的性質是接案型，前端的主管會委派你負責一個案子，主管前期會和你一起開會，之後就全權給你負責了。通常在一個案子，會有一個後端、設計、PM的人一起負責，而之後就要和他們協調可行性與技術問題，有點像是大學時期分組報告的感覺。由於前端完成時間只有一個禮拜，基本上架構">
+<meta name="twitter:title" content="土炮處理：api非同步時間差造成的response順序問題">
+<meta name="twitter:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
 
 
 
 
 
 
-  <link rel="canonical" href="https://nereuseng.github.io/2017/12/10/self-review/"/>
+  <link rel="canonical" href="https://nereuseng.github.io/2018/10/08/api-racing/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>近期工作心得小結 | nereuseng</title>
+  <title>土炮處理：api非同步時間差造成的response順序問題 | nereuseng</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/12/10/self-review/">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/10/08/api-racing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nereuseng">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">近期工作心得小結
+          <h1 class="post-title" itemprop="name headline">土炮處理：api非同步時間差造成的response順序問題
               
             
           </h1>
@@ -329,7 +329,7 @@
                 
               
 
-              <time title="創建時間：2017-12-10 10:00:46" itemprop="dateCreated datePublished" datetime="2017-12-10T10:00:46+08:00">2017-12-10</time>
+              <time title="創建時間：2018-10-08 21:23:31" itemprop="dateCreated datePublished" datetime="2018-10-08T21:23:31+08:00">2018-10-08</time>
             
 
             
@@ -346,7 +346,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+                <time title="修改時間：2018-10-14 17:59:58" itemprop="dateModified" datetime="2018-10-14T17:59:58+08:00">2018-10-14</time>
               
             
           </span>
@@ -379,16 +379,27 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>找了新工作後，進入一陣蜜月期，開始接手專案。這邊先說一下，我目前在一家報社當前端工程師，雖然說職稱很怪，但是做的東西的確是前端的內容。這邊的性質是接案型，前端的主管會委派你負責一個案子，主管前期會和你一起開會，之後就全權給你負責了。通常在一個案子，會有一個後端、設計、PM的人一起負責，而之後就要和他們協調可行性與技術問題，有點像是大學時期分組報告的感覺。由於前端完成時間只有一個禮拜，基本上架構並沒有很好，而且也沒有用很多有效率的工具，因此在這邊記錄，希望下次不要犯下面提到的錯誤。</p>
-<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>我自己用的是vscode直接切版，css都是全手工，這樣會讓我的css結構鬆散，到了開發後期非常難維護，幸好這個是活動網頁，要不然我會把自己殺死哈哈。開發之後需要各種文件的壓縮，像是HTML JS CSS的檔案，但是到了這邊我有點糾結，公司的人都在用gulp，但是感覺Webpack很潮，還能async loading，react也會用到。但後來決定先學著gulp，再來回頭學Webpack。總結了一下，下次需要用到的工具：</p>
-<ol>
-<li>stylus</li>
-<li>gulp<br>2.1 HTML JS CSS壓縮<br>npm install gulp gulp-html-replace gulp-minify-html gulp-minify-css gulp-uglify gulp-concat gulp-rename -save-dev<br>2.2 圖片的壓縮<br>npm install –save-dev gulp-imagemin<br>2.3 SSI(Server Side Includes)<br>這個能夠讓你一些重複的模板集中起來管理，更加方便開發，不需要每一個地方逐一修改<br>npm install browsersync-ssi</li>
+        <h1 id="問題——B頁面顯示A資料："><a href="#問題——B頁面顯示A資料：" class="headerlink" title="問題——B頁面顯示A資料："></a>問題——B頁面顯示A資料：</h1><p>在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><ol>
+<li>原生取消 request =&gt; 2. 用 UI Loading 擋 User =&gt; 3. 幫 request 加流水號，去最新的 respond</li>
 </ol>
-<h1 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h1><p>當初主管和pm討論出來的結果是做一個entry page，再加上面六個幾乎一樣的活動頁面，和一個結束頁面，但是後來開發讓我覺得，這樣其實開發非常難維護，雖然後來用了SSI讓維護的工作稍微減輕，但是想到其實能用React做會更快。只要把我要的Header寫好，把不同的圖片當成參數傳進去當props，就能很快的維護了。但是後來想到這個活動會連動到後台的驗證，需要把全部換成JSP，應要開一個api驗證的話，會很浪費大家的時間。只能等下次有機會，練習用框架寫。</p>
-<h1 id="溝通"><a href="#溝通" class="headerlink" title="溝通"></a>溝通</h1><p>後端雖然很資深，但是技術能力偏弱，甚至活動頁面要驗證的事情，也是我到最後提醒才想起(這段是鳥事，唉)，和能力無法成正比，因此發現留意到這樣的問題，就要先幫忙想，要不然之後要幫忙收爛攤子。</p>
-<p>一開始拿到設計圖後，沒有和設計和PM確認使用流程，導致後來要更改版型，甚至發現遺漏頁面。</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>溝通不足，缺少工具的運用，希望下次不要遇到這樣的問題了！</p>
+<h1 id="原生取消request"><a href="#原生取消request" class="headerlink" title="原生取消request"></a>原生取消request</h1><p>一開始想要做 request cancel，但我們因爲是使用 fetch 的關係，原生不支援 abort 功能，另外要支援 IE 11 還要加多一包 polyfill，覺得太麻煩就放棄了。</p>
+<h1 id="用UI-Loading擋User"><a href="#用UI-Loading擋User" class="headerlink" title="用UI Loading擋User"></a>用UI Loading擋User</h1><p>我的同事一直主張用這個方式，而我後來拒絕的原因，是因爲這比較適用在 Form 提交的情境下，若 User 誤點還要等資料回來才能點， User 應該會很惱火XD</p>
+<p>註：適用在 Form Submit</p>
+<h1 id="request加流水號"><a href="#request加流水號" class="headerlink" title="request加流水號"></a>request加流水號</h1><p>基本上沒什麼問題，唯一的風險，大概就是 User 的人數多起來，Server 的負擔有點重，這個後期再處理好了。</p>
+<p>其實這個 idea 是從 RxJS 得到靈感的XD 一開始是想到 huli 大大在 Modern Web講 RxJS 提到的 Switch Map，但案子快完成了根本不可能。我就想能不能自己土炮做出類似Switch Map，於是就有了加流水號的想法。具體想法是在 call api 之前，在全域加上變數，再來到 callApi() 裏面，用 timestamp 加上 Uid，在 Api 回傳之後比對是不是最新的 Uid。看不懂直接看下面的code</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const variable = &#123;</span><br><span class="line">  lastestUid: &apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callApi() &#123;</span><br><span class="line">  const apiUid = new Date().getTime()</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  return Api.fetchUserData().then( () =&gt; &#123;</span><br><span class="line">    if (apiUid !== variable.lastestUid) return</span><br><span class="line">    // update api data here</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣其實就解決了問題，還有可以優化的地方，把 new Date() 換成從0開始的 counter，效能會更快：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const variable = &#123;</span><br><span class="line">--lastestUid: &apos;&apos;</span><br><span class="line">++lastestUid: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callApi() &#123;</span><br><span class="line">--const apiUid = new Date().getTime()</span><br><span class="line">++const apiUid = variable.lastestUid + 1</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  return Api.fetchUserData().then( () =&gt; &#123;</span><br><span class="line">    if (apiUid !== variable.lastestUid) return</span><br><span class="line">    // update api data here</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="後期處理"><a href="#後期處理" class="headerlink" title="後期處理"></a>後期處理</h1><p>這樣的方法畢竟還是應急，之後會 User 亂點對 Server 負擔還是很大的。詢問群組的大大之後，覺得這樣的方法還不錯：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">個人作法上會偏向用 UI Loading Modal 鎖使用者</span><br><span class="line">因為要去 check 最後一次 update 這件事會比較容易出錯</span><br><span class="line"></span><br><span class="line">Fetch Request 時，要把 Timeout 弄短一點，UI 擋 refresh，出現3秒之類的 loading，Timeout 短，那使用者至少不會太生氣 (如果網路慢)，然後用 loading 去鎖使用者亂點</span><br><span class="line"></span><br><span class="line">然後晚回來的資料可以存在類似 redux 的資料中心，這樣下次還可以使用</span><br><span class="line"></span><br><span class="line">沒及時回來：用 local 舊的資料 </span><br><span class="line">及時回來：用剛拿到的即時資料</span><br></pre></td></tr></table></figure>
+<p>但是這樣的方法好優化好多東西哦，除了 Fetch 沒有 Timeout 的功能，如果 Timeout 後晚回來的資料要怎麼拿來更新data而不被丟掉，目前也是個問題，加上可能要自幹改很多東西，可能下次再試試看好了XD</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這件事要做得漂亮，不加重 Server 的負擔或降低 UX 真的要花很多功夫，而且原生沒有支援很多，很多眉眉角角都要自己處理，下次是不是要開始使用RxJS了呢XD</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://stackoverflow.com/questions/46946380/fetch-api-request-timeout" target="_blank" rel="noopener">https://stackoverflow.com/questions/46946380/fetch-api-request-timeout</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort</a></li>
+<li><a href="https://drive.google.com/file/d/1HS5uBGfWf8900HJE3otnKQIex9c-KEd7/view" target="_blank" rel="noopener">https://drive.google.com/file/d/1HS5uBGfWf8900HJE3otnKQIex9c-KEd7/view</a></li>
+</ol>
 
       
     </div>
@@ -407,12 +418,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/心得/" rel="tag"># 心得</a>
-          
-        </div>
-      
 
       
       
@@ -422,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/08/oh-my-zsh/" rel="next" title="Windows 10上整合Vs code的Oh-my-zsh">
-                <i class="fa fa-chevron-left"></i> Windows 10上整合Vs code的Oh-my-zsh
+              <a href="/2018/09/14/case-review-2/" rel="next" title="專案回顧心得—筆記篇">
+                <i class="fa fa-chevron-left"></i> 專案回顧心得—筆記篇
               </a>
             
           </div>
@@ -431,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/17/redux-actions/" rel="prev" title="利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新)">
-                利用Redux-actions 來減少Redux的Boilerplate Code(2018/04/01更新) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#架構"><span class="nav-number">3.</span> <span class="nav-text">架構</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#溝通"><span class="nav-number">4.</span> <span class="nav-text">溝通</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#問題——B頁面顯示A資料："><span class="nav-number">1.</span> <span class="nav-text">問題——B頁面顯示A資料：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原生取消request"><span class="nav-number">3.</span> <span class="nav-text">原生取消request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用UI-Loading擋User"><span class="nav-number">4.</span> <span class="nav-text">用UI Loading擋User</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#request加流水號"><span class="nav-number">5.</span> <span class="nav-text">request加流水號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後期處理"><span class="nav-number">6.</span> <span class="nav-text">後期處理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">7.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">8.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
             
 
           </div>

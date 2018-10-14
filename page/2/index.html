@@ -287,6 +287,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/05/Hexo-sitemap-and-Keywords/" itemprop="url">
+                  Hexo 添加Keywords和提交Sitemap到Google的心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-05 21:15:04" itemprop="dateCreated datePublished" datetime="2017-10-05T21:15:04+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>發現我寫的文章無法在Google Search上出現，於是我找了相關的教程，以下是我當中的心得：</p>
+<h1 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h1><p>首先我添加Keywords，是根據這個部落格的文章<a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">[1]</a>來進行，在_config.yml找到 #Site，在#Site最下面添加Keywords: +你想要的Keywords，用逗號來分割：</p>
+<pre><code>keywords: Keywords,Google,Sitemap,SEO,Hexo
+</code></pre><p>因為我用的是Next的主題，主題模板的更改已經完成，這邊不再細寫，可到上面的文章連接參考，最後到 blog根目錄/scaffolds/post.md，在模板上添加Keywords:</p>
+<pre><code>title: {{ title }}
+date: {{ date }}
+categories:
+tags:
+keywords:
+</code></pre><h1 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h1><p>我參考了這個文章<a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">[2]</a>，先在blog根目錄安裝npm插件</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>再來到_config.yml添加代碼，若找不到關鍵字，請直接在_config.yml的最下面添加</p>
+<pre><code>sitemap:
+path: sitemap.xml
+</code></pre><h2 id="注意path的更改-3"><a href="#注意path的更改-3" class="headerlink" title="注意path的更改 [3]"></a>注意path的更改 <a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">[3]</a></h2><p>請檢查_config.yml中是不是尚未更改url，把下面的yoursite.com改成</p>
+<pre><code>url:http://www.yoursite.com
+</code></pre><p>這個：</p>
+<pre><code>url:http://www.你在github或者其他地方的網址.com
+</code></pre><p>改好後在Cmd的blog根目錄打入</p>
+<pre><code>hexo g
+hexo d
+</code></pre><p>並且在你的blog網域上查看<br>例如：<a href="https://nereuseng.github.io/sitemap.xml">https://nereuseng.github.io/sitemap.xml</a><br>就能看到我產生好的Sitemap</p>
+<h1 id="提交到Google-Search-Console"><a href="#提交到Google-Search-Console" class="headerlink" title="提交到Google Search Console"></a>提交到Google Search Console</h1><p>根據這篇文章<a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">[4]</a>，<br>我在索引(Crawl)——&gt;Sitemap 新增Sitemap<br>並把路徑貼進去，就大功告成了！</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="http://www.yuanye097.com/2015/10/26/name/" target="_blank" rel="noopener">http://www.yuanye097.com/2015/10/26/name/</a></li>
+<li><a href="http://www.jianshu.com/p/8db494e9dffc" target="_blank" rel="noopener">http://www.jianshu.com/p/8db494e9dffc</a></li>
+<li><a href="https://github.com/hexojs/hexo/issues/705" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/705</a></li>
+<li><a href="http://fionat.github.io/2016/04/02/sitemap/" target="_blank" rel="noopener">http://fionat.github.io/2016/04/02/sitemap/</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/09/20/React-and-Google-Api/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1073,7 +1253,7 @@ default_layout: post
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">文章</span>
                   </a>
                 </div>
