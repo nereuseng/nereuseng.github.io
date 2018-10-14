@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="nereuseng">
 <meta property="og:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2018-10-14T09:59:58.666Z">
+<meta property="og:updated_time" content="2018-10-14T10:19:28.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="土炮處理：api非同步時間差造成的response順序問題">
 <meta name="twitter:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
@@ -346,7 +346,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-10-14 17:59:58" itemprop="dateModified" datetime="2018-10-14T17:59:58+08:00">2018-10-14</time>
+                <time title="修改時間：2018-10-14 18:19:28" itemprop="dateModified" datetime="2018-10-14T18:19:28+08:00">2018-10-14</time>
               
             
           </span>
@@ -392,7 +392,7 @@
 <p>這樣其實就解決了問題，還有可以優化的地方，把 new Date() 換成從0開始的 counter，效能會更快：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const variable = &#123;</span><br><span class="line">--lastestUid: &apos;&apos;</span><br><span class="line">++lastestUid: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callApi() &#123;</span><br><span class="line">--const apiUid = new Date().getTime()</span><br><span class="line">++const apiUid = variable.lastestUid + 1</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  return Api.fetchUserData().then( () =&gt; &#123;</span><br><span class="line">    if (apiUid !== variable.lastestUid) return</span><br><span class="line">    // update api data here</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="後期處理"><a href="#後期處理" class="headerlink" title="後期處理"></a>後期處理</h1><p>這樣的方法畢竟還是應急，之後會 User 亂點對 Server 負擔還是很大的。詢問群組的大大之後，覺得這樣的方法還不錯：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">個人作法上會偏向用 UI Loading Modal 鎖使用者</span><br><span class="line">因為要去 check 最後一次 update 這件事會比較容易出錯</span><br><span class="line"></span><br><span class="line">Fetch Request 時，要把 Timeout 弄短一點，UI 擋 refresh，出現3秒之類的 loading，Timeout 短，那使用者至少不會太生氣 (如果網路慢)，然後用 loading 去鎖使用者亂點</span><br><span class="line"></span><br><span class="line">然後晚回來的資料可以存在類似 redux 的資料中心，這樣下次還可以使用</span><br><span class="line"></span><br><span class="line">沒及時回來：用 local 舊的資料 </span><br><span class="line">及時回來：用剛拿到的即時資料</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">個人作法上會偏向用 UI Loading Modal 鎖使用者</span><br><span class="line">因為要去 check 最後一次 update 這件事會比較容易出錯</span><br><span class="line"></span><br><span class="line">Fetch Request 時，要把 Timeout 弄短一點，UI 擋 refresh，出現3秒之類的 loading，</span><br><span class="line">Timeout 短，那使用者至少不會太生氣 (如果網路慢)，然後用 loading 去鎖使用者亂點</span><br><span class="line"></span><br><span class="line">然後晚回來的資料可以存在類似 redux 的資料中心，這樣下次還可以使用</span><br><span class="line"></span><br><span class="line">沒及時回來：用 local 舊的資料 </span><br><span class="line">及時回來：用剛拿到的即時資料</span><br></pre></td></tr></table></figure>
 <p>但是這樣的方法好優化好多東西哦，除了 Fetch 沒有 Timeout 的功能，如果 Timeout 後晚回來的資料要怎麼拿來更新data而不被丟掉，目前也是個問題，加上可能要自幹改很多東西，可能下次再試試看好了XD</p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這件事要做得漂亮，不加重 Server 的負擔或降低 UX 真的要花很多功夫，而且原生沒有支援很多，很多眉眉角角都要自己處理，下次是不是要開始使用RxJS了呢XD</p>
 <h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
