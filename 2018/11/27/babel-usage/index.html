@@ -110,20 +110,20 @@
 
 
 
-  <meta name="description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+  <meta name="description" content="前言之前一直用框架和 cli，沒試過從頭架構，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的 Javascript (關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的 Javascript (ES5)，讓 Developers 能用新語法的同時">
 <meta name="keywords" content="late, 2018, babel, howto, how, to,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何正確的設置babel(late 2018)">
 <meta property="og:url" content="https://nereuseng.github.io/2018/11/27/babel-usage/index.html">
 <meta property="og:site_name" content="nereuseng">
-<meta property="og:description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+<meta property="og:description" content="前言之前一直用框架和 cli，沒試過從頭架構，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的 Javascript (關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的 Javascript (ES5)，讓 Developers 能用新語法的同時">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/ie11.jpg">
-<meta property="og:updated_time" content="2018-12-08T10:10:12.529Z">
+<meta property="og:updated_time" content="2018-12-08T15:10:22.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何正確的設置babel(late 2018)">
-<meta name="twitter:description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+<meta name="twitter:description" content="前言之前一直用框架和 cli，沒試過從頭架構，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的 Javascript (關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的 Javascript (ES5)，讓 Developers 能用新語法的同時">
 <meta name="twitter:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
 
 
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-12-08 18:10:12" itemprop="dateModified" datetime="2018-12-08T18:10:12+08:00">2018-12-08</time>
+                <time title="修改時間：2018-12-08 23:10:22" itemprop="dateModified" datetime="2018-12-08T23:10:22+08:00">2018-12-08</time>
               
             
           </span>
@@ -382,8 +382,8 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。</p>
-<h1 id="Babel-做什麼"><a href="#Babel-做什麼" class="headerlink" title="Babel 做什麼"></a>Babel 做什麼</h1><p>Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會讓網頁壞掉。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前一直用框架和 cli，沒試過從頭架構，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。</p>
+<h1 id="Babel-做什麼"><a href="#Babel-做什麼" class="headerlink" title="Babel 做什麼"></a>Babel 做什麼</h1><p>Babel 能把比較新的 Javascript (關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的 Javascript (ES5)，讓 Developers 能用新語法的同時，不會讓網頁壞掉。</p>
 <h1 id="Babel-的運作模式"><a href="#Babel-的運作模式" class="headerlink" title="Babel 的運作模式"></a>Babel 的運作模式</h1><ol>
 <li>Babel 默認只轉換語法（Syntax）， 像是：<br>a. Arrow function ( () =&gt; {} )<br>b. Spread ( [ …state, isOpen ] )<br>c. Destructing ( const { data } = res )<br>d. Default Parameters ( ( id = NaN ) =&gt; {})</li>
 </ol>
