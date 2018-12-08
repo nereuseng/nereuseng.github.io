@@ -110,18 +110,18 @@
 
 
 
-  <meta name="description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
+  <meta name="description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  1. 原生取消request一開始想要做 request cancel，但我們因爲">
 <meta name="keywords" content="api, racing, &#39;api racing&#39;,async, request, abort, rxjs, fetch, xhr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="土炮處理：api非同步時間差造成的response順序問題">
 <meta property="og:url" content="https://nereuseng.github.io/2018/10/08/api-racing/index.html">
 <meta property="og:site_name" content="nereuseng">
-<meta property="og:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
+<meta property="og:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  1. 原生取消request一開始想要做 request cancel，但我們因爲">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2018-10-14T10:19:28.823Z">
+<meta property="og:updated_time" content="2018-12-08T07:38:06.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="土炮處理：api非同步時間差造成的response順序問題">
-<meta name="twitter:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  原生取消request一開始想要做 request cancel，但我們因爲是使用">
+<meta name="twitter:description" content="問題——B頁面顯示A資料：在 SPA 下，User 點了A頁面，送出 A request。但是頁面出來前，立馬切換到B頁面，最後頁面B顯示A的資料。 思路： 原生取消 request =&amp;gt; 2. 用 UI Loading 擋 User =&amp;gt; 3. 幫 request 加流水號，去最新的 respond  1. 原生取消request一開始想要做 request cancel，但我們因爲">
 
 
 
@@ -346,7 +346,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-10-14 18:19:28" itemprop="dateModified" datetime="2018-10-14T18:19:28+08:00">2018-10-14</time>
+                <time title="修改時間：2018-12-08 15:38:06" itemprop="dateModified" datetime="2018-12-08T15:38:06+08:00">2018-12-08</time>
               
             
           </span>
@@ -383,14 +383,14 @@
 <h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><ol>
 <li>原生取消 request =&gt; 2. 用 UI Loading 擋 User =&gt; 3. 幫 request 加流水號，去最新的 respond</li>
 </ol>
-<h1 id="原生取消request"><a href="#原生取消request" class="headerlink" title="原生取消request"></a>原生取消request</h1><p>一開始想要做 request cancel，但我們因爲是使用 fetch 的關係，原生不支援 abort 功能，另外要支援 IE 11 還要加多一包 polyfill，覺得太麻煩就放棄了。</p>
-<h1 id="用UI-Loading擋User"><a href="#用UI-Loading擋User" class="headerlink" title="用UI Loading擋User"></a>用UI Loading擋User</h1><p>我的同事一直主張用這個方式，而我後來拒絕的原因，是因爲這比較適用在 Form 提交的情境下，若 User 誤點還要等資料回來才能點， User 應該會很惱火XD</p>
+<h1 id="1-原生取消request"><a href="#1-原生取消request" class="headerlink" title="1. 原生取消request"></a>1. 原生取消request</h1><p>一開始想要做 request cancel，但我們因爲是使用 fetch 的關係，原生不支援 abort 功能，另外要支援 IE 11 還要加多一包 polyfill，覺得太麻煩就放棄了。</p>
+<h1 id="2-用UI-Loading擋User"><a href="#2-用UI-Loading擋User" class="headerlink" title="2. 用UI Loading擋User"></a>2. 用UI Loading擋User</h1><p>我的同事一直主張用這個方式，而我後來拒絕的原因，是因爲這比較適用在 Form 提交的情境下，若 User 誤點還要等資料回來才能點， User 應該會很惱火XD</p>
 <p>註：適用在 Form Submit</p>
-<h1 id="request加流水號"><a href="#request加流水號" class="headerlink" title="request加流水號"></a>request加流水號</h1><p>基本上沒什麼問題，唯一的風險，大概就是 User 的人數多起來，Server 的負擔有點重，這個後期再處理好了。</p>
+<h1 id="3-request加流水號"><a href="#3-request加流水號" class="headerlink" title="3. request加流水號"></a>3. request加流水號</h1><p>基本上沒什麼問題，唯一的風險，大概就是 User 的人數多起來，Server 的負擔有點重，這個後期再處理好了。</p>
 <p>其實這個 idea 是從 RxJS 得到靈感的XD 一開始是想到 huli 大大在 Modern Web講 RxJS 提到的 Switch Map，但案子快完成了根本不可能。我就想能不能自己土炮做出類似Switch Map，於是就有了加流水號的想法。具體想法是在 call api 之前，在全域加上變數，再來到 callApi() 裏面，用 timestamp 加上 Uid，在 Api 回傳之後比對是不是最新的 Uid。看不懂直接看下面的code</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const variable = &#123;</span><br><span class="line">  lastestUid: &apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callApi() &#123;</span><br><span class="line">  const apiUid = new Date().getTime()</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  return Api.fetchUserData().then( () =&gt; &#123;</span><br><span class="line">    if (apiUid !== variable.lastestUid) return</span><br><span class="line">    // update api data here</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> variable = &#123;</span><br><span class="line">  lastestUid: <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callApi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> apiUid = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  <span class="keyword">return</span> Api.fetchUserData().then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (apiUid !== variable.lastestUid) <span class="keyword">return</span></span><br><span class="line">    <span class="comment">// update api data here</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>這樣其實就解決了問題，還有可以優化的地方，把 new Date() 換成從0開始的 counter，效能會更快：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const variable = &#123;</span><br><span class="line">--lastestUid: &apos;&apos;</span><br><span class="line">++lastestUid: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function callApi() &#123;</span><br><span class="line">--const apiUid = new Date().getTime()</span><br><span class="line">++const apiUid = variable.lastestUid + 1</span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  return Api.fetchUserData().then( () =&gt; &#123;</span><br><span class="line">    if (apiUid !== variable.lastestUid) return</span><br><span class="line">    // update api data here</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> variable = &#123;</span><br><span class="line">--lastestUid: <span class="string">''</span></span><br><span class="line">++lastestUid: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callApi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">--<span class="keyword">const</span> apiUid = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">++<span class="keyword">const</span> apiUid = variable.lastestUid + <span class="number">1</span></span><br><span class="line">  variable.lastestUid = apiUid</span><br><span class="line">  <span class="keyword">return</span> Api.fetchUserData().then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (apiUid !== variable.lastestUid) <span class="keyword">return</span></span><br><span class="line">    <span class="comment">// update api data here</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="後期處理"><a href="#後期處理" class="headerlink" title="後期處理"></a>後期處理</h1><p>這樣的方法畢竟還是應急，之後會 User 亂點對 Server 負擔還是很大的。詢問群組的大大之後，覺得這樣的方法還不錯：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">個人作法上會偏向用 UI Loading Modal 鎖使用者</span><br><span class="line">因為要去 check 最後一次 update 這件事會比較容易出錯</span><br><span class="line"></span><br><span class="line">Fetch Request 時，要把 Timeout 弄短一點，UI 擋 refresh，出現3秒之類的 loading，</span><br><span class="line">Timeout 短，那使用者至少不會太生氣 (如果網路慢)，然後用 loading 去鎖使用者亂點</span><br><span class="line"></span><br><span class="line">然後晚回來的資料可以存在類似 redux 的資料中心，這樣下次還可以使用</span><br><span class="line"></span><br><span class="line">沒及時回來：用 local 舊的資料 </span><br><span class="line">及時回來：用剛拿到的即時資料</span><br></pre></td></tr></table></figure>
 <p>但是這樣的方法好優化好多東西哦，除了 Fetch 沒有 Timeout 的功能，如果 Timeout 後晚回來的資料要怎麼拿來更新data而不被丟掉，目前也是個問題，加上可能要自幹改很多東西，可能下次再試試看好了XD</p>
@@ -436,6 +436,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/babel-usage/" rel="prev" title="如何正確的設置babel(late 2018)">
+                如何正確的設置babel(late 2018) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -509,7 +513,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">文章</span>
                   </a>
                 </div>
@@ -562,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#問題——B頁面顯示A資料："><span class="nav-number">1.</span> <span class="nav-text">問題——B頁面顯示A資料：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原生取消request"><span class="nav-number">3.</span> <span class="nav-text">原生取消request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用UI-Loading擋User"><span class="nav-number">4.</span> <span class="nav-text">用UI Loading擋User</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#request加流水號"><span class="nav-number">5.</span> <span class="nav-text">request加流水號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後期處理"><span class="nav-number">6.</span> <span class="nav-text">後期處理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">7.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">8.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#問題——B頁面顯示A資料："><span class="nav-number">1.</span> <span class="nav-text">問題——B頁面顯示A資料：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-原生取消request"><span class="nav-number">3.</span> <span class="nav-text">1. 原生取消request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-用UI-Loading擋User"><span class="nav-number">4.</span> <span class="nav-text">2. 用UI Loading擋User</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-request加流水號"><span class="nav-number">5.</span> <span class="nav-text">3. request加流水號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後期處理"><span class="nav-number">6.</span> <span class="nav-text">後期處理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">7.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">8.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
             
 
           </div>

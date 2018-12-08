@@ -287,6 +287,311 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/12/webpack-dev-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/webpack-dev-server/" itemprop="url">
+                  自己搭建React+Webpack開發環境並性能優化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-10-12 11:17:42" itemprop="dateCreated datePublished" datetime="2017-10-12T11:17:42+08:00">2017-10-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-06-10 19:02:57" itemprop="dateModified" datetime="2018-06-10T19:02:57+08:00">2018-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前我的用fb的create-react-app來直接開發，直接用npm install，之後放到Heroku也是超級不用腦的XD 之後隨著自己越來越上手，發現自己src文件夾下跟我房間一樣亂（誤，想嘗試自己手把手搭建整個開發環境，順便把文件整理。</p>
+<h1 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h1><p>一開始我看的文章是 <a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">[1]从零搭建React全家桶框架教程</a>，根據他提供的指令搭建。下面是我看了他的文章，找出需要用到的元件指令，在專案根目錄下的cmd打上：</p>
+<pre><code>npm init
+npm install --save-dev-g webpack    //新增webpack.config.js exports....
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-0
+    //新增babel文件 presets等等....
+    //開始在Index.js寫react的東西
+    //加上方便的指令
+npm install --save react-router-dom
+npm install webpack-dev-server --save-dev
+npm install react-hot-loader@next --save-dev
+npm install --save-dev css-loader
+npm install --save-dev file-loader
+npm install style-loader --save-dev
+npm install --save-dev url-loader   //這是用來引入圖片
+npm install axios
+</code></pre><p>Webpack是用來打包各種文件，像是CSS、JS檔、Module、Babel、背景圖片等等，非常的好用！Babel組件把ES6，ES7的語法轉換成ES5，css-loader，file-loader，style-loader，url-loader都是webpack用來打包css、圖案的組件。</p>
+<h1 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h1><p>在裝完各種檔案（Package.json、webpack.config.js、.babelrc我會放下面）後，再來做優化：</p>
+<ol>
+<li><p>npm dedupe<a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">[2]</a>（安裝檔案都需要）<br>安裝完node package後，需要這個指令來重新整理，會發現node_modules文件夾會變小哦！</p>
+</li>
+<li><p>CommonsChunkPlugin<br>他會把大家共用的JS檔案拿出來，減少重複的檔案。</p>
+</li>
+<li><p>UglifyJSPlugin<br>會壓縮JS檔案，讓體積變小。</p>
+</li>
+<li><p>把React換成Production版本<br>減少原本react中的註釋和空白。</p>
+<pre><code>new webpack.DefinePlugin({
+    &apos;process.env&apos;: {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    },
+}),
+</code></pre></li>
+</ol>
+<p>經過這四招，我把檔案從快1MB減到300KB++，下面是我Webpack的檔案</p>
+<h2 id="Webpack設定檔"><a href="#Webpack設定檔" class="headerlink" title="Webpack設定檔"></a>Webpack設定檔</h2><pre><code>const path = require(&apos;path&apos;);
+const webpack = require(&apos;webpack&apos;);
+const UglifyJSPlugin = require(&apos;uglifyjs-webpack-plugin&apos;);
+
+const srcPath = path.resolve(__dirname, &apos;src&apos;);
+const distPath = path.resolve(__dirname, &apos;dist&apos;);
+
+module.exports = {
+    /*devtool讓我在borwser看到哪裡出問題*/
+    devtool: &apos;cheap-module-eval-source-map&apos;,
+    context: srcPath,
+    /*入口*/
+    entry: [
+        path.join(__dirname, &apos;src/index.js&apos;),
+    ],  
+    /*输出到dist文件夹，输出文件名字为bundle.js*/
+    output: {
+        path: path.join(__dirname, &apos;./dist&apos;),
+        filename: &apos;bundle.js&apos;
+    },
+
+    /*src文件夹下面的以.js结尾的文件，要使用babel解析*/
+    /*cacheDirectory是用来缓存编译结果，下次编译加速*/
+    module: {
+        rules: [
+            {
+                test: /\.js$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+            {
+                test: /\.jsx$/ ,
+                loader:[&apos;babel-loader?cacheDirectory=true&apos;],
+                exclude: &apos;/node_modules/&apos;},
+
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    &apos;style-loader&apos;,
+                    {
+                        loader: &apos;css-loader&apos;,
+                        options : {
+                            url: false
+                        }
+                    }
+                ]},
+            {
+                test: /\.(png|jpg|gif)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: &apos;url-loader&apos;,
+                    options: {
+                        limit: 25000
+                    }
+                }]    
+            }]
+    },
+
+    devServer: {
+        contentBase: path.join(__dirname, &apos;./dist&apos;),
+        historyApiFallback: true,
+        host: &apos;0.0.0.0&apos;,
+        port: process.env.PORT || 8080,
+        public: &apos;forecastapps.herokuapp.com&apos;
+    },
+
+    resolve: {
+        //bug of webpack:
+        //https://github.com/webpack-contrib/css-loader/issues/74
+        modules: [&apos;./&apos;, &apos;node_modules&apos;],
+        alias: {
+            images: path.join(__dirname, &apos;./dist/images&apos;),
+            owfont: path.join(__dirname, &apos;src/component/Forecast/owfont-master&apos;),
+            Api: path.join(__dirname, &apos;src/component/Api&apos;),
+            Today: path.join(__dirname, &apos;src/component/Today&apos;),
+            Forecast: path.join(__dirname, &apos;src/component/Forecast&apos;),
+            component: path.join(__dirname, &apos;src/component&apos;),
+            router: path.join(__dirname, &apos;src/router&apos;),
+        }
+    },
+
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+        name: &apos;vendor&apos;,
+        filename: &apos;vendor.bundle.js&apos;,
+        minChunks: 2
+        }), 
+        new UglifyJSPlugin(),
+        new webpack.DefinePlugin({
+            &apos;process.env&apos;: {
+            &apos;NODE_ENV&apos;: JSON.stringify(&apos;production&apos;)
+            }
+        }),
+    ],
+};    
+</code></pre><h2 id="Package-json-一部分"><a href="#Package-json-一部分" class="headerlink" title="Package.json(一部分)"></a>Package.json(一部分)</h2><pre><code>&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;dev-build&quot;: &quot;webpack --config webpack.config.js&quot;,
+    &quot;start&quot;: &quot;set NODE_ENV=production&amp;&amp;webpack-dev-server --config webpack.config.js -p --progress --colors&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --config webpack.config.js --color --progress --hot&quot;,
+}
+</code></pre><h2 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h2><pre><code>{
+    // compact用來蓋掉在compiler的時候，出現的&quot;The code generator has deoptimised the styling of [some file] as it exceeds the max of &quot;500KB&quot; [3]&quot;訊息
+    &quot;compact&quot;: &quot;false&quot;,
+    &quot;presets&quot;: [
+        &quot;es2015&quot;,
+        &quot;react&quot;,
+        &quot;stage-0&quot;
+    ],
+    &quot;plugins&quot;: [
+        &quot;react-hot-loader/babel&quot;
+    ]
+}
+</code></pre><h1 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h1><p>這邊我有不太明白的地方，就是關於Hot Module Replacement。Hot Module Replacement就是在我開發時，能在我保存後，更新我修改的那部分，不需要我手動刷新。但在使用後，發現一個問題：State每次在我保存後，會被重置。我嘗試了react-hot-loader，發現不知道怎麼弄QQ看有誰路過能指點一下XD</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://github.com/brickspert/blog/issues/1" target="_blank" rel="noopener">https://github.com/brickspert/blog/issues/1</a></li>
+<li><a href="http://www.alloyteam.com/2016/03/master-npm/" target="_blank" rel="noopener">http://www.alloyteam.com/2016/03/master-npm/</a></li>
+<li><a href="https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean" target="_blank" rel="noopener">https://tutel.me/c/programming/questions/29576341/what+does+quotthe+code+generator+has+deoptimised+the+styling+of+some+file+as+it+exceeds+the+max+of+quot100kbquotquot+mean</a></li>
+<li><a href="https://github.com/reactjs/redux/issues/809" target="_blank" rel="noopener">https://github.com/reactjs/redux/issues/809</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/10/05/Hexo-sitemap-and-Keywords/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1253,7 +1558,7 @@ default_layout: post
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">文章</span>
                   </a>
                 </div>

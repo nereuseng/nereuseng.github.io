@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Xew4PKOvSabEp8EpsAUGr-B9ZvFIiWDn19BUfYPs6EE" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+<meta name="keywords" content="late, 2018, babel, howto, how, to,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何正確的設置babel(late 2018)">
+<meta property="og:url" content="https://nereuseng.github.io/2018/11/27/babel-usage/index.html">
+<meta property="og:site_name" content="nereuseng">
+<meta property="og:description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
+<meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/ie11.jpg">
+<meta property="og:updated_time" content="2018-12-08T10:10:12.529Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何正確的設置babel(late 2018)">
+<meta name="twitter:description" content="前言之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會">
+<meta name="twitter:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://nereuseng.github.io/2018/11/27/babel-usage/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何正確的設置babel(late 2018) | nereuseng</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nereuseng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">重新出發</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首頁</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />歸檔</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2018/11/27/babel-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何正確的設置babel(late 2018)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-11-27 20:44:47" itemprop="dateCreated datePublished" datetime="2018-11-27T20:44:47+08:00">2018-11-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-12-08 18:10:12" itemprop="dateModified" datetime="2018-12-08T18:10:12+08:00">2018-12-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前一直用框架和cli，沒有碰過相關的問題，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。</p>
+<h1 id="Babel-做什麼"><a href="#Babel-做什麼" class="headerlink" title="Babel 做什麼"></a>Babel 做什麼</h1><p>Babel 能把比較新的Javascript(關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的Javascript(ES5)，讓 Developers 能用新語法的同時，不會讓網頁壞掉。</p>
+<h1 id="Babel-的運作模式"><a href="#Babel-的運作模式" class="headerlink" title="Babel 的運作模式"></a>Babel 的運作模式</h1><ol>
+<li>Babel 默認只轉換語法（Syntax）， 像是：<br>a. Arrow function ( () =&gt; {} )<br>b. Spread ( [ …state, isOpen ] )<br>c. Destructing ( const { data } = res )<br>d. Default Parameters ( ( id = NaN ) =&gt; {})</li>
+</ol>
+<ol>
+<li>而自帶的 Api 、原生內置 Methods，需要加上 polyfill 後才能使用，像是：<br>a. Promise<br>b. Symbol<br>c. Array.from<br>d. Object.assign<br>e. fetch</li>
+</ol>
+<h1 id="1-轉換語法（Syntax）"><a href="#1-轉換語法（Syntax）" class="headerlink" title="1. 轉換語法（Syntax）"></a>1. 轉換語法（Syntax）</h1><p>直接轉換語法是非常方便的，這邊放了Webpack和Gulp的範例</p>
+<h3 id="1-1-Webpack"><a href="#1-1-Webpack" class="headerlink" title="1.1 Webpack"></a>1.1 Webpack</h3><p>Webpack：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D babel-loader @babel/core @babel/preset-env webpack</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">'@babel/preset-env'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-Gulp："><a href="#1-2-Gulp：" class="headerlink" title="1.2 Gulp："></a>1.2 Gulp：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-babel @babel/core @babel/preset-env</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>)</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'gulp-babel'</span>)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, () =&gt;</span><br><span class="line">  gulp.src(<span class="string">'src/app.js'</span>)</span><br><span class="line">    .pipe(babel(&#123;</span><br><span class="line">        presets: [<span class="string">'@babel/env'</span>]</span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'dist'</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>想要快的話，可在 Babel 網站的 Try It Out 直接轉換（似乎沒有比較方便？）</p>
+<h1 id="2-Polyfill"><a href="#2-Polyfill" class="headerlink" title="2. Polyfill"></a>2. Polyfill</h1><p>相較於直接轉換 Syntax，Polyfill 才是讓人頭疼的地方。有時候需要支援的 Browser 太舊（eg: IE11），龐大的 Polyfill bundle 拖累了其他不需要 Polyfill 的 Browser。儘量用只需要的 Polyfill 變成是需要優化的目標。</p>
+<h3 id="2-1-Polyfill：用Webpack"><a href="#2-1-Polyfill：用Webpack" class="headerlink" title="2.1 Polyfill：用Webpack"></a>2.1 Polyfill：用Webpack</h3><h4 id="2-1-1-entry-加入-babel-polyfill"><a href="#2-1-1-entry-加入-babel-polyfill" class="headerlink" title="2.1.1 entry 加入 @babel/polyfill"></a>2.1.1 entry 加入 @babel/polyfill</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: [<span class="string">"@babel/polyfill"</span>, <span class="string">"./app/js"</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-2-useBuiltIns"><a href="#2-1-2-useBuiltIns" class="headerlink" title="2.1.2 useBuiltIns"></a>2.1.2 useBuiltIns</h4><p>以前的做法是轉換語法（Syntax）和 Polyfill 是分開設定，現在在設定同一處統一用 useBuiltIns 設定，還有加上target（browserlist）的功能，讓設定方便很多。</p>
+<p>useBuiltIns 有三種設定方式：</p>
+<ol>
+<li>entry</li>
+<li>usage</li>
+<li>disable（就是不要加 polyfill 咯，就不解釋了）</li>
+</ol>
+<h5 id="2-1-2-a-useBuiltIns-‘entry’"><a href="#2-1-2-a-useBuiltIns-‘entry’" class="headerlink" title="2.1.2 a.) useBuiltIns : ‘entry’"></a>2.1.2 a.) useBuiltIns : ‘entry’</h5><p>在你的app入口加上這個：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@babel/polyfill'</span></span><br></pre></td></tr></table></figure></p>
+<p>根據1.1和2.1.1的基礎做更動：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  // webpack.config.js</span><br><span class="line">  module: &#123;</span><br><span class="line"><span class="deletion">-   entry: ["@babel/polyfill", "./app/js"],</span></span><br><span class="line"><span class="addition">+   entry: ["./app/js"],</span></span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.m?js$/,</span><br><span class="line">        exclude: /(node_modules|bower_components)/,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: 'babel-loader',</span><br><span class="line">          options: &#123;</span><br><span class="line"><span class="deletion">-           presets: ['@babel/preset-env']</span></span><br><span class="line"><span class="addition">+           presets: [</span></span><br><span class="line"><span class="addition">+               '@babel/preset-env',</span></span><br><span class="line"><span class="addition">+               &#123;</span></span><br><span class="line"><span class="addition">+                 "targets": &#123;</span></span><br><span class="line"><span class="addition">+                   "ie": "11"</span></span><br><span class="line"><span class="addition">+                 &#125;,</span></span><br><span class="line"><span class="addition">+                 "useBuiltIns": "entry"</span></span><br><span class="line"><span class="addition">+               &#125;</span></span><br><span class="line"><span class="addition">+             ]</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-1-2-b-useBuiltIns-‘usage’"><a href="#2-1-2-b-useBuiltIns-‘usage’" class="headerlink" title="2.1.2 b.) useBuiltIns : ‘usage’"></a>2.1.2 b.) useBuiltIns : ‘usage’</h5><p>在app入口拿掉：<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// app.js</span><br><span class="line"><span class="deletion">- import '@babel/polyfill'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  // webpack.config.js</span><br><span class="line">  module: &#123;</span><br><span class="line"><span class="deletion">-   entry: ["@babel/polyfill", "./app/js"],</span></span><br><span class="line"><span class="addition">+   entry: ["./app/js"],</span></span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.m?js$/,</span><br><span class="line">        exclude: /(node_modules|bower_components)/,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: 'babel-loader',</span><br><span class="line">          options: &#123;</span><br><span class="line"><span class="deletion">-           presets: ['@babel/preset-env']</span></span><br><span class="line"><span class="addition">+           presets: [</span></span><br><span class="line"><span class="addition">+               '@babel/preset-env',</span></span><br><span class="line"><span class="addition">+               &#123;</span></span><br><span class="line"><span class="addition">+                 "targets": &#123;</span></span><br><span class="line"><span class="addition">+                   "ie": "11"</span></span><br><span class="line"><span class="addition">+                 &#125;,</span></span><br><span class="line"><span class="deletion">-                 "useBuiltIns": "entry"</span></span><br><span class="line"><span class="addition">+                 "useBuiltIns": "usage"</span></span><br><span class="line"><span class="addition">+               &#125;</span></span><br><span class="line"><span class="addition">+             ]</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>上面設定完之後，就會根據你在寫 code 的過程中，加上需要的 polyfill。</p>
+<p>但是由於 Babel 不能判斷你 code 裏面的 type，所以不能載入正確的 Polyfill。比方說：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"core-js/modules/es7.array.includes"</span>;</span><br><span class="line">a.includes <span class="comment">// 預設 a 是一個 Array，但實際 a 也可能是 String</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-3-手動引入要的-core-js"><a href="#2-1-3-手動引入要的-core-js" class="headerlink" title="2.1.3 手動引入要的 core.js"></a>2.1.3 手動引入要的 core.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'core-js/modules/es6.set.js'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'core-js/modules/es6.array.find-index.js'</span></span><br></pre></td></tr></table></figure>
+<p>但如果需要很多 Polyfill 的話，一個個載入就會變得很麻煩。</p>
+<h3 id="2-2-Polyfill：不用Webpack"><a href="#2-2-Polyfill：不用Webpack" class="headerlink" title="2.2 Polyfill：不用Webpack"></a>2.2 Polyfill：不用Webpack</h3><h4 id="2-2-1-Gulp、Browser-引用打包"><a href="#2-2-1-Gulp、Browser-引用打包" class="headerlink" title="2.2.1 Gulp、Browser 引用打包"></a>2.2.1 Gulp、Browser 引用打包</h4><p>在引入@babel/polyfill下的dist\polyfill.min.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// gulpfile.js</span></span><br><span class="line"><span class="keyword">const</span> polyfill = <span class="string">'node_modules/babel-polyfill/dist/polyfill.min.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsfiles = [</span><br><span class="line">  <span class="string">'js/lib/otherJsLibrary.js'</span>,</span><br><span class="line">  polyfill,</span><br><span class="line">  <span class="string">'js/index.js'</span></span><br><span class="line">];</span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(jsfile)</span><br><span class="line">    .pipe(concat(<span class="string">'index.min.js'</span>))   <span class="comment">//合併檔案</span></span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'dist/'</span>))   <span class="comment">//輸出</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>或者在 Browser 直接引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"polyfill.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣的結果當然就是 Bundle 整個會變得非常肥，造成資源的浪費。</p>
+<h4 id="2-2-2-Polyfill-io"><a href="#2-2-2-Polyfill-io" class="headerlink" title="2.2.2 Polyfill.io"></a>2.2.2 <a href="https://polyfill.io/v2/docs/" target="_blank" rel="noopener">Polyfill.io</a></h4><p>這個由金融時報（Financial Times）提供的服務，根據你的 UA 來判斷需要的 Polyfill（當然你可以指定，點<a href="https://polyfill.io/v2/docs/" target="_blank" rel="noopener">這裏</a>可以看文檔），用法也很簡單，在你的網頁加上：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.polyfill.io/v2/polyfill.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在不同的 Browser 看就會發現很回傳的東西不太一樣：</p>
+<p>這個是 Chrome 下看到的<br><img src="/2018/11/27/babel-usage/chrome.jpg" title="Chrome"></p>
+<p>這是 IE 11 下看到的<br><img src="/2018/11/27/babel-usage/ie11.jpg" title="IE11"></p>
+<p>當然若有安全上的考量，可以到他們的<a href="https://github.com/Financial-Times/polyfill-service" target="_blank" rel="noopener">github</a>，下載然後自己 Deploy 在自己的 Server 上吧！</p>
+<p>雖然在特定較舊的Browser，還是有很肥的問題，但是卻拯救了其他 90% 的 Browser！</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>總結那麼多方法，代表說我之前活動案被折磨很慘（誤），個人覺得最好的方法，是搭配 Webpack 的 Babel，加上自己架設的 Polyfill services，但是實際效果有待確定，有空再更新使用效果。</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="https://babeljs.io/docs/en/babel-polyfill" target="_blank" rel="noopener">https://babeljs.io/docs/en/babel-polyfill</a></li>
+<li><a href="https://github.com/Financial-Times/polyfill-service" target="_blank" rel="noopener">https://github.com/Financial-Times/polyfill-service</a></li>
+<li><a href="https://polyfill.io/v2/docs/" target="_blank" rel="noopener">https://polyfill.io/v2/docs/</a></li>
+<li><a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener">https://babeljs.io/docs/en/babel-preset-env</a></li>
+<li><a href="https://www.jianshu.com/p/0dc3bddb6da8" target="_blank" rel="noopener">https://www.jianshu.com/p/0dc3bddb6da8</a></li>
+<li><a href="https://juejin.im/post/5c09d6d35188256d9832df9d" target="_blank" rel="noopener">https://juejin.im/post/5c09d6d35188256d9832df9d</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/08/api-racing/" rel="next" title="土炮處理：api非同步時間差造成的response順序問題">
+                <i class="fa fa-chevron-left"></i> 土炮處理：api非同步時間差造成的response順序問題
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nereuseng</p>
+              <p class="site-description motion-element" itemprop="description">這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">標籤</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Babel-做什麼"><span class="nav-number">2.</span> <span class="nav-text">Babel 做什麼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Babel-的運作模式"><span class="nav-number">3.</span> <span class="nav-text">Babel 的運作模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-轉換語法（Syntax）"><span class="nav-number">4.</span> <span class="nav-text">1. 轉換語法（Syntax）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Webpack"><span class="nav-number">4.0.1.</span> <span class="nav-text">1.1 Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Gulp："><span class="nav-number">4.0.2.</span> <span class="nav-text">1.2 Gulp：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Polyfill"><span class="nav-number">5.</span> <span class="nav-text">2. Polyfill</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Polyfill：用Webpack"><span class="nav-number">5.0.1.</span> <span class="nav-text">2.1 Polyfill：用Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-entry-加入-babel-polyfill"><span class="nav-number">5.0.1.1.</span> <span class="nav-text">2.1.1 entry 加入 @babel/polyfill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-useBuiltIns"><span class="nav-number">5.0.1.2.</span> <span class="nav-text">2.1.2 useBuiltIns</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-a-useBuiltIns-‘entry’"><span class="nav-number">5.0.1.2.1.</span> <span class="nav-text">2.1.2 a.) useBuiltIns : ‘entry’</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-b-useBuiltIns-‘usage’"><span class="nav-number">5.0.1.2.2.</span> <span class="nav-text">2.1.2 b.) useBuiltIns : ‘usage’</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-手動引入要的-core-js"><span class="nav-number">5.0.1.3.</span> <span class="nav-text">2.1.3 手動引入要的 core.js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Polyfill：不用Webpack"><span class="nav-number">5.0.2.</span> <span class="nav-text">2.2 Polyfill：不用Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-Gulp、Browser-引用打包"><span class="nav-number">5.0.2.1.</span> <span class="nav-text">2.2.1 Gulp、Browser 引用打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-Polyfill-io"><span class="nav-number">5.0.2.2.</span> <span class="nav-text">2.2.2 Polyfill.io</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#總結"><span class="nav-number">6.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nereuseng</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
