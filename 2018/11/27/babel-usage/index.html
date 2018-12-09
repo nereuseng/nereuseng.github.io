@@ -120,7 +120,7 @@
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/ie11.jpg">
-<meta property="og:updated_time" content="2018-12-08T15:10:22.325Z">
+<meta property="og:updated_time" content="2018-12-08T15:55:30.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何正確的設置babel(late 2018)">
 <meta name="twitter:description" content="前言之前一直用框架和 cli，沒試過從頭架構，直到最近接了沒有用相關工作的小案，只好自己從頭研究XD 加上許多文章已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的 Javascript (關鍵字: ES6，ES2018 等)，轉換成目前 Browser 能看得懂的 Javascript (ES5)，讓 Developers 能用新語法的同時">
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-12-08 23:10:22" itemprop="dateModified" datetime="2018-12-08T23:10:22+08:00">2018-12-08</time>
+                <time title="修改時間：2018-12-08 23:55:30" itemprop="dateModified" datetime="2018-12-08T23:55:30+08:00">2018-12-08</time>
               
             
           </span>
@@ -390,7 +390,7 @@
 <ol>
 <li>而自帶的 Api 、原生內置 Methods，需要加上 polyfill 後才能使用，像是：<br>a. Promise<br>b. Symbol<br>c. Array.from<br>d. Object.assign<br>e. fetch</li>
 </ol>
-<h1 id="1-轉換語法（Syntax）"><a href="#1-轉換語法（Syntax）" class="headerlink" title="1. 轉換語法（Syntax）"></a>1. 轉換語法（Syntax）</h1><p>直接轉換語法是非常方便的，這邊放了Webpack和Gulp的範例</p>
+<h1 id="1-轉換語法（Syntax）"><a href="#1-轉換語法（Syntax）" class="headerlink" title="1. 轉換語法（Syntax）"></a>1. 轉換語法（Syntax）</h1><p>直接轉換語法是非常方便的，這邊放了 Webpack 和 Gulp 的範例</p>
 <h3 id="1-1-Webpack"><a href="#1-1-Webpack" class="headerlink" title="1.1 Webpack"></a>1.1 Webpack</h3><p>Webpack：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D babel-loader @babel/core @babel/preset-env webpack</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">'@babel/preset-env'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-2-Gulp："><a href="#1-2-Gulp：" class="headerlink" title="1.2 Gulp："></a>1.2 Gulp：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-babel @babel/core @babel/preset-env</span><br></pre></td></tr></table></figure>

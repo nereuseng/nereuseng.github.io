@@ -350,7 +350,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-12-08 23:10:22" itemprop="dateModified" datetime="2018-12-08T23:10:22+08:00">2018-12-08</time>
+                <time title="修改時間：2018-12-08 23:55:30" itemprop="dateModified" datetime="2018-12-08T23:55:30+08:00">2018-12-08</time>
               
             
           </span>
@@ -393,7 +393,7 @@
 <ol>
 <li>而自帶的 Api 、原生內置 Methods，需要加上 polyfill 後才能使用，像是：<br>a. Promise<br>b. Symbol<br>c. Array.from<br>d. Object.assign<br>e. fetch</li>
 </ol>
-<h1 id="1-轉換語法（Syntax）"><a href="#1-轉換語法（Syntax）" class="headerlink" title="1. 轉換語法（Syntax）"></a>1. 轉換語法（Syntax）</h1><p>直接轉換語法是非常方便的，這邊放了Webpack和Gulp的範例</p>
+<h1 id="1-轉換語法（Syntax）"><a href="#1-轉換語法（Syntax）" class="headerlink" title="1. 轉換語法（Syntax）"></a>1. 轉換語法（Syntax）</h1><p>直接轉換語法是非常方便的，這邊放了 Webpack 和 Gulp 的範例</p>
 <h3 id="1-1-Webpack"><a href="#1-1-Webpack" class="headerlink" title="1.1 Webpack"></a>1.1 Webpack</h3><p>Webpack：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D babel-loader @babel/core @babel/preset-env webpack</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">'@babel/preset-env'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-2-Gulp："><a href="#1-2-Gulp：" class="headerlink" title="1.2 Gulp："></a>1.2 Gulp：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-babel @babel/core @babel/preset-env</span><br></pre></td></tr></table></figure>
@@ -1725,216 +1725,6 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2017/11/08/oh-my-zsh/" itemprop="url">
-                  Windows 10上整合Vs code的Oh-my-zsh
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-
-              
-                
-              
-
-              <time title="創建時間：2017-11-08 11:52:55" itemprop="dateCreated datePublished" datetime="2017-11-08T11:52:55+08:00">2017-11-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新於</span>
-                
-                <time title="修改時間：2018-10-08 21:21:07" itemprop="dateModified" datetime="2018-10-08T21:21:07+08:00">2018-10-08</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="2018-10更新："><a href="#2018-10更新：" class="headerlink" title="2018/10更新："></a>2018/10更新：</h1><p>Windows 10新版本，已無需啓動Linux子系統，另外下面新增字體、主題安裝與Nodejs版本提升。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到線上讀書會的有一個講者用的Terminal[<a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">1</a>]，發現原來Terminal有那麼方便的功能，讓我立馬生火XD 花了一點時間研究怎麼安裝，踩了一下雷並在這邊分享心得。說到踩雷，我發現關於Oh-my-zsh繁體中文的心得分享資源，非常的少啊，於是激起我想要寫這篇文章的動力。</p>
-<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>啟動Linux子系統 -&gt; 安裝Zsh -&gt; Oh-my-zsh安裝與設定 -&gt; Vs code整合設定 -&gt;結束！</p>
-<h1 id="啟動Linux子系統"><a href="#啟動Linux子系統" class="headerlink" title="啟動Linux子系統"></a>啟動Linux子系統</h1><p><del>如果你沒有進行秋季創作者更新（Fall Creators Update）的話，請你跟著我的做法：</del></p>
-<p><del>設定 -&gt; 更新與安全性 -&gt; 開發人員專用 -&gt; 點擊“開發人員模式”</del></p>
-<p><del>開啟CMD或者Powershell，輸入<em>OptionalFeatures.exe</em>，跳出來的目錄下選擇“適用於Linux的Windows子系統(搶先版(Beta))”，並重啟電腦。電腦重啟後，打開CMD或者Powershell，輸入<em>bash</em>就能開始安裝Linux子系統。</del></p>
-<h3 id="2018-10-月更新："><a href="#2018-10-月更新：" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前更新到最新版本的windows後，不需要這樣特地開啓，只要到Microsoft Store搜尋『Ubuntu』下載安裝，下載後開啓按照他的指示安裝就行了。</p>
-<h1 id="安裝Zsh"><a href="#安裝Zsh" class="headerlink" title="安裝Zsh"></a>安裝Zsh</h1><p>在安裝Zsh之前，要在Bash環境下設定：</p>
-<p>安裝 cURL<br><code>sudo apt-get install curl</code></p>
-<p>安裝 git<br><code>sudo apt-add-repository ppa:git-core/ppa</code><br><code>sudo apt-get update</code><br><code>sudo apt-get install git</code></p>
-<p>最後安裝 Zsh<br><code>sudo apt-get install zsh</code></p>
-<p>安裝完畢之後，你可以先在bash裡面先試試看輸入<em>zsh</em>，如果他變成比較短的開頭，代表你成功安裝zsh！</p>
-<h1 id="Oh-my-zsh安裝與設定"><a href="#Oh-my-zsh安裝與設定" class="headerlink" title="Oh-my-zsh安裝與設定"></a>Oh-my-zsh安裝與設定</h1><p>這邊提醒大家，</p>
-<p>一切的改動請在Terminal完成！！[<a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">2</a>]<br>一切的改動請在Terminal完成！！<br>一切的改動請在Terminal完成！！</p>
-<p>千萬<em>不要</em>在其他的Windows編輯器像是Sublime Notepad Vscode等來編輯bashrc、zshrc等文檔<br>做錯的話就要前功盡棄了！</p>
-<p>安裝Oh-my-zsh<br><code>curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash</code></p>
-<p>複製設定檔，通常在安裝zsh之後，需要我們自行設置~/.zshrc，這邊為了防止出錯，直接先套用Oh-my-zsh的預設模板檔案：<br><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
-<p>目前來說，你的Oh-my-zsh已經成功安裝了！如果要啟動他，你要先打開Powershell -&gt; <em>bash</em> -&gt; <em>zsh</em>，但是這樣還是不夠方便，下面將預設開啟bash將會直接打開zsh：</p>
-<p>在Bash Terminal輸入<br><code>nano ~/.bashrc</code></p>
-<p>在Terminal將會跳出.bashrc的編輯畫面,在第一段與第二段的#號段落之間，輸入：<br><code>bash -c zsh</code></p>
-<p>建議直接手打，減少前功盡棄的機會。<a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">範本參考鏈接</a></p>
-<p>再次提醒，上面的段落，<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！</p>
-<h2 id="可選的設定"><a href="#可選的設定" class="headerlink" title="可選的設定"></a>可選的設定</h2><h3 id="主題字型"><a href="#主題字型" class="headerlink" title="主題字型"></a>主題字型</h3><p>因為Oh-my-zsh的主題大部分都用Powerline字型，所以我會推薦大家安裝，這邊的環境不需要用bash，一般的powershell或者cmd就好了，目錄在隨便一個都可以(照指示安裝後會刪除檔案)</p>
-<p><code>git clone https://github.com/powerline/fonts.git --depth=1</code><br><code>cd fonts</code><br><code>./install.sh</code><br><code>cd ..</code><br><code>rm -rf fonts</code></p>
-<h3 id="2018-10-月更新：-1"><a href="#2018-10-月更新：-1" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前我會選擇我想要的字體，下載ttf檔案，直接用window安裝。<br>設置字體：開啓Ubuntu -&gt; 點擊左上角Icon -&gt; Properties -&gt; Font -&gt; 安裝好的檔案。<br>如果找不到的話請嘗試重啓和重裝。</p>
-<h3 id="Random主題"><a href="#Random主題" class="headerlink" title="Random主題"></a>Random主題</h3><p>除此之外我也會讓zsh的主題random，在Bash環境下：</p>
-<p><code>nano ~/.zshrc</code></p>
-<p>如果有成功把Oh-my-zsh的設定模板複製，就能看到文檔中會有<em>ZSH_THEME</em>，把他改成<br><code>ZSH_THEME=&quot;random&quot;</code><br>再按Ctrl+X，按保存</p>
-<p>如果有一天random到你喜歡的主題，可以輸入這個指令查看：<br><code>print $RANDOM_THEME</code><br>到時候就能自己固定你喜歡的主題</p>
-<h3 id="2018-10-月更新：-2"><a href="#2018-10-月更新：-2" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前會固定使用bullet-train，配合的字型爲Menlo for Powerline，推薦大家使用，大家可以試試看XD</p>
-<h3 id="安裝插件"><a href="#安裝插件" class="headerlink" title="安裝插件"></a>安裝插件</h3><p>和上面一樣，在Bash環境下：</p>
-<p><code>nano ~/.zshrc</code></p>
-<p>一直按向下鍵，找到沒有#號的plugins，理論上一開始括號裡面會有git，你可以參考我的設定：<br><code>plugins=(git wd autojump zsh-syntax-highlighting zsh-autosuggestions)</code></p>
-<h1 id="Vs-code整合設定"><a href="#Vs-code整合設定" class="headerlink" title="Vs code整合設定"></a>Vs code整合設定</h1><p>到了這邊，其實你就能好好使用Oh-my-zsh了，但是我習慣在Vs code上使用Terminal，因此另外加上設置：</p>
-<p>Vs code -&gt; 檔案 -&gt; 喜好設定 -&gt; 設定</p>
-<p>就會開出你原本的設定Json檔，在右邊的下面加上</p>
-<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
-<p>如果你用的是Vs code 64bit版本，請改成</p>
-<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
-<p>記得要在前面加上逗號哦！不過後來我發現字體還是有點怪怪的，便移除了最後一行fontFamily的設定<br>之後在你的文件下，按Ctrl+`就能開啟你文件目錄下的Terminal了！</p>
-<h1 id="安裝npm"><a href="#安裝npm" class="headerlink" title="安裝npm"></a>安裝npm</h1><p>之前在Windows下安裝的npm是無法被Linux的Bash抓到，因此要另外在Bash安裝npm：</p>
-<p><code>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</code><br><code>sudo apt-get install -y nodejs</code><br><code>sudo npm install -g npm</code><br><code>npm --version</code></p>
-<p>並在~/.zshrc第一段的#號段落下，加上這些：<br><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></p>
-<h1 id="障礙排除"><a href="#障礙排除" class="headerlink" title="障礙排除"></a>障礙排除</h1><p>如果你遇到Input/output error，個人的建議是，你把Ubuntu刪除再重新安裝<a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">問題參考鏈接參考鏈接</a></p>
-<h1 id="參考連結："><a href="#參考連結：" class="headerlink" title="參考連結："></a>參考連結：</h1><ol>
-<li><a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">https://youtu.be/rsaqfyDLzQM?t=1m13s</a></li>
-<li><a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></li>
-<li><a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5</a></li>
-<li><a href="http://www.jianshu.com/p/fe244b1c7737" target="_blank" rel="noopener">http://www.jianshu.com/p/fe244b1c7737</a></li>
-<li><a href="https://github.com/robbyrussell/oh-my-zsh/issues/5725" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/issues/5725</a></li>
-<li><a href="https://www.jazz321254.com/visual-studio-code-zsh/" target="_blank" rel="noopener">https://www.jazz321254.com/visual-studio-code-zsh/</a></li>
-<li><a href="https://www.zhihu.com/question/49284484" target="_blank" rel="noopener">https://www.zhihu.com/question/49284484</a></li>
-<li><a href="https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3" target="_blank" rel="noopener">https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3</a></li>
-<li><a href="https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html" target="_blank" rel="noopener">https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html</a></li>
-<li><a href="https://github.com/robbyrussell/oh-my-zsh#manual-installation" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh#manual-installation</a></li>
-<li><a href="http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips" target="_blank" rel="noopener">http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips</a></li>
-<li><a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">https://github.com/Microsoft/WSL/issues/904</a></li>
-<li><a href="https://blog.miniasp.com/post/2018/06/15/My-Windows-Subsystem-for-Linux-WSL-Setup-2018.aspx" target="_blank" rel="noopener">https://blog.miniasp.com/post/2018/06/15/My-Windows-Subsystem-for-Linux-WSL-Setup-2018.aspx</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/11/08/oh-my-zsh/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nereuseng">
-      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="nereuseng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/08/oh-my-zsh/" itemprop="url">
                   Windows 10上整合Vs code的Oh-my-zsh(20180119更新)
                 </a>
               
@@ -2080,6 +1870,216 @@ rm -rf fonts</code></p>
 <li><a href="https://github.com/robbyrussell/oh-my-zsh#manual-installation" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh#manual-installation</a></li>
 <li><a href="http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips" target="_blank" rel="noopener">http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips</a></li>
 <li><a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">https://github.com/Microsoft/WSL/issues/904</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nereuseng.github.io/2017/11/08/oh-my-zsh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nereuseng">
+      <meta itemprop="description" content="這是我記錄我程式能力成長的地方，目前集中在React, JavaScript等，歡迎來交流！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nereuseng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/oh-my-zsh/" itemprop="url">
+                  Windows 10上整合Vs code的Oh-my-zsh
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-11-08 11:52:55" itemprop="dateCreated datePublished" datetime="2017-11-08T11:52:55+08:00">2017-11-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2018-10-08 21:21:07" itemprop="dateModified" datetime="2018-10-08T21:21:07+08:00">2018-10-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2018-10更新："><a href="#2018-10更新：" class="headerlink" title="2018/10更新："></a>2018/10更新：</h1><p>Windows 10新版本，已無需啓動Linux子系統，另外下面新增字體、主題安裝與Nodejs版本提升。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到線上讀書會的有一個講者用的Terminal[<a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">1</a>]，發現原來Terminal有那麼方便的功能，讓我立馬生火XD 花了一點時間研究怎麼安裝，踩了一下雷並在這邊分享心得。說到踩雷，我發現關於Oh-my-zsh繁體中文的心得分享資源，非常的少啊，於是激起我想要寫這篇文章的動力。</p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>啟動Linux子系統 -&gt; 安裝Zsh -&gt; Oh-my-zsh安裝與設定 -&gt; Vs code整合設定 -&gt;結束！</p>
+<h1 id="啟動Linux子系統"><a href="#啟動Linux子系統" class="headerlink" title="啟動Linux子系統"></a>啟動Linux子系統</h1><p><del>如果你沒有進行秋季創作者更新（Fall Creators Update）的話，請你跟著我的做法：</del></p>
+<p><del>設定 -&gt; 更新與安全性 -&gt; 開發人員專用 -&gt; 點擊“開發人員模式”</del></p>
+<p><del>開啟CMD或者Powershell，輸入<em>OptionalFeatures.exe</em>，跳出來的目錄下選擇“適用於Linux的Windows子系統(搶先版(Beta))”，並重啟電腦。電腦重啟後，打開CMD或者Powershell，輸入<em>bash</em>就能開始安裝Linux子系統。</del></p>
+<h3 id="2018-10-月更新："><a href="#2018-10-月更新：" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前更新到最新版本的windows後，不需要這樣特地開啓，只要到Microsoft Store搜尋『Ubuntu』下載安裝，下載後開啓按照他的指示安裝就行了。</p>
+<h1 id="安裝Zsh"><a href="#安裝Zsh" class="headerlink" title="安裝Zsh"></a>安裝Zsh</h1><p>在安裝Zsh之前，要在Bash環境下設定：</p>
+<p>安裝 cURL<br><code>sudo apt-get install curl</code></p>
+<p>安裝 git<br><code>sudo apt-add-repository ppa:git-core/ppa</code><br><code>sudo apt-get update</code><br><code>sudo apt-get install git</code></p>
+<p>最後安裝 Zsh<br><code>sudo apt-get install zsh</code></p>
+<p>安裝完畢之後，你可以先在bash裡面先試試看輸入<em>zsh</em>，如果他變成比較短的開頭，代表你成功安裝zsh！</p>
+<h1 id="Oh-my-zsh安裝與設定"><a href="#Oh-my-zsh安裝與設定" class="headerlink" title="Oh-my-zsh安裝與設定"></a>Oh-my-zsh安裝與設定</h1><p>這邊提醒大家，</p>
+<p>一切的改動請在Terminal完成！！[<a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">2</a>]<br>一切的改動請在Terminal完成！！<br>一切的改動請在Terminal完成！！</p>
+<p>千萬<em>不要</em>在其他的Windows編輯器像是Sublime Notepad Vscode等來編輯bashrc、zshrc等文檔<br>做錯的話就要前功盡棄了！</p>
+<p>安裝Oh-my-zsh<br><code>curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash</code></p>
+<p>複製設定檔，通常在安裝zsh之後，需要我們自行設置~/.zshrc，這邊為了防止出錯，直接先套用Oh-my-zsh的預設模板檔案：<br><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
+<p>目前來說，你的Oh-my-zsh已經成功安裝了！如果要啟動他，你要先打開Powershell -&gt; <em>bash</em> -&gt; <em>zsh</em>，但是這樣還是不夠方便，下面將預設開啟bash將會直接打開zsh：</p>
+<p>在Bash Terminal輸入<br><code>nano ~/.bashrc</code></p>
+<p>在Terminal將會跳出.bashrc的編輯畫面,在第一段與第二段的#號段落之間，輸入：<br><code>bash -c zsh</code></p>
+<p>建議直接手打，減少前功盡棄的機會。<a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">範本參考鏈接</a></p>
+<p>再次提醒，上面的段落，<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！<br>不要用Vscode、Sublime Notepad等編輯器編輯！！</p>
+<h2 id="可選的設定"><a href="#可選的設定" class="headerlink" title="可選的設定"></a>可選的設定</h2><h3 id="主題字型"><a href="#主題字型" class="headerlink" title="主題字型"></a>主題字型</h3><p>因為Oh-my-zsh的主題大部分都用Powerline字型，所以我會推薦大家安裝，這邊的環境不需要用bash，一般的powershell或者cmd就好了，目錄在隨便一個都可以(照指示安裝後會刪除檔案)</p>
+<p><code>git clone https://github.com/powerline/fonts.git --depth=1</code><br><code>cd fonts</code><br><code>./install.sh</code><br><code>cd ..</code><br><code>rm -rf fonts</code></p>
+<h3 id="2018-10-月更新：-1"><a href="#2018-10-月更新：-1" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前我會選擇我想要的字體，下載ttf檔案，直接用window安裝。<br>設置字體：開啓Ubuntu -&gt; 點擊左上角Icon -&gt; Properties -&gt; Font -&gt; 安裝好的檔案。<br>如果找不到的話請嘗試重啓和重裝。</p>
+<h3 id="Random主題"><a href="#Random主題" class="headerlink" title="Random主題"></a>Random主題</h3><p>除此之外我也會讓zsh的主題random，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>如果有成功把Oh-my-zsh的設定模板複製，就能看到文檔中會有<em>ZSH_THEME</em>，把他改成<br><code>ZSH_THEME=&quot;random&quot;</code><br>再按Ctrl+X，按保存</p>
+<p>如果有一天random到你喜歡的主題，可以輸入這個指令查看：<br><code>print $RANDOM_THEME</code><br>到時候就能自己固定你喜歡的主題</p>
+<h3 id="2018-10-月更新：-2"><a href="#2018-10-月更新：-2" class="headerlink" title="2018/10 月更新："></a>2018/10 月更新：</h3><p>目前會固定使用bullet-train，配合的字型爲Menlo for Powerline，推薦大家使用，大家可以試試看XD</p>
+<h3 id="安裝插件"><a href="#安裝插件" class="headerlink" title="安裝插件"></a>安裝插件</h3><p>和上面一樣，在Bash環境下：</p>
+<p><code>nano ~/.zshrc</code></p>
+<p>一直按向下鍵，找到沒有#號的plugins，理論上一開始括號裡面會有git，你可以參考我的設定：<br><code>plugins=(git wd autojump zsh-syntax-highlighting zsh-autosuggestions)</code></p>
+<h1 id="Vs-code整合設定"><a href="#Vs-code整合設定" class="headerlink" title="Vs code整合設定"></a>Vs code整合設定</h1><p>到了這邊，其實你就能好好使用Oh-my-zsh了，但是我習慣在Vs code上使用Terminal，因此另外加上設置：</p>
+<p>Vs code -&gt; 檔案 -&gt; 喜好設定 -&gt; 設定</p>
+<p>就會開出你原本的設定Json檔，在右邊的下面加上</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>如果你用的是Vs code 64bit版本，請改成</p>
+<p><code>&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\sysnative\\bash.exe&quot;,</code><br><code>&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-c&quot;, &quot;zsh&quot;]</code><br><code>&quot;terminal.integrated.fontFamily&quot;: &quot;Anonymous Pro for Powerline&quot;,</code></p>
+<p>記得要在前面加上逗號哦！不過後來我發現字體還是有點怪怪的，便移除了最後一行fontFamily的設定<br>之後在你的文件下，按Ctrl+`就能開啟你文件目錄下的Terminal了！</p>
+<h1 id="安裝npm"><a href="#安裝npm" class="headerlink" title="安裝npm"></a>安裝npm</h1><p>之前在Windows下安裝的npm是無法被Linux的Bash抓到，因此要另外在Bash安裝npm：</p>
+<p><code>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</code><br><code>sudo apt-get install -y nodejs</code><br><code>sudo npm install -g npm</code><br><code>npm --version</code></p>
+<p>並在~/.zshrc第一段的#號段落下，加上這些：<br><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></p>
+<h1 id="障礙排除"><a href="#障礙排除" class="headerlink" title="障礙排除"></a>障礙排除</h1><p>如果你遇到Input/output error，個人的建議是，你把Ubuntu刪除再重新安裝<a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">問題參考鏈接參考鏈接</a></p>
+<h1 id="參考連結："><a href="#參考連結：" class="headerlink" title="參考連結："></a>參考連結：</h1><ol>
+<li><a href="https://youtu.be/rsaqfyDLzQM?t=1m13s" target="_blank" rel="noopener">https://youtu.be/rsaqfyDLzQM?t=1m13s</a></li>
+<li><a href="https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></li>
+<li><a href="https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5" target="_blank" rel="noopener">https://gist.github.com/evdokimovm/67e4fcd938af98528aa108574626e522#file-bashrc-L5</a></li>
+<li><a href="http://www.jianshu.com/p/fe244b1c7737" target="_blank" rel="noopener">http://www.jianshu.com/p/fe244b1c7737</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/issues/5725" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/issues/5725</a></li>
+<li><a href="https://www.jazz321254.com/visual-studio-code-zsh/" target="_blank" rel="noopener">https://www.jazz321254.com/visual-studio-code-zsh/</a></li>
+<li><a href="https://www.zhihu.com/question/49284484" target="_blank" rel="noopener">https://www.zhihu.com/question/49284484</a></li>
+<li><a href="https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3" target="_blank" rel="noopener">https://winsmarts.com/run-oh-my-zsh-as-integrated-shell-in-vscode-on-windows-7d69f72bafa3</a></li>
+<li><a href="https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html" target="_blank" rel="noopener">https://evdokimovm.github.io/windows/zsh/shell/syntax/highlighting/ohmyzsh/hyper/terminal/2017/02/24/how-to-install-zsh-and-oh-my-zsh-on-windows-10.html</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh#manual-installation" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh#manual-installation</a></li>
+<li><a href="http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips" target="_blank" rel="noopener">http://icarus4.logdown.com/posts/177661-from-bash-to-zsh-setup-tips</a></li>
+<li><a href="https://github.com/Microsoft/WSL/issues/904" target="_blank" rel="noopener">https://github.com/Microsoft/WSL/issues/904</a></li>
+<li><a href="https://blog.miniasp.com/post/2018/06/15/My-Windows-Subsystem-for-Linux-WSL-Setup-2018.aspx" target="_blank" rel="noopener">https://blog.miniasp.com/post/2018/06/15/My-Windows-Subsystem-for-Linux-WSL-Setup-2018.aspx</a></li>
 </ol>
 
           
