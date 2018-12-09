@@ -120,7 +120,7 @@
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/chrome.jpg">
 <meta property="og:image" content="https://nereuseng.github.io/2018/11/27/babel-usage/ie11.jpg">
-<meta property="og:updated_time" content="2018-12-09T07:42:00.026Z">
+<meta property="og:updated_time" content="2018-12-09T07:43:35.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何正確的設置babel(Late 2018)">
 <meta name="twitter:description" content="前言之前用 Babel 轉換語法，都是靠框架和 cli轉換，沒試過從頭自己設定。直到最近，接了沒只用原生 Javascript 的小案。身爲 ES6++ 的愛好者，一定要使用 Babel 才能存活啊，最後只好自己從頭研究XD 查了一下，發現很多設定其實已經過時，因此這邊寫一份筆記整理，希望能減少其他人研究的時間。 Babel 做什麼Babel 能把比較新的 Javascript (關鍵字: ES6">
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2018-12-09 15:42:00" itemprop="dateModified" datetime="2018-12-09T15:42:00+08:00">2018-12-09</time>
+                <time title="修改時間：2018-12-09 15:43:35" itemprop="dateModified" datetime="2018-12-09T15:43:35+08:00">2018-12-09</time>
               
             
           </span>
@@ -400,12 +400,7 @@
 <h3 id="2-1-Polyfill：用Webpack"><a href="#2-1-Polyfill：用Webpack" class="headerlink" title="2.1 Polyfill：用Webpack"></a>2.1 Polyfill：用Webpack</h3><h4 id="2-1-1-entry-加入-babel-polyfill"><a href="#2-1-1-entry-加入-babel-polyfill" class="headerlink" title="2.1.1 entry 加入 @babel/polyfill"></a>2.1.1 entry 加入 @babel/polyfill</h4><p>這是最早期的做法，就是讓 Webpack 也 bundle polyfill的檔案：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: [<span class="string">"@babel/polyfill"</span>, <span class="string">"./app/js"</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="2-1-2-useBuiltIns"><a href="#2-1-2-useBuiltIns" class="headerlink" title="2.1.2 useBuiltIns"></a>2.1.2 useBuiltIns</h4><p>以前的做法是轉換語法（Syntax）和 Polyfill 是分開設定，現在在設定同一處統一用 useBuiltIns 設定，還有加上target（browserlist）的功能，讓設定方便很多。</p>
-<p>useBuiltIns 有三種設定方式：</p>
-<ol>
-<li>entry</li>
-<li>usage</li>
-<li>disable（就是不要加 polyfill 咯，就不解釋了）</li>
-</ol>
+<p>useBuiltIns 有三種設定方式：<br>a. entry<br>b. usage<br>c. disable（就是不要加 polyfill 咯，就不解釋了）</p>
 <h5 id="2-1-2-a-useBuiltIns-‘entry’"><a href="#2-1-2-a-useBuiltIns-‘entry’" class="headerlink" title="2.1.2 a.) useBuiltIns : ‘entry’"></a>2.1.2 a.) useBuiltIns : ‘entry’</h5><p>在你的app入口加上這個：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@babel/polyfill'</span></span><br></pre></td></tr></table></figure></p>
 <p>根據1.1和2.1.1的基礎做更動：</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  // webpack.config.js</span><br><span class="line">  module: &#123;</span><br><span class="line"><span class="deletion">-   entry: ["@babel/polyfill", "./app/js"],</span></span><br><span class="line"><span class="addition">+   entry: ["./app/js"],</span></span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.m?js$/,</span><br><span class="line">        exclude: /(node_modules|bower_components)/,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: 'babel-loader',</span><br><span class="line">          options: &#123;</span><br><span class="line"><span class="deletion">-           presets: ['@babel/preset-env']</span></span><br><span class="line"><span class="addition">+           presets: [</span></span><br><span class="line"><span class="addition">+               '@babel/preset-env',</span></span><br><span class="line"><span class="addition">+               &#123;</span></span><br><span class="line"><span class="addition">+                 "targets": &#123;</span></span><br><span class="line"><span class="addition">+                   "ie": "11"</span></span><br><span class="line"><span class="addition">+                 &#125;,</span></span><br><span class="line"><span class="addition">+                 "useBuiltIns": "entry"</span></span><br><span class="line"><span class="addition">+               &#125;</span></span><br><span class="line"><span class="addition">+             ]</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
